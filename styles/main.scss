@@ -1,0 +1,28 @@
+@import "variables";
+@import "bootstrap";
+@import "@fortawesome/fontawesome-free/scss/brands";
+@import "@fortawesome/fontawesome-free/scss/regular.scss";
+@import "@fortawesome/fontawesome-free/scss/solid";
+@import "@fortawesome/fontawesome-free/scss/fontawesome";
+@import '/node_modules/slick-carousel/slick/slick.scss';
+@import '/node_modules/aos/src/sass/aos.scss';
+@import "header";
+@import "start";
+@import "quote";
+@import "functions";
+@import "testimonials";
+@import "newsletter";
+@import "footer";
+@import "about-content";
+@import "news";
+@import "news-single";
+@import "contact";
+@import "functions-page";
+.btn-outline-primary {
+    background-color: rgba($white, .1);
+    color: $white;
+}
+
+.page-numbers {
+    @extend .page-link;
+}
