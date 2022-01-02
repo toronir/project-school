@@ -3,51 +3,81 @@
 function add_cpt()
 {
 
-    $argsFunctionsCategories = [
-        'labels' => [
-            'name' => 'Kategor fuction'
-        ],
-        'hierarchical'=>true,
+//     $argsFunctionsCategories = [
+//         'labels' => [
+//             'name' => 'Kategor fuction'
+//         ],
+//         'hierarchical'=>true,
 
-    ];
+//     ];
 
-    $argsOfertaCategories = [
-        'labels' => [
-            'name' => 'Oferta fuction'
-        ],
-        'hierarchical'=>true,
+//     $argsCarieraCategories = [
+//         'labels' => [
+//             'name' => 'Cariera fuction'
+//         ],
+//         'hierarchical'=>true,
 
-    ];
+//     ];
  
- register_taxonomy('function_categories',['functions'],$argsFunctionsCategories);
- register_taxonomy('cariera_categories',['oferta'],$argsOfertaCategories);
+//  register_taxonomy('function_categories',['functions'],$argsFunctionsCategories);
+//  register_taxonomy('cariera_categories',['cariera'],$argsCarieraCategories);
 
 
-    $functionArgs = [
+//     $functionArgs = [
+//         'labels' => [
+//             'name' => 'Funkcija'
+//         ],
+//         'public' => true,
+//         'menu_icon' => 'dashicons-list-view',
+//         'supports' => ['title', 'editor',]
+//     ];
+//     $testimmArgs = [
+//         'labels' => [
+//             'name' => 'Testimon'
+//         ],
+//         'public' => true,
+//         'menu_icon' => 'dashicons-list-view',
+//         'supports' => ['title', 'editor', 'text']
+//     ];
+
+//     $subscriptionArgs = [
+//         'labels' => [
+//             'name' => 'Subscription'
+//         ],
+//         'public' => false,
+//         'show_ui' => true,
+//         'menu_icon' => 'dashicons-list-view',
+//         'supports' => ['title']
+//     ];
+
+//     $carieraArgs = [
+//         'labels' => [
+//             'name' => 'Cariera'
+//         ],
+//         'public' => true,
+//         'menu_icon' => 'dashicons-list-view',
+//         'supports' => ['title', 'editor', 'text']
+//     ];
+
+
+// $argsLanguagesCategories = [
+//             'labels' => [
+//                 'name' => 'Kategorie języków'
+//             ],
+//             'hierarchical'=>true,
+    
+//         ];
+
+//          register_taxonomy('languages_categories',['languages'],$argsLanguagesCategories);
+
+
+    $languagesArgs = [
         'labels' => [
-            'name' => 'Funkcija'
+            'name' => 'Oferowane języki'
         ],
         'public' => true,
-        'menu_icon' => 'dashicons-list-view',
-        'supports' => ['title', 'editor',]
-    ];
-    $testimmArgs = [
-        'labels' => [
-            'name' => 'Testimon'
-        ],
-        'public' => true,
-        'menu_icon' => 'dashicons-list-view',
-        'supports' => ['title', 'editor', 'text']
-    ];
-
-    $subscriptionArgs = [
-        'labels' => [
-            'name' => 'Subscription'
-        ],
-        'public' => false,
-        'show_ui' => true,
-        'menu_icon' => 'dashicons-list-view',
-        'supports' => ['title']
+        'menu_icon' => 'language',
+        'supports' => ['title', 'editor', 'thumbnail']
     ];
 
     $ofertaArgs = [
@@ -58,21 +88,19 @@ function add_cpt()
         'menu_icon' => 'dashicons-list-view',
         'supports' => ['title', 'editor', 'text','thumbnail']
     ];
-    $languagesArgs = [
+    
+    $levelsArgs = [
         'labels' => [
-            'name' => 'Languages'
+            'name' => 'Oferowane poziomy nauczania'
         ],
-        'public' => false,
-        'show_ui' => true,
-        'menu_icon' => 'dashicons-list-view',
-        'supports' => ['title','editor','thumbnail']
+        'public' => true,
+        'menu_icon' => 'language',
+        'supports' => ['title', 'editor']
     ];
-
-    register_post_type('functions', $functionArgs);
-    register_post_type('languages', $languagesArgs);
-    register_post_type('testimon', $testimmArgs);
-    register_post_type('subscription', $subscriptionArgs);
+    
     register_post_type('oferta', $ofertaArgs);
+    register_post_type('languages', $languagesArgs);
+    register_post_type('levels', $levelsArgs);
 }
 
 

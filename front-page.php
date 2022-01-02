@@ -2,9 +2,48 @@
 
 $start_heading = get_field('start_heading');
 $start_desc = get_field('start_desc');
-$start_btn_1 = get_field('start_btn_1');
-$start_btn_2 = get_field('start_btn_2');
+$start_btn = get_field('start_btn');
 $start_bg = get_field('start_bg');
+
+$form_title = get_field('form_title');
+$first_form = get_field('first_form');
+$form_desc_1 = get_field('form_desc_1');
+$second_form = get_field('second_form');
+$form_desc_2 = get_field('form_desc_2');
+
+$languages_title = get_field('languages_title');
+$languagesArgs = [
+    'post_type' => 'languages',
+    'post_status' => 'publish',
+    'posts_per_page' => '50',
+    'paged' => get_query_var('paged'),
+    // 'tax_query' => [
+    //     [
+    //         'taxonomy'=> 'languages_categories'
+    //     ]
+    // ]
+];
+
+$languages_query = new WP_Query($languagesArgs);
+
+$levelsArgs = [
+    'post_type' => 'levels',
+    'post_status' => 'publish',
+    'posts_per_page' => '50',
+    'paged' => get_query_var('paged')
+];
+
+$levels_query = new WP_Query($levelsArgs);
+
+$start_levels_title = get_field('start_levels_title');
+$start_levels_desc = get_field('start_levels_desc');
+
+
+$start_offer_title = get_field('start_offer_title');
+$start_offer_desc = get_field('start_offer_desc');
+$start_offer_button_1 = get_field('start_offer_button_1');
+$start_offer_button_2 = get_field('start_offer_button_2');
+//------------------------------------------------
 
 
 $citat_text = get_field('citat_text');
@@ -41,17 +80,144 @@ get_header();
 
 
 <!-- Start start -->
-<div className="container" data-aos="fade-up">
-    <div className="row justify-content-center">
-        <div>
-            <h1>HELLO</h1>
+<section id="start" class="start" style="background-image: url('<?php echo $start_bg; ?>');">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <?php if ($start_heading) : ?>
+                <h1 class="start--heading text-center py-8">
+                    <?php echo $start_heading ?>
+                </h1>
+                <?php endif; ?>
+            </div>
+
         </div>
-        <div class="col-lg-8 col-xl-7 col-xxl-6">
-            <?php echo do_shortcode('[contact-form-7 id="204" title="Send your email"]') ?>
+        <div class="row my-2">
+            <div class="col-lg-7">
+                <?php if ($start_desc) : ?>
+                <p class="start--description">
+                    <?php echo $start_desc ?>
+                </p>
+                <?php endif; ?>
+
+            </div>
+            <div class="col-lg-5">
+                <?php if ($start_btn) : ?>
+                <a href="<?php echo $start_btn['url'] ?>" class="btn btn-lg">
+                    <?php echo $start_btn['title'] ?>
+                </a>
+                <?php endif; ?>
+            </div>
         </div>
     </div>
-</div>
-<!-- End end -->
+</section>
+<!-- End start -->
+
+<!-- Start forms -->
+<section id="forms" class="forms">
+    <div class="container">
+        <div class="row">
+            <h2 class='py-5 text-center'><?php echo $form_title?> </h2>
+            <div class="d-flex">
+                <div>
+                    <h3><?= $first_form ?></h3>
+                    <p><?= $form_desc_1 ?></p>
+                </div>
+
+                <?php if ($second_form) : ?>
+                <div>
+                    <h3><?= $second_form ?></h3>
+                    <p><?= $form_desc_2 ?></p>
+                </div>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End forms -->
+
+<!-- Start languages -->
+<section id="languages" class="languages">
+    <div class="container">
+
+        <h2 class='py-5 text-center'><?php echo $languages_title?></h2>
+        <div class="languages--box d-flex ">
+
+
+            <?php if ($languages_query->have_posts()) : ?>
+
+            <?php while ($languages_query->have_posts()) : ?>
+            <?php $languages_query->the_post(); ?>
+            <div class="languages--box__item">
+                <div class='languages--img'>
+                    <img src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'post-thumbnail'); ?>" alt=""
+                        class="img-fluid">
+                    <h3><?php echo get_the_title(); ?></h3>
+                </div>
+                <div>
+                    <?php the_content(); ?>
+                </div>
+            </div>
+            <?php endwhile; ?>
+
+
+            <?php endif; ?>
+        </div>
+    </div>
+</section>
+<!-- End languages -->
+
+<!-- Start levels -->
+<section id="levels" class="levels">
+    <div class="container">
+
+        <h2 class='py-5 text-center'><?php echo $start_levels_title ?></h2>
+        <p class='text-center mb-5'><?php echo $start_levels_desc ?></p>
+
+        <div class="levels--box d-flex ">
+
+            <?php if ($levels_query->have_posts()) : ?>
+
+            <?php while ($levels_query->have_posts()) : ?>
+            <?php $levels_query->the_post(); ?>
+
+            <div class="levels--box__item">
+                <h3><?php echo get_the_title(); ?></h3>
+                <?php the_content(); ?>
+            </div>
+
+            <?php endwhile; ?>
+            <?php endif; ?>
+
+        </div>
+    </div>
+</section>
+<!-- End levels -->
+
+<!-- Start more -->
+
+<?php if ($start_offer_title) : ?>
+<section id="more" class="more">
+    <div class="container">
+
+        <h2 class='py-5 text-center'><?php echo $start_offer_title ?></h2>
+        <p class='text-center mb-5'><?php echo $start_offer_desc ?></p>
+
+        <div class="wrapper">
+            <?php if ($start_offer_button_1) : ?>
+            <a class='btn first'
+                href="<?php echo $start_offer_button_1['url']?>"><?php echo $start_offer_button_1['title']?></a>
+            <?php endif; ?>
+
+            <?php if ($start_offer_button_2) : ?>
+            <a class='btn second'
+                href="<?php echo $start_offer_button_2['url']?>"><?php echo $start_offer_button_2['title']?></a>
+            <?php endif; ?>
+        </div>
+    </div>
+</section>
+<?php endif; ?>
+<!-- End more -->
 
 
 

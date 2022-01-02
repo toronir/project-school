@@ -5,12 +5,17 @@
     left: 0;
     width: 100%;
     padding: 1rem 0;
-    background-color: $white;
-    box-shadow: 0 0 2rem rgba(0,0,0,0.3);
-    
+    background-color: $dark;
+    // box-shadow: 0 0 2rem rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgb(238, 213, 71);
+
     &--logo {
-        max-width: 5rem;
+        max-width: 15rem;
         height: auto;
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 
     &--menu-toggle-wrapper {
@@ -43,9 +48,11 @@
 
             @include media-breakpoint-up(lg) {
                 flex-direction: row;
-                justify-content: space-between;
-                margin-top: 1rem;
+                justify-content: space-around;
+                margin-top: 4rem;
+                margin-bottom: 2rem;
             }
+
 
             li:not(:last-child) {
                 margin-bottom: 1rem;
@@ -58,10 +65,11 @@
             a {
                 font-size: 2rem;
                 text-decoration: none;
-                color: $secondary;
+                color: rgb(238, 213, 71);
+                transition: 0.2s;
 
                 &:hover {
-                    color: $primary;
+                    color: rgb(255, 237, 132);
                 }
             }
         }

@@ -18,6 +18,9 @@
 @import "news-single";
 @import "contact";
 @import "functions-page";
+
+
+
 .btn-outline-primary {
     background-color: rgba($white, .1);
     color: $white;
@@ -25,4 +28,14 @@
 
 .page-numbers {
     @extend .page-link;
+}
+
+body {
+    background-color: $dark;
+    color: rgb(233, 233, 233);
+}
+
+h1,
+h2 {
+    text-transform: uppercase;
 }

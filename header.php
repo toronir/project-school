@@ -19,8 +19,8 @@ $logo = get_theme_mod('logo');
 
 <body <?php body_class();?>>
     <!-- Start header -->
-    <header class="header" data-aos="fade" data-aos-delay="300">
-        <div class="container-fluid">
+    <header class="header">
+        <div class="container">
             <div class="row justify-content-between">
                 <div class="col-4">
                     <?php if($logo) : ?>
