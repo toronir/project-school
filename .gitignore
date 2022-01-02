@@ -3,3 +3,4 @@ node_modules/
 dist/
 dist/main.css
 dist/main.js
+package-lock.json

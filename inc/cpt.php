@@ -97,7 +97,27 @@ function add_cpt()
         'menu_icon' => 'language',
         'supports' => ['title', 'editor']
     ];
-    
+
+    $aboutArgs = [
+        "labels" => [
+            "name" => "O nas"
+        ],
+        "public" => true,
+        "menu_icon" => "dashicons-list-view",
+        "supports" => ["title", "editor"]
+    ];
+
+    $testimonialsArgs = [
+        "labels" => [
+            "name" => "Opinie klientów"
+        ],
+        "public" => true,
+        "menu_icon" => "dashicons-format-chat",
+        "supports" => ["title", "editor", "image"]
+    ];
+
+    register_post_type('testimonials', $testimonialsArgs);
+    register_post_type('about', $aboutArgs);
     register_post_type('oferta', $ofertaArgs);
     register_post_type('languages', $languagesArgs);
     register_post_type('levels', $levelsArgs);

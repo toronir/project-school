@@ -8,7 +8,7 @@ $linkL = get_theme_mod('linkL');
 
 <!-- Start footer -->
 <footer class="footer">
-    <div class="container" data-aos="fade-up" data-aos-offset="0">
+    <div class="container">
         <div class="row">
             <div class="col-md-3">
                 <nav class="footer--menu">
