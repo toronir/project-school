@@ -11,16 +11,16 @@ function add_cpt()
 
     ];
 
-    $argsCarieraCategories = [
+    $argsOfertaCategories = [
         'labels' => [
-            'name' => 'Cariera fuction'
+            'name' => 'Oferta fuction'
         ],
         'hierarchical'=>true,
 
     ];
  
  register_taxonomy('function_categories',['functions'],$argsFunctionsCategories);
- register_taxonomy('cariera_categories',['cariera'],$argsCarieraCategories);
+ register_taxonomy('cariera_categories',['oferta'],$argsOfertaCategories);
 
 
     $functionArgs = [
@@ -50,19 +50,29 @@ function add_cpt()
         'supports' => ['title']
     ];
 
-    $carieraArgs = [
+    $ofertaArgs = [
         'labels' => [
-            'name' => 'Cariera'
+            'name' => 'Oferta'
         ],
         'public' => true,
         'menu_icon' => 'dashicons-list-view',
-        'supports' => ['title', 'editor', 'text']
+        'supports' => ['title', 'editor', 'text','thumbnail']
+    ];
+    $languagesArgs = [
+        'labels' => [
+            'name' => 'Languages'
+        ],
+        'public' => false,
+        'show_ui' => true,
+        'menu_icon' => 'dashicons-list-view',
+        'supports' => ['title','editor','thumbnail']
     ];
 
     register_post_type('functions', $functionArgs);
+    register_post_type('languages', $languagesArgs);
     register_post_type('testimon', $testimmArgs);
     register_post_type('subscription', $subscriptionArgs);
-    register_post_type('cariera', $carieraArgs);
+    register_post_type('oferta', $ofertaArgs);
 }
 
 

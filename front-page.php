@@ -22,11 +22,11 @@ $testi_text = get_field('testi_text');
 
 
 $functions = get_posts([
-    'post_type' =>'functions',
+    'post_type' => 'functions',
     'numberposts' => -1,
 ]);
 $testimons = get_posts([
-    'post_type' =>'testimon',
+    'post_type' => 'testimon',
     'numberposts' => -1,
 ]);
 
@@ -41,6 +41,16 @@ get_header();
 
 
 <!-- Start start -->
+<div className="container" data-aos="fade-up">
+    <div className="row justify-content-center">
+        <div>
+            <h1>HELLO</h1>
+        </div>
+        <div class="col-lg-8 col-xl-7 col-xxl-6">
+            <?php echo do_shortcode('[contact-form-7 id="204" title="Send your email"]') ?>
+        </div>
+    </div>
+</div>
 <!-- End end -->
 
 

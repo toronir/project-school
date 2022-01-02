@@ -1,7 +1,7 @@
 <?php
 
 add_action('rest_api_init', function () {
-    register_rest_route('workon', '/newsletter', [
+    register_rest_route('workon', '/contact-us', [
         'methods' => 'POST',
         'callback' => function ($request) {
             $output = '';
@@ -23,3 +23,18 @@ add_action('rest_api_init', function () {
 
     ]);
 });
+add_action('rest_api_init', function () {
+    register_rest_route( 'api/v1', '/cities', array(
+        'methods' => 'POST',
+        'callback' => 'create_city_from_data'
+    ));
+});
+function create_city_from_data($req) {
+    $response['name'] = $req['name'];
+    $response['population'] = $req['population'];
+
+    $res = new WP_REST_Response($response);
+    $res->set_status(200);
+
+    return ['req' => $res];
+}
