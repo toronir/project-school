@@ -4,7 +4,7 @@
     height: 60vh;
     display: flex;
     align-items: center;
-    background: url('../images/hero.jpg') center bottom/cover no-repeat; // https://unsplash.com/photos/eYwn81sPkJ8
+    background-color: white;
     text-align: center;
 
     @include media-breakpoint-up(lg) {

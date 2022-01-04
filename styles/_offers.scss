@@ -1,0 +1,53 @@
+.offers-single {
+    padding: 10rem 0;
+}
+.offers {
+    &--nav {
+        display: none;
+        justify-content: center;
+
+        @include media-breakpoint-up(lg) {
+            display: flex;
+        }
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin: 2rem 0 0;
+            padding: 0;
+            list-style: none;
+            width: 200px;
+            background-color: #f1f1f1;
+            color: black;
+
+            @include media-breakpoint-up(lg) {
+                flex-direction: column;
+                justify-content: space-around;
+                margin-top: 4rem;
+                margin-bottom: 2rem;
+            }
+
+            li:not(:last-child) {
+                margin-bottom: 1rem;
+
+                @include media-breakpoint-up(lg) {
+                    margin-bottom: 0;
+                }
+            }
+
+            a {
+                
+                font-size: 2rem;
+                text-align: center;
+                text-decoration: none;
+                border-bottom: 2px solid rgb(0, 0, 0);
+                transition: 0.2s;
+
+                &:hover {
+                    color: rgb(0, 0, 0);
+                }
+            }
+        }
+    }
+}

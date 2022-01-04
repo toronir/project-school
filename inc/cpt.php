@@ -11,15 +11,15 @@ function add_cpt()
 
 //     ];
 
-//     $argsCarieraCategories = [
-//         'labels' => [
-//             'name' => 'Cariera fuction'
-//         ],
-//         'hierarchical'=>true,
+     $argsOffersCategories = [
+         'labels' => [
+             'name' => 'Oferta fuction'
+         ],
+        'hierarchical'=>true,
 
-//     ];
+     ];
  
-//  register_taxonomy('function_categories',['functions'],$argsFunctionsCategories);
+  register_taxonomy('offers_categories',['oferta'],$argsOffersCategories);
 //  register_taxonomy('cariera_categories',['cariera'],$argsCarieraCategories);
 
 
