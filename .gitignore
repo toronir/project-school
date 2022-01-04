@@ -1,6 +1,4 @@
 node_modules/
 .idea
-dist/
-dist/main.css
-dist/main.js
+dist
 package-lock.json

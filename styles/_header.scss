@@ -42,17 +42,39 @@
             display: flex;
             flex-direction: column;
             align-items: flex-end;
-            margin: 2rem 0 0;
+            margin:0;
             padding: 0;
             list-style: none;
 
             @include media-breakpoint-up(lg) {
                 flex-direction: row;
                 justify-content: space-around;
-                margin-top: 4rem;
-                margin-bottom: 2rem;
             }
 
+            li {
+                position: relative;
+                padding: 1rem 0;
+                ul {
+                    position: absolute;
+                    top: 100%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background-color: #212529;
+                    border-bottom: 1px solid #eed547;
+                    padding: 0 4rem;
+                    margin:0;
+                    display: none;
+
+                    &:hover {
+                        position: absolute;
+                        display: block;
+                    }
+                }
+
+                &:hover ul {
+                    display: block;
+                }
+            }
 
             li:not(:last-child) {
                 margin-bottom: 1rem;
