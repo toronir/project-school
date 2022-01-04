@@ -116,6 +116,16 @@ function add_cpt()
         "supports" => ["title", "editor", "image"]
     ];
 
+    $teachersArgs = [
+        "labels" => [
+            "name" => "Lektorzy"
+        ],
+        "public" => true,
+        "menu_icon" => "dashicons-format-chat",
+        "supports" => ["title", "editor", "image"]
+    ];
+    
+    register_post_type('teachers', $teachersArgs);
     register_post_type('testimonials', $testimonialsArgs);
     register_post_type('about', $aboutArgs);
     register_post_type('oferta', $ofertaArgs);

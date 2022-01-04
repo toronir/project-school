@@ -1,0 +1,21 @@
+.teachers {
+    padding: 12rem 0 10rem;
+
+    &--heading {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    &--description {
+        color: $text-muted;
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    &-list {
+        padding: 10rem 0 10rem;
+        img {
+            height: 250px;
+        }
+    }
+}

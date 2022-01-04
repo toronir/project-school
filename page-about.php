@@ -116,7 +116,6 @@ $testimonials = get_posts([
                                 <div><img src="<?= get_field("testimonials_avatar", $testimonial->ID) ?>"></div>
                                 <div class="testimonials--user-opinions">
                                     <span><?= $testimonial->post_title; ?></span>
-                                    <strong><?= get_field("testimonials_subtitle", $testimonial->ID) ?></strong>
                                     Kurs: <strong><?= get_field("language_testimonials", $testimonial->ID) ?></strong>
                                 </div>
                                 <div class="testimonials--slider-item-text justify-content-center"><?= $testimonial->post_content; ?></div>
