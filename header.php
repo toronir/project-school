@@ -24,7 +24,8 @@ $logo = get_theme_mod('logo');
             <div class="row justify-content-between">
                 <div class="col-4">
                     <?php if($logo) : ?>
-                    <img src="<?php echo $logo?>" alt="<?php bloginfo('name');?>" class="header--logo">
+                    <a href="<?php echo bloginfo('url') ?>"><img src="<?php echo $logo?>"
+                            alt="<?php bloginfo('name');?>" class="header--logo"></a>
                     <?php endif; ?>
                 </div>
                 <div class="col-8 col-xl-6 col-xxl-4">

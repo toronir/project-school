@@ -8,7 +8,7 @@ import Newsletter from './newsletter';
 import reactDom from 'react-dom';
 
 
-$(()=>{
+$(() => {
     AOS.init({
         offset: 300
     });
@@ -17,8 +17,9 @@ $(()=>{
         nextArrow: $('.fa-chevron-right'),
         prevArrow: $('.fa-chevron-left'),
     });
-    
+
     reactDom.render(<Newsletter />, document.getElementById("newsletter"));
+
 });
 
 console.log(page);

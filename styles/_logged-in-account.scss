@@ -1,0 +1,101 @@
+.logged-in--start {
+
+    position: relative;
+    padding-top: 7rem;
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    background: center center/cover no-repeat;
+    text-align: center;
+
+    h1 {
+        text-align: center;
+    }
+
+}
+
+.logged-in--data {
+
+    .container {
+        border-bottom: $gold-color solid 0.5px;
+        padding-bottom: 1rem;
+    }
+
+    h1 {
+        text-align: center;
+        padding: 2rem 0;
+    }
+
+    h2 {
+        margin: 2rem auto;
+        text-align: center;
+    }
+
+    .wrapper {
+        width: 70%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+
+        form {
+            width: 45%;
+
+            div {
+                width: 100%;
+                margin: 1rem 0;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            button {
+                text-align: center;
+            }
+        }
+
+        &>div {
+            width: 30%;
+            background-color: $gold-color;
+            background-position: center center;
+            // background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+    }
+
+    &>p {
+        padding-top: 2rem;
+        text-align: center;
+    }
+
+}
+
+.logged-in-courses .container {
+    border-bottom: $gold-color solid 0.5px;
+    padding-bottom: 1rem;
+
+
+    .logged-in-courses--box {
+        flex-wrap: wrap;
+        gap: 4%;
+        row-gap: 2rem;
+
+
+        &__item {
+            display: flex;
+            flex-basis: 48%;
+            gap: 1.5rem;
+            flex-direction: column;
+            // align-items: center;
+
+            div.logged-in-courses--img {
+                display: flex;
+                gap: 4%;
+                align-items: center;
+
+                &>img {
+                    width: 20%;
+                }
+            }
+        }
+    }
+}

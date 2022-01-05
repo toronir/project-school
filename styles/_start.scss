@@ -1,9 +1,11 @@
 .start {
     position: relative;
-    height: 60vh;
+    // margin-top: 7rem;
+    height: 70vh;
     display: flex;
     align-items: center;
-    background-color: white;
+    // background-color: white;
+    background-size: cover;
     text-align: center;
 
     @include media-breakpoint-up(lg) {
@@ -39,7 +41,7 @@
     }
 
     a {
-        background-color: gold;
+        background-color: $gold-color;
         position: relative;
         top: 50%;
         left: 3rem;
@@ -76,13 +78,13 @@
 }
 
 .forms .container {
-    border-bottom: #ffe13a solid 0.5px;
+    border-bottom: $gold-color solid 0.5px;
     padding-bottom: 1rem;
 }
 
 
 .languages .container {
-    border-bottom: #ffe13a solid 0.5px;
+    border-bottom: $gold-color solid 0.5px;
     padding-bottom: 1rem;
 
 
@@ -117,8 +119,8 @@
 
     .levels--box {
         flex-wrap: wrap;
-        border: 0.5px solid #ffe13a;
-        border: 0.5px solid #fdc22d;
+        // border: 0.5px solid #ffe13a;
+        border: 0.5px solid $gold-color;
 
         &__item {
             display: flex;
@@ -131,7 +133,7 @@
             padding: 2rem;
 
             &:nth-child(2n) {
-                background-color: #fdc22d;
+                background-color: $gold-color;
                 color: $dark;
             }
 
@@ -143,7 +145,7 @@
 .more {
     margin-top: 4rem;
     padding-bottom: 2rem;
-    background-color: #fdc22d;
+    background-color: $gold-color;
     color: $dark;
 
     .wrapper {
@@ -164,13 +166,13 @@
 
                 &:hover {
                     background-color: $dark;
-                    color: #fdc22d;
+                    color: $gold-color;
                 }
             }
 
             &.second {
                 background-color: $dark;
-                color: #fdc22d;
+                color: $gold-color;
             }
         }
     }
