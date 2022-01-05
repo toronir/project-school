@@ -73,6 +73,20 @@
     border-bottom: $gold-color solid 0.5px;
     padding-bottom: 1rem;
 
+    &>p {
+        text-align: center;
+        font-style: italic;
+    }
+
+
+    .clean-visited-form button {
+        display: block;
+        margin: 0 0 0 auto;
+        background-color: transparent;
+        border: none;
+        color: $text;
+        font-style: italic;
+    }
 
     .logged-in-courses--box {
         flex-wrap: wrap;
@@ -97,5 +111,7 @@
                 }
             }
         }
+
+
     }
 }

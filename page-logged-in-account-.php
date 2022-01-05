@@ -3,26 +3,40 @@
 Template name: Zalogowane konto
 */
 
+//start
 $logged_in_start_img = get_field('logged_in_start_img');
 $logged_in_start_title = get_field('logged_in_start_title');
 
+//dane
 $logged_in_data_title = get_field('logged_in_data_title');
 $logged_in_user_data = wp_get_current_user();
 
-$logged_in_value_email = $_GET['logged_in_value_email'] ? $_GET['logged_in_value_email'] : '';
-if (wp_get_current_user()->user_email !== $logged_in_value_email ) :
-    global $wpdb;
-$wpdb->update(
-    $wpdb->users, 
-    ['user_email' => 'do poprawy'], 
-    ['ID' => wp_get_current_user()->ID]
-);
-endif;
 
+//zmiana maila
+$logged_in_new_value = $_POST['mail'];
+if ($_POST['hidden-mail-input'] == 'change') {
+    if (wp_get_current_user()->user_email !== $logged_in_value_email ) {
+        global $wpdb;
+        $wpdb->update(
+            $wpdb->users, 
+            ['user_email' => $logged_in_new_value], 
+            ['ID' => wp_get_current_user()->ID]
+        );
+    }
+}
+//
+
+//visited pages
 $logged_in_visited_title = get_field('logged_in_visited_title');
 
-// update_field('user', '', 'user_1');
 
+//czyszczenie visited pages
+if ($_POST['clean-visited-pages'] == 'clean') {
+    update_field('user', '', 'user_1');
+}
+//
+
+//wyświetlanie visited pages
 $string_course_ID = get_field('user', 'user_1');
 $array_course_ID = explode(",", $string_course_ID);
 
@@ -33,8 +47,9 @@ $args = [
 ];
 
 $courses = get_posts($args);
+//
 
-// $clean_visited_pages =  $_GET['clean-visited-pages'] ? $_GET['clean-visited-pages'] : ' ';
+
 
 get_header();
 ?>
@@ -68,7 +83,7 @@ get_header();
                     <form method="POST">
                         <div>
                             <p>Login:</p>
-                            <span><?php echo wp_get_current_user()->user_login?></span>
+                            <span><?php echo $logged_in_user_data->user_login?></span>
                         </div>
                         <div>
                             <label for="name">Imię:</label>
@@ -83,31 +98,29 @@ get_header();
                                 value="<?php printf( __( '%s', 'textdomain' ), esc_html( $current_user->user_lastname ) ); ?>"> -->
                         </div>
                         <div>
-                            <label for="logged_in_value_email">E-mail:</label>
-                            <input type="text" name='logged_in_value_email'
-                                value='<?php echo wp_get_current_user()->user_email;?>'>
+                            <label for="mail">E-mail:</label>
+                            <input type="hidden" name='hidden-mail-input' value='change'>
+                            <input type="text" name='mail' value='<?php
+
+                            if ($_POST['hidden-mail-input'] == 'change') {
+                                echo $logged_in_new_value;
+                            } else {
+                                echo  $logged_in_user_data->user_email;
+                            }
+                            ?>'>
+
+
+
                         </div>
                         <button type='submit'>Zmień dane</button>
 
-                        <?php
-                        
-                        // $logged_in_value_email = $_GET['logged_in_value_email'] ? $_GET['logged_in_value_email'] : ' ';
-                        // if ($logged_in_value_email && wp_get_current_user()->user_email !== $logged_in_value_email ) :
-                        //     global $wpdb;
-                        // $wpdb->update(
-                        //     $wpdb->users, 
-                        //     ['user_email' => 'kolejnddy2x'], 
-                        //     ['ID' => wp_get_current_user()->ID]
-                        // );
-                        // endif;
-                        ?>
 
                     </form>
-                    <div style="background-image: url('<?php echo get_avatar_url(wp_get_current_user()->ID) ?>');">
+                    <div style="background-image: url('<?php echo get_avatar_url($logged_in_user_data->ID) ?>');">
                     </div>
 
                 </div>
-                <p>Dołączono: <span><?php echo wp_get_current_user()->user_registered?></span></p>
+                <p>Dołączono: <span><?php echo $logged_in_user_data->user_registered?></span></p>
             </div>
 
         </div>
@@ -121,6 +134,17 @@ get_header();
     <div class="container">
 
         <h2 class='py-5 text-center'><?php echo $logged_in_visited_title?></h2>
+
+        <?php if (get_field('user','user_1')) : ?>
+
+        <form method='POST' class="clean-visited-form">
+            <input type="hidden" name="clean-visited-pages" value="clean">
+            <div class="form-group">
+                <button type="submit">Wyczyść listę</button>
+            </div>
+        </form>
+
+
         <div class="logged-in-courses--box d-flex ">
 
             <!-- <?php print_r($string_course_ID) ?>
@@ -144,6 +168,9 @@ get_header();
 
 
         </div>
+        <?php else : ?>
+        <p>Brak postów do wyświetlenia.</p>
+        <?php endif; ?>
 
 
 
@@ -152,12 +179,7 @@ get_header();
     </div>
     </div>
 
-    <form class="clean-visited-form">
-        <input type="hidden" name="clean-visited-pages" value="">
-        <div class="form-group">
-            <button type="submit">Wyczyść listę</button>
-        </div>
-    </form>
+
 
 
 </section>
@@ -172,4 +194,5 @@ get_header();
 
 <!-- 
     Jak dodać event na kliknięcie w php
+    r.szarata@wisepeople.pl
  -->
