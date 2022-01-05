@@ -33,22 +33,47 @@
 
     .wrapper {
         width: 70%;
-        margin: 0 auto;
+        margin: 4rem auto;
         display: flex;
         justify-content: space-between;
 
         form {
             width: 45%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
 
             div {
                 width: 100%;
-                margin: 1rem 0;
+                margin: 0.5rem 0;
                 display: flex;
                 justify-content: space-between;
+
+                p {
+                    margin: 0;
+                }
             }
 
             button {
                 text-align: center;
+                padding: 1rem 2rem;
+                margin-top: 2rem;
+                background-color: rgb(29, 29, 29);
+                border: $gold-color 1px solid;
+                border-radius: 1rem;
+                color: $text;
+
+            }
+
+            input {
+                background-color: rgb(29, 29, 29);
+                border: none;
+                text-align: right;
+                color: $text;
+
+                &:focus {
+                    background-color: black;
+                }
             }
         }
 

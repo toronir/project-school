@@ -3,6 +3,10 @@
 Template name: Zalogowane konto
 */
 
+//test
+// update_field('user_saved_courses', '', wp_get_current_user()->ID);
+// update_field('user_visited_courses', '', wp_get_current_user()->ID);
+
 //start
 $logged_in_start_img = get_field('logged_in_start_img');
 $logged_in_start_title = get_field('logged_in_start_title');
@@ -11,19 +15,31 @@ $logged_in_start_title = get_field('logged_in_start_title');
 $logged_in_data_title = get_field('logged_in_data_title');
 $logged_in_user_data = wp_get_current_user();
 
+//saved
+$logged_in_saved_title = get_field('logged_in_saved_title');
+
 
 //zmiana maila
-$logged_in_new_value = $_POST['mail'];
-if ($_POST['hidden-mail-input'] == 'change') {
-    if (wp_get_current_user()->user_email !== $logged_in_value_email ) {
+$new_email_value = $_POST['mail'];
+if ($_POST['hidden-mail-input'] == 'change_mail') {
+    if (wp_get_current_user()->user_email !== $new_email_value ) {
         global $wpdb;
         $wpdb->update(
             $wpdb->users, 
-            ['user_email' => $logged_in_new_value], 
+            ['user_email' => $new_email_value], 
             ['ID' => wp_get_current_user()->ID]
         );
     }
-}
+};
+//
+//zmiana telefonu
+$new_phone_value = $_POST['phone'];
+if ($_POST['hidden-phone-input'] == 'change_phone') {
+    if (get_field('user_phone_number', $logged_in_user_data->ID) !== $new_phone_value ) {
+
+        update_field('user_phone_number', $new_phone_value, $logged_in_user_data->ID );
+    }
+};
 //
 
 //visited pages
@@ -32,24 +48,37 @@ $logged_in_visited_title = get_field('logged_in_visited_title');
 
 //czyszczenie visited pages
 if ($_POST['clean-visited-pages'] == 'clean') {
-    update_field('user', '', 'user_1');
+    update_field('user_visited_courses', '', $logged_in_user_data->ID);
 }
 //
 
 //wyświetlanie visited pages
-$string_course_ID = get_field('user', 'user_1');
-$array_course_ID = explode(",", $string_course_ID);
+$string_visited_course_ID = get_field('user_visited_courses', $logged_in_user_data->ID);
+$array_visited_course_ID = explode(",", $string_visited_course_ID);
 
-$args = [
+$visitedArgs = [
     'post_type' => 'oferta',
     'post_status' => 'publish',
-    'include' => $array_course_ID,
+    'include' => $array_visited_course_ID,
 ];
 
-$courses = get_posts($args);
+$visited_courses = get_posts($visitedArgs);
 //
 
+$user_phone = get_field('user_phone_number', $logged_in_user_data->ID);
 
+//wyświetlanie saved pages
+$string_saved_course_ID = get_field('user_saved_courses', $logged_in_user_data->ID);
+$array_saved_course_ID = explode(",", $string_saved_course_ID);
+
+$savedArgs = [
+    'post_type' => 'oferta',
+    'post_status' => 'publish',
+    'include' => $array_saved_course_ID,
+];
+
+$saved_courses = get_posts($savedArgs);
+//
 
 get_header();
 ?>
@@ -86,32 +115,41 @@ get_header();
                             <span><?php echo $logged_in_user_data->user_login?></span>
                         </div>
                         <div>
-                            <label for="name">Imię:</label>
+                            <p>Imię:</p>
                             <span><?php printf( __( '%s', 'textdomain' ), esc_html( $current_user->user_firstname ) );?></span>
-                            <!-- <input type="text" name='name'
-                                value='<?php printf( __( '%s', 'textdomain' ), esc_html( $current_user->user_firstname ) );?>'> -->
                         </div>
                         <div>
-                            <label for="surname">Nazwisko:</label>
+                            <p>Nazwisko:</p>
                             <span><?php printf( __( '%s', 'textdomain' ), esc_html( $current_user->user_lastname ) ); ?></span>
-                            <!-- <input type="text" name='surname'
-                                value="<?php printf( __( '%s', 'textdomain' ), esc_html( $current_user->user_lastname ) ); ?>"> -->
                         </div>
                         <div>
                             <label for="mail">E-mail:</label>
-                            <input type="hidden" name='hidden-mail-input' value='change'>
+                            <input type="hidden" name='hidden-mail-input' value='change_mail'>
                             <input type="text" name='mail' value='<?php
 
-                            if ($_POST['hidden-mail-input'] == 'change') {
-                                echo $logged_in_new_value;
+                            if ($_POST['hidden-mail-input'] == 'change_mail') {
+                                echo $new_email_value;
                             } else {
                                 echo  $logged_in_user_data->user_email;
                             }
                             ?>'>
-
-
-
                         </div>
+                        <div>
+                            <label for="phone">Nr telefonu:</label>
+                            <input type="hidden" name='hidden-phone-input' value='change_phone'>
+                            <input type="text" name='phone' value='
+                            <?php
+
+                            if ($_POST['hidden-phone-input'] == 'change_phone') {
+                                echo $new_phone_value;
+                            } else {
+                                print_r($user_phone);
+                            }
+                            ?>
+                            '>
+                        </div>
+
+
                         <button type='submit'>Zmień dane</button>
 
 
@@ -135,7 +173,7 @@ get_header();
 
         <h2 class='py-5 text-center'><?php echo $logged_in_visited_title?></h2>
 
-        <?php if (get_field('user','user_1')) : ?>
+        <?php if (get_field('user_visited_courses',$logged_in_user_data->ID)) : ?>
 
         <form method='POST' class="clean-visited-form">
             <input type="hidden" name="clean-visited-pages" value="clean">
@@ -147,11 +185,8 @@ get_header();
 
         <div class="logged-in-courses--box d-flex ">
 
-            <!-- <?php print_r($string_course_ID) ?>
-            <?php print_r($courses) ?> -->
+            <?php foreach ($visited_courses as $course) : ?>
 
-            <?php foreach ($courses as $course) : ?>
-            <!-- <?php print_r($course) ?> -->
             <div class="logged-in-courses--box__item">
                 <div class='logged-in-courses--img'>
                     <img src="<?php echo get_the_post_thumbnail_url($course->ID, 'medium'); ?>" alt=""
@@ -172,18 +207,69 @@ get_header();
         <p>Brak postów do wyświetlenia.</p>
         <?php endif; ?>
 
-
-
+        <!-- <p><?php echo get_field('user_saved_courses', $logged_in_user_data->ID);?></p> -->
 
 
     </div>
     </div>
-
 
 
 
 </section>
 <!-- end visited courses -->
+
+
+<!-- start saved courses -->
+<section id="-in-courses" class="logged-in-courses">
+
+    <div class="container">
+
+        <h2 class='py-5 text-center'><?php echo $logged_in_saved_title?></h2>
+
+        <?php if (get_field('user_saved_courses',$logged_in_user_data->ID)) : ?>
+
+        <!-- <form method='POST' class="clean-saved-form">
+            <input type="hidden" name="clean-saved-pages" value="clean">
+            <div class="form-group">
+                <button type="submit">Wyczyść listę</button>
+            </div>
+        </form> -->
+
+
+        <div class="logged-in-courses--box d-flex ">
+
+            <?php foreach ($saved_courses as $course) : ?>
+
+            <div class="logged-in-courses--box__item">
+                <div class='logged-in-courses--img'>
+                    <img src="<?php echo get_the_post_thumbnail_url($course->ID, 'medium'); ?>" alt=""
+                        class="img-fluid">
+                    <h3> <?php echo $course->post_title; ?> </h3>
+
+                </div>
+                <p> <?php echo get_the_excerpt( $course->ID); ?> </p>
+                <p> Poziom: <?php echo get_field("courses_level", $course->ID) ?> </p>
+                <p> Czas trwania kursu: <?php echo get_field("courses_time", $course->ID) ?>h </p>
+                <a href="<?php echo $course->guid?>">Czytaj więcej...</a>
+            </div>
+            <?php endforeach; ?>
+
+
+        </div>
+        <?php else : ?>
+        <p>Brak postów do wyświetlenia.</p>
+        <?php endif; ?>
+
+        <p><?php echo get_field('user_saved_courses', $saved_in_user_data->ID);?></p>
+
+
+    </div>
+    </div>
+
+
+
+</section>
+<!-- end saved courses -->
 
 
 
