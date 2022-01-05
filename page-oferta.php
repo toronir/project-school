@@ -240,8 +240,7 @@ $lng_query = new WP_Query($lng);
             </div>
 
 
-            <?php endif;
-                    ?>
+            <?php endif; ?>
             <?php endwhile; ?>
         </div>
         <div class="pagination pagination-lg justify-content-center">

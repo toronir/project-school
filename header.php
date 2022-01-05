@@ -37,6 +37,11 @@ $logo = get_theme_mod('logo');
                         <?php echo wp_nav_menu([
                             'theme_location' => 'header_nav'
                         ]); ?>
+
+                        <form action="<?php echo home_url(); ?>" method='GET' class="form-search">
+                            <input type="text" placeholder='Szukaj' name='s' value='<?php echo get_search_query(); ?>'>
+                            <button type='submit' class="btn btn-warning mb-2"> <i class="fas fa-search"></i> </button>
+                        </form>
                     </nav>
                 </div>
             </div>
