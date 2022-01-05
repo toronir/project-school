@@ -1,0 +1,20 @@
+.news-single--start {
+    background-position: center center;
+    background-size: cover;
+
+}
+
+.news-single {
+
+    &--img {
+        margin: 2rem 0;
+        display: flex;
+        justify-content: space-between;
+        // gap: 4%;
+
+        &>img {
+            width: 45%;
+        }
+    }
+
+}
