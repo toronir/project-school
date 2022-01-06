@@ -32,19 +32,39 @@ update_field('user_visited_courses', $new_string_seen_courses_ID, $logged_in_use
 
 // aktualizowanie zapisanych kursów - na kliknięcie
 
+$string_saved_courses_ID = get_field('user_saved_courses', $logged_in_user_data->ID);
+$array_saved_courses_ID = explode(",", $string_saved_courses_ID);
+
 if ($_POST['save'] == 'save_course') {
-    $string_saved_courses_ID = get_field('user_saved_courses', $logged_in_user_data->ID);
-    $array_saved_courses_ID = explode(",", $string_saved_courses_ID);
     
+    
+    if (!(in_array($current_post_ID, $array_saved_courses_ID))) {
+        
     array_unshift($array_saved_courses_ID, $current_post_ID);
-    
     $new_string_saved_courses_ID = implode(",", $array_saved_courses_ID);
 
     update_field('user_saved_courses', '', $logged_in_user_data->ID);
     update_field('user_saved_courses', $new_string_saved_courses_ID, $logged_in_user_data->ID);
-   
-}
+    }
+};
 
+// usuwanie kursu z zapisanych - na kliknięcie
+
+if ($_POST['delete'] == 'delete_course') {
+    if (in_array($current_post_ID, $array_saved_courses_ID)) {
+    $ID_to_delete = array_search($current_post_ID, $array_saved_courses_ID);
+    unset($array_saved_courses_ID[$ID_to_delete]);
+
+    $new_string_saved_courses_ID = implode(",", $array_saved_courses_ID);
+    update_field('user_saved_courses', $new_string_saved_courses_ID, $logged_in_user_data->ID);
+    }
+};
+
+if (in_array($current_post_ID, $array_saved_courses_ID)) {
+    $added_course = true;
+} else {
+    $added_course = false;
+};
 
 get_header();
 ?>
@@ -58,12 +78,19 @@ get_header();
                     <a href="<?php echo get_home_url(); ?>">Start</a>
                     <i class="fas fa-chevron-right"></i>
                     <span><?php the_title(); ?></span>
+                    <?php if (!$added_course) :?>
                     <form method="POST">
                         <input type="hidden" name='save' value='save_course'>
                         <button type='submit'>Zapisz kurs</button>
-                        <!-- <p>zapisane: <?php echo get_field('user_saved_courses', $logged_in_user_data->ID);?></p>
-                        <p>odwiedzone: <?php echo get_field('user_visited_courses', $logged_in_user_data->ID);?></p> -->
                     </form>
+                    <?php else : ?>
+                    <form method="POST">
+                        <input type="hidden" name='delete' value='delete_course'>
+                        <button type='submit'>Usuń kurs z zapisanych</button>
+                    </form>
+                    <?php endif; ?>
+                    <p>zapisane: <?php echo get_field('user_saved_courses', $logged_in_user_data->ID);?></p>
+                    <p>odwiedzone: <?php echo get_field('user_visited_courses', $logged_in_user_data->ID);?></p>
                 </div>
             </div>
         </div>

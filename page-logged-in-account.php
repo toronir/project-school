@@ -19,9 +19,12 @@ $logged_in_user_data = wp_get_current_user();
 $logged_in_saved_title = get_field('logged_in_saved_title');
 
 
-//zmiana maila
+//zmiana danych
 $new_email_value = $_POST['mail'];
-if ($_POST['hidden-mail-input'] == 'change_mail') {
+$new_phone_value = $_POST['phone'];
+
+if ($_POST['hidden-data-input'] == 'change_data') {
+    //mail
     if (wp_get_current_user()->user_email !== $new_email_value ) {
         global $wpdb;
         $wpdb->update(
@@ -29,25 +32,22 @@ if ($_POST['hidden-mail-input'] == 'change_mail') {
             ['user_email' => $new_email_value], 
             ['ID' => wp_get_current_user()->ID]
         );
-    }
-};
-//
-//zmiana telefonu
-$new_phone_value = $_POST['phone'];
-if ($_POST['hidden-phone-input'] == 'change_phone') {
+    };
+    //telefon
     if (get_field('user_phone_number', $logged_in_user_data->ID) !== $new_phone_value ) {
-
         update_field('user_phone_number', $new_phone_value, $logged_in_user_data->ID );
     }
 };
 //
+//nowa wartość telefonu
+$user_phone = get_field('user_phone_number', $logged_in_user_data->ID);
 
 //visited pages
 $logged_in_visited_title = get_field('logged_in_visited_title');
 
 
 //czyszczenie visited pages
-if ($_POST['clean-visited-pages'] == 'clean') {
+if ($_POST['clean'] == 'clean-visited-pages') {
     update_field('user_visited_courses', '', $logged_in_user_data->ID);
 }
 //
@@ -65,7 +65,11 @@ $visitedArgs = [
 $visited_courses = get_posts($visitedArgs);
 //
 
-$user_phone = get_field('user_phone_number', $logged_in_user_data->ID);
+//czyszczenie saved pages
+if ($_POST['clean'] == 'clean-saved-pages') {
+    update_field('user_saved_courses', '', $logged_in_user_data->ID);
+};
+//
 
 //wyświetlanie saved pages
 $string_saved_course_ID = get_field('user_saved_courses', $logged_in_user_data->ID);
@@ -124,10 +128,10 @@ get_header();
                         </div>
                         <div>
                             <label for="mail">E-mail:</label>
-                            <input type="hidden" name='hidden-mail-input' value='change_mail'>
+                            <input type="hidden" name='hidden-data-input' value='change_data'>
                             <input type="text" name='mail' value='<?php
 
-                            if ($_POST['hidden-mail-input'] == 'change_mail') {
+                            if ($_POST['hidden-data-input'] == 'change_data') {
                                 echo $new_email_value;
                             } else {
                                 echo  $logged_in_user_data->user_email;
@@ -136,11 +140,10 @@ get_header();
                         </div>
                         <div>
                             <label for="phone">Nr telefonu:</label>
-                            <input type="hidden" name='hidden-phone-input' value='change_phone'>
                             <input type="text" name='phone' value='
                             <?php
 
-                            if ($_POST['hidden-phone-input'] == 'change_phone') {
+                            if ($_POST['hidden-data-input'] == 'change_data') {
                                 echo $new_phone_value;
                             } else {
                                 print_r($user_phone);
@@ -156,8 +159,10 @@ get_header();
                     </form>
                     <div style="background-image: url('<?php echo get_avatar_url($logged_in_user_data->ID) ?>');">
                     </div>
-
                 </div>
+                <?php if ($_POST['hidden-data-input'] == 'change_data') : ?>
+                <p class='data-change'>Pomyślnie zmieniłeś dane!</p>
+                <?php endif; ?>
                 <p>Dołączono: <span><?php echo $logged_in_user_data->user_registered?></span></p>
             </div>
 
@@ -176,7 +181,7 @@ get_header();
         <?php if (get_field('user_visited_courses',$logged_in_user_data->ID)) : ?>
 
         <form method='POST' class="clean-visited-form">
-            <input type="hidden" name="clean-visited-pages" value="clean">
+            <input type="hidden" name="clean" value="clean-visited-pages">
             <div class="form-group">
                 <button type="submit">Wyczyść listę</button>
             </div>
@@ -228,12 +233,12 @@ get_header();
 
         <?php if (get_field('user_saved_courses',$logged_in_user_data->ID)) : ?>
 
-        <!-- <form method='POST' class="clean-saved-form">
-            <input type="hidden" name="clean-saved-pages" value="clean">
+        <form method='POST' class="clean-saved-form">
+            <input type="hidden" name="clean" value="clean-saved-pages">
             <div class="form-group">
                 <button type="submit">Wyczyść listę</button>
             </div>
-        </form> -->
+        </form>
 
 
         <div class="logged-in-courses--box d-flex ">
@@ -274,11 +279,3 @@ get_header();
 
 
 <?php get_footer(); ?>
-
-
-
-
-<!-- 
-    Jak dodać event na kliknięcie w php
-    r.szarata@wisepeople.pl
- -->

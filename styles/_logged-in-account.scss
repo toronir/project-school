@@ -90,6 +90,12 @@
     &>p {
         padding-top: 2rem;
         text-align: center;
+
+        &.data-change {
+            padding-top: 0;
+            color: green;
+            font-style: italic;
+        }
     }
 
 }
@@ -104,7 +110,8 @@
     }
 
 
-    .clean-visited-form button {
+    .clean-visited-form button,
+    .clean-saved-form button {
         display: block;
         margin: 0 0 0 auto;
         background-color: transparent;
