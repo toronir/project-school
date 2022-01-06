@@ -43,7 +43,6 @@ if ($_POST['save'] == 'save_course') {
     array_unshift($array_saved_courses_ID, $current_post_ID);
     $new_string_saved_courses_ID = implode(",", $array_saved_courses_ID);
 
-    update_field('user_saved_courses', '', $logged_in_user_data->ID);
     update_field('user_saved_courses', $new_string_saved_courses_ID, $logged_in_user_data->ID);
     }
 };
@@ -89,8 +88,6 @@ get_header();
                         <button type='submit'>Usuń kurs z zapisanych</button>
                     </form>
                     <?php endif; ?>
-                    <p>zapisane: <?php echo get_field('user_saved_courses', $logged_in_user_data->ID);?></p>
-                    <p>odwiedzone: <?php echo get_field('user_visited_courses', $logged_in_user_data->ID);?></p>
                 </div>
             </div>
         </div>

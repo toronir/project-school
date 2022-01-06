@@ -44,7 +44,8 @@ $user_phone = get_field('user_phone_number', $logged_in_user_data->ID);
 
 //visited pages
 $logged_in_visited_title = get_field('logged_in_visited_title');
-
+$string_visited_course_ID = get_field('user_visited_courses', $logged_in_user_data->ID);
+$array_visited_course_ID = explode(",", $string_visited_course_ID);
 
 //czyszczenie visited pages
 if ($_POST['clean'] == 'clean-visited-pages') {
@@ -53,9 +54,6 @@ if ($_POST['clean'] == 'clean-visited-pages') {
 //
 
 //wyświetlanie visited pages
-$string_visited_course_ID = get_field('user_visited_courses', $logged_in_user_data->ID);
-$array_visited_course_ID = explode(",", $string_visited_course_ID);
-
 $visitedArgs = [
     'post_type' => 'oferta',
     'post_status' => 'publish',
@@ -65,16 +63,27 @@ $visitedArgs = [
 $visited_courses = get_posts($visitedArgs);
 //
 
+
+// saved pages
+$string_saved_course_ID = get_field('user_saved_courses', $logged_in_user_data->ID);
+$array_saved_course_ID = explode(",", $string_saved_course_ID);
+
 //czyszczenie saved pages
 if ($_POST['clean'] == 'clean-saved-pages') {
     update_field('user_saved_courses', '', $logged_in_user_data->ID);
 };
 //
 
-//wyświetlanie saved pages
-$string_saved_course_ID = get_field('user_saved_courses', $logged_in_user_data->ID);
-$array_saved_course_ID = explode(",", $string_saved_course_ID);
+//czyszczenie jednego saved page
+$course_to_delete = $_POST['course_ID'];
+if ($_POST['delete'] == 'delete-saved-course') {
+    $ID_course_to_delete = array_search($course_to_delete, $array_saved_course_ID);
+    unset($array_saved_course_ID[$ID_course_to_delete]);
+    $new_string_saved_courses_ID = implode(",", $array_saved_course_ID);
+    update_field('user_saved_courses', $new_string_saved_courses_ID, $logged_in_user_data->ID);
+}
 
+//wyświetlanie saved pages
 $savedArgs = [
     'post_type' => 'oferta',
     'post_status' => 'publish',
@@ -241,6 +250,7 @@ get_header();
         </form>
 
 
+
         <div class="logged-in-courses--box d-flex ">
 
             <?php foreach ($saved_courses as $course) : ?>
@@ -256,6 +266,12 @@ get_header();
                 <p> Poziom: <?php echo get_field("courses_level", $course->ID) ?> </p>
                 <p> Czas trwania kursu: <?php echo get_field("courses_time", $course->ID) ?>h </p>
                 <a href="<?php echo $course->guid?>">Czytaj więcej...</a>
+                <form method="POST">
+                    <input type="hidden" name='delete' value='delete-saved-course'>
+                    <input type="hidden" name='course_ID' value='<?php echo $course->ID ?>'>
+                    <button type='submit'>Usuń z zapisanych</button>
+                </form>
+
             </div>
             <?php endforeach; ?>
 
