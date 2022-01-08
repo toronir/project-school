@@ -100,8 +100,11 @@
 
 }
 
+.border-left {
+    border-left: $gold-color solid 1px;
+}
+
 .logged-in-courses .container {
-    border-bottom: $gold-color solid 0.5px;
     padding-bottom: 1rem;
 
     &>p {
@@ -120,7 +123,29 @@
         font-style: italic;
     }
 
-    .logged-in-courses--box {
+    .logged-in-visited-courses {
+        flex-direction: column;
+        gap: 2rem;
+        justify-content: center;
+
+        h3 {
+            text-align: center;
+        }
+
+        &__item {
+            display: flex;
+            align-items: center;
+            border-bottom: black solid 1px;
+            justify-content: space-between;
+
+            &--img {
+                height: 100%;
+                width: 45%;
+            }
+        }
+    }
+
+    .logged-in-saved-courses {
         flex-wrap: wrap;
         gap: 4%;
         row-gap: 2rem;
@@ -133,7 +158,7 @@
             flex-direction: column;
             // align-items: center;
 
-            div.logged-in-courses--img {
+            &--img {
                 display: flex;
                 gap: 4%;
                 align-items: center;
@@ -144,6 +169,8 @@
             }
         }
 
-
+        &--pagination {
+            margin-top: 2rem;
+        }
     }
 }

@@ -54,10 +54,13 @@ if ($_POST['clean'] == 'clean-visited-pages') {
 //
 
 //wyświetlanie visited pages
+// $only_6_visited_courses = array_slice($array_visited_course_ID, 0, 6);
 $visitedArgs = [
     'post_type' => 'oferta',
     'post_status' => 'publish',
-    'include' => $array_visited_course_ID,
+    'post__in' => $array_visited_course_ID,
+    'orderby' => 'post__in',
+    'numberposts' => 6,
 ];
 
 $visited_courses = get_posts($visitedArgs);
@@ -87,11 +90,17 @@ if ($_POST['delete'] == 'delete-saved-course') {
 $savedArgs = [
     'post_type' => 'oferta',
     'post_status' => 'publish',
-    'include' => $array_saved_course_ID,
+    'post__in' => $array_saved_course_ID,
+    'orderby' => 'post__in',
+    'paged' => get_query_var('paged'),
+    'posts_per_page' => 4,
 ];
 
-$saved_courses = get_posts($savedArgs);
+$saved_courses = new WP_Query($savedArgs);
 //
+
+
+
 
 get_header();
 ?>
@@ -180,117 +189,139 @@ get_header();
 </section>
 <!-- start data -->
 
-<!-- start visited courses -->
-<section id="logged-in-courses" class="logged-in-courses">
+<!-- start kursy -->
+<div class="row justify-content-lg-center">
+    <div class="col-lg-7">
+        <!-- start saved courses -->
+        <section id="-in-courses" class="logged-in-courses">
 
-    <div class="container">
+            <div class="container">
 
-        <h2 class='py-5 text-center'><?php echo $logged_in_visited_title?></h2>
+                <h2 class='py-5 text-center'><?php echo $logged_in_saved_title?></h2>
 
-        <?php if (get_field('user_visited_courses',$logged_in_user_data->ID)) : ?>
+                <?php if (get_field('user_saved_courses',$logged_in_user_data->ID)) : ?>
 
-        <form method='POST' class="clean-visited-form">
-            <input type="hidden" name="clean" value="clean-visited-pages">
-            <div class="form-group">
-                <button type="submit">Wyczyść listę</button>
-            </div>
-        </form>
-
-
-        <div class="logged-in-courses--box d-flex ">
-
-            <?php foreach ($visited_courses as $course) : ?>
-
-            <div class="logged-in-courses--box__item">
-                <div class='logged-in-courses--img'>
-                    <img src="<?php echo get_the_post_thumbnail_url($course->ID, 'medium'); ?>" alt=""
-                        class="img-fluid">
-                    <h3> <?php echo $course->post_title; ?> </h3>
-
-                </div>
-                <p> <?php echo get_the_excerpt( $course->ID); ?> </p>
-                <p> Poziom: <?php echo get_field("courses_level", $course->ID) ?> </p>
-                <p> Czas trwania kursu: <?php echo get_field("courses_time", $course->ID) ?>h </p>
-                <a href="<?php echo $course->guid?>">Czytaj więcej...</a>
-            </div>
-            <?php endforeach; ?>
-
-
-        </div>
-        <?php else : ?>
-        <p>Brak postów do wyświetlenia.</p>
-        <?php endif; ?>
-
-        <!-- <p><?php echo get_field('user_saved_courses', $logged_in_user_data->ID);?></p> -->
-
-
-    </div>
-    </div>
-
-
-
-</section>
-<!-- end visited courses -->
-
-
-<!-- start saved courses -->
-<section id="-in-courses" class="logged-in-courses">
-
-    <div class="container">
-
-        <h2 class='py-5 text-center'><?php echo $logged_in_saved_title?></h2>
-
-        <?php if (get_field('user_saved_courses',$logged_in_user_data->ID)) : ?>
-
-        <form method='POST' class="clean-saved-form">
-            <input type="hidden" name="clean" value="clean-saved-pages">
-            <div class="form-group">
-                <button type="submit">Wyczyść listę</button>
-            </div>
-        </form>
-
-
-
-        <div class="logged-in-courses--box d-flex ">
-
-            <?php foreach ($saved_courses as $course) : ?>
-
-            <div class="logged-in-courses--box__item">
-                <div class='logged-in-courses--img'>
-                    <img src="<?php echo get_the_post_thumbnail_url($course->ID, 'medium'); ?>" alt=""
-                        class="img-fluid">
-                    <h3> <?php echo $course->post_title; ?> </h3>
-
-                </div>
-                <p> <?php echo get_the_excerpt( $course->ID); ?> </p>
-                <p> Poziom: <?php echo get_field("courses_level", $course->ID) ?> </p>
-                <p> Czas trwania kursu: <?php echo get_field("courses_time", $course->ID) ?>h </p>
-                <a href="<?php echo $course->guid?>">Czytaj więcej...</a>
-                <form method="POST">
-                    <input type="hidden" name='delete' value='delete-saved-course'>
-                    <input type="hidden" name='course_ID' value='<?php echo $course->ID ?>'>
-                    <button type='submit'>Usuń z zapisanych</button>
+                <form method='POST' class="clean-saved-form">
+                    <input type="hidden" name="clean" value="clean-saved-pages">
+                    <div class="form-group">
+                        <button type="submit">Wyczyść listę</button>
+                    </div>
                 </form>
 
+                <div class="logged-in-saved-courses d-flex ">
+
+                    <?php while ($saved_courses->have_posts()) : ?>
+                    <?php $saved_courses->the_post(); ?>
+
+                    <div class="logged-in-saved-courses__item">
+                        <div class='logged-in-saved-courses__item--img'>
+                            <img src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'medium'); ?>" alt=""
+                                class="img-fluid">
+                            <h3> <?php echo get_the_title(); ?> </h3>
+
+                        </div>
+                        <p> <?php echo get_the_excerpt(); ?> </p>
+                        <p> Poziom: <?php echo get_field("courses_level", get_the_ID()) ?> </p>
+                        <p> Czas trwania kursu: <?php echo get_field("courses_time", get_the_ID()) ?>h </p>
+                        <a href="<?php echo get_the_permalink()?>">Czytaj więcej...</a>
+                        <form method="POST">
+                            <input type="hidden" name='delete' value='delete-saved-course'>
+                            <input type="hidden" name='course_ID' value='<?php echo get_the_ID() ?>'>
+                            <button type='submit'>Usuń z zapisanych</button>
+                        </form>
+
+                    </div>
+
+                    <?php endwhile; ?>
+
+
+                </div>
+                <div class="pagination pagination-lg justify-content-center logged-in-saved-courses--pagination">
+
+                    <?php
+                $big = 9999999;
+                echo paginate_links([
+                    'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
+                    'format' => '?paged=%#%',
+                    'current' => max(1, get_query_var('paged')),
+                    'total' => $saved_courses->max_num_pages
+                ]);
+                ?>
+
+                </div>
+                <?php else : ?>
+                <p>Brak postów do wyświetlenia.</p>
+                <?php endif; ?>
+
             </div>
-            <?php endforeach; ?>
-
-
-        </div>
-        <?php else : ?>
-        <p>Brak postów do wyświetlenia.</p>
-        <?php endif; ?>
-
-        <p><?php echo get_field('user_saved_courses', $saved_in_user_data->ID);?></p>
-
-
-    </div>
+        </section>
+        <!-- end saved courses -->
     </div>
 
+    <div class="col-lg-3 border-left">
+        <!-- start visited courses -->
+        <section id="logged-in-courses" class="logged-in-courses">
+
+            <div class="container">
+
+                <h2 class='py-5 text-center'><?php echo $logged_in_visited_title?></h2>
+
+                <?php if (get_field('user_visited_courses',$logged_in_user_data->ID)) : ?>
+
+                <form method='POST' class="clean-visited-form">
+                    <input type="hidden" name="clean" value="clean-visited-pages">
+                    <div class="form-group">
+                        <button type="submit">Wyczyść listę</button>
+
+                    </div>
+                </form>
 
 
-</section>
-<!-- end saved courses -->
+                <div class="logged-in-visited-courses d-flex ">
+
+                    <?php foreach ($visited_courses as $course) : ?>
+
+                    <h3> <?php echo $course->post_title; ?> </h3>
+                    <div class="logged-in-visited-courses__item">
+                        <div class="logged-in-visited-courses__item--desc">
+                            <p> Poziom: <?php echo get_field("courses_level", $course->ID) ?> </p>
+                            <p> Czas trwania kursu: <?php echo get_field("courses_time", $course->ID) ?>h </p>
+                            <a href="<?php echo $course->guid?>">Czytaj więcej...</a>
+                        </div>
+                        <div class='logged-in-visited-courses__item--img'>
+                            <img src="<?php echo get_the_post_thumbnail_url($course->ID, 'medium'); ?>" alt=""
+                                class="img-fluid">
+                        </div>
+                    </div>
+
+                    <?php endforeach; ?>
+
+
+
+                </div>
+                <?php else : ?>
+                <p>Brak postów do wyświetlenia.</p>
+                <?php endif; ?>
+
+                <!-- <p><?php echo get_field('user_saved_courses', $logged_in_user_data->ID);?></p> -->
+
+
+            </div>
+
+
+
+
+        </section>
+        <!-- end visited courses -->
+    </div>
+</div>
+<!-- end kursy -->
+
+
+
+
+
+
 
 
 
