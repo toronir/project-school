@@ -160,7 +160,20 @@
 
         &--pagination {
             margin-top: 2rem;
+
+            a,
+            span {
+                border: $gold-color solid 1px;
+                background-color: rgb(29, 29, 29);
+                color: $text;
+                transition: 0.2s;
+            }
+
+            a:hover {
+                background-color: black;
+            }
         }
+
     }
 
     .logged-in-visited-courses {
@@ -175,7 +188,7 @@
         &__item {
             display: flex;
             align-items: center;
-            border-bottom: black solid 1px;
+            // border-bottom: black solid 1px;
             justify-content: space-between;
 
             &--img {
