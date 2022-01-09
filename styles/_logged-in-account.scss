@@ -16,85 +16,94 @@
 
 .logged-in--data {
 
-    .container {
-        border-bottom: $gold-color solid 0.5px;
-        padding-bottom: 1rem;
-    }
-
-    h1 {
-        text-align: center;
-        padding: 2rem 0;
-    }
-
     h2 {
         margin: 2rem auto;
         text-align: center;
     }
 
-    .wrapper {
-        width: 70%;
-        margin: 4rem auto;
+    .container {
+        border-bottom: $gold-color solid 0.5px;
+        padding-bottom: 1rem;
+    }
+
+    form {
         display: flex;
-        justify-content: space-between;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
 
-        form {
-            width: 45%;
+        flex- &.form-data {
+            // width: 80%;
+            padding-right: 10%;
+        }
+
+        &.form-password {
+            margin-left: 10%;
+            height: 100%;
+            border: $gold-color solid 0.5px;
+
+        }
+
+        div {
+            width: 100%;
+            margin: 0.5rem 0;
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            justify-content: space-between;
 
-            div {
-                width: 100%;
-                margin: 0.5rem 0;
-                display: flex;
-                justify-content: space-between;
-
-                p {
-                    margin: 0;
-                }
-            }
-
-            button {
-                text-align: center;
-                padding: 1rem 2rem;
-                margin-top: 2rem;
-                background-color: rgb(29, 29, 29);
-                border: $gold-color 1px solid;
-                border-radius: 1rem;
-                color: $text;
-
-            }
-
-            input {
-                background-color: rgb(29, 29, 29);
-                border: none;
-                text-align: right;
-                color: $text;
-
-                &:focus {
-                    background-color: black;
-                }
+            p {
+                margin: 0;
             }
         }
 
-        &>div {
-            width: 30%;
-            background-color: $gold-color;
-            background-position: center center;
-            // background-size: cover;
-            background-repeat: no-repeat;
+
+        button {
+            text-align: center;
+            padding: 1rem 2rem;
+            margin-top: 2rem;
+            background-color: rgb(29, 29, 29);
+            border: $gold-color 1px solid;
+            border-radius: 1rem;
+            color: $text;
+            // flex-grow: 1;
+            // height: 2rem;
+            flex-basis: auto;
+
         }
+
+        input {
+            background-color: rgb(29, 29, 29);
+            border: none;
+            text-align: right;
+            color: $text;
+
+            &:focus {
+                background-color: black;
+            }
+        }
+
+
+
 
     }
 
-    &>p {
-        padding-top: 2rem;
+    &__flex {
+        flex-grow: 1;
+    }
+
+    &__joined p {
+        // padding-top: 2rem;
         text-align: center;
 
         &.data-change {
-            padding-top: 0;
-            color: green;
-            font-style: italic;
+            &--success {
+                color: green;
+                font-style: italic;
+            }
+
+            &--error {
+                color: red;
+                font-style: italic;
+            }
         }
     }
 
@@ -123,27 +132,7 @@
         font-style: italic;
     }
 
-    .logged-in-visited-courses {
-        flex-direction: column;
-        gap: 2rem;
-        justify-content: center;
 
-        h3 {
-            text-align: center;
-        }
-
-        &__item {
-            display: flex;
-            align-items: center;
-            border-bottom: black solid 1px;
-            justify-content: space-between;
-
-            &--img {
-                height: 100%;
-                width: 45%;
-            }
-        }
-    }
 
     .logged-in-saved-courses {
         flex-wrap: wrap;
@@ -171,6 +160,28 @@
 
         &--pagination {
             margin-top: 2rem;
+        }
+    }
+
+    .logged-in-visited-courses {
+        flex-direction: column;
+        gap: 2rem;
+        justify-content: center;
+
+        h3 {
+            text-align: center;
+        }
+
+        &__item {
+            display: flex;
+            align-items: center;
+            border-bottom: black solid 1px;
+            justify-content: space-between;
+
+            &--img {
+                height: 100%;
+                width: 45%;
+            }
         }
     }
 }
