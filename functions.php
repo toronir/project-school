@@ -1,4 +1,5 @@
 <?php
+
 add_action('wp_enqueue_scripts', function () {
     wp_enqueue_style('main', get_template_directory_uri() . '/dist/main.css', [], '1.0');
 
@@ -22,6 +23,18 @@ add_action('after_setup_theme',function(){
         'footer_nav_2' => 'Footer navigation 2',
     ]);
 });
+
+// start changing menu for user login and logout
+add_filter( 'wp_nav_menu_args', 'logged_in_out_menu' );
+function logged_in_out_menu( $args ){
+    if( $args['theme_location'] == 'header_nav' ){
+        $args['menu'] = is_user_logged_in() ? 'logged_in' : 'logged_out';
+    }
+
+    return $args;
+}
+// end changing menu for user login and logout
+
 add_action('init',function(){
     register_sidebar([
         'name'=>'Primary sidebar',
@@ -32,9 +45,7 @@ add_action('init',function(){
     ]);
 });
 
-
 add_theme_support('post-thumbnails');
-
 
 include get_template_directory() . './inc/theme-options.php';
 include get_template_directory() . './inc/cpt.php';

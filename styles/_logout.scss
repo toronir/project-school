@@ -1,0 +1,50 @@
+.logout{
+    padding: 6rem 0 4rem 0;
+
+    &--heading {
+        padding-bottom: 4rem;
+    }
+
+    &-form {
+        padding: 4rem 2rem;
+    }
+
+    &-left-box {
+        position: relative;
+        height: 70vh;
+        display: flex;
+        align-items: center;
+        background: center center/cover no-repeat;
+        text-align: center;
+        background-size: contain;
+    }
+
+    &-right-box {
+        height: 70vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        input {
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            padding: 0.375rem 0.75rem;
+        }
+
+        .logout--heading {
+            text-align: center;
+            padding: 8rem 0 2rem 0;
+        }
+
+        .logout--btn {
+            text-align: center;
+        }
+    }
+
+    // &-heading {
+    //     &--heading {
+    //         text-align: center;
+    //         padding: 8rem 0;
+    //     }
+    // }
+}

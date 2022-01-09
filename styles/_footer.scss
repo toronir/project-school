@@ -1,9 +1,9 @@
 .footer {
-    padding: 5rem 0;
+    // padding: 5rem 0;
     background-color: $dark;
 
     @include media-breakpoint-up(lg) {
-        padding: 10rem 0;
+        padding-bottom: 4rem;
     }
 
     &--menu {
@@ -41,8 +41,8 @@
             width: 4rem;
             height: 4rem;
             border-radius: 50%;
-            background-color: $light;
-            color: $primary;
+            background-color: rgb(52, 52, 52);
+            color: goldenrod;
             text-align: center;
             line-height: 4rem;
             transition: all 0.25s;
@@ -52,14 +52,14 @@
             }
 
             &:hover {
-                background-color: $primary;
+                background-color: goldenrod;
                 color: $white;
             }
         }
     }
 
     &--line {
-        margin: 3rem 0;
+        margin: 1.5rem 0;
         background-color: $light;
         opacity: 0.1;
     }

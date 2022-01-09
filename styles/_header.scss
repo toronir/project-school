@@ -4,13 +4,13 @@
     top: 0;
     left: 0;
     width: 100%;
-    padding: 2rem 0;
+    padding: 1rem 0;
     background-color: $dark;
     // box-shadow: 0 0 2rem rgba(0, 0, 0, 0.3);
     border-bottom: 1px solid rgb(238, 213, 71);
 
     &--logo {
-        max-width: 15rem;
+        max-width: 11rem;
         height: auto;
         position: absolute;
         top: 100%;
@@ -36,6 +36,7 @@
 
         @include media-breakpoint-up(lg) {
             display: block;
+            justify-content: space-between;
         }
 
         ul {

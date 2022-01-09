@@ -8,7 +8,7 @@ get_header();
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8 col-xxl-7">
-                <h1>Wyniki wyszukiwania dla: <?php echo get_search_query(); ?></h1>
+                <h1 class="search-heading--heading">Wyniki wyszukiwania dla: <span class="search-for"><?php echo get_search_query(); ?></span></h1>
             </div>
         </div>
     </div>
@@ -23,8 +23,8 @@ get_header();
 
             <section class="search-result">
                 <div class="container">
-                    <div class="row">
-                        <div class="col">
+                    <div class="row justify-content-center">
+                        <div class="col-xxl-8 col-xl-6 col-sm-12 mb-4">
                             <h2><?php echo get_the_title(); ?></h2>
                             <div>
                                 <a href="<?php echo get_the_permalink(); ?>">Czytaj więcej</a>
@@ -36,6 +36,7 @@ get_header();
 
         <?php endwhile; ?>
 
+        <div class="pagination pagination-lg justify-content-center">       
         <?php
             $big = 99999999;
 
@@ -46,10 +47,19 @@ get_header();
                 'total' => $wp_query->max_num_pages,
             ]);
         ?>
+        </div>
 
-    <?php else : ?>
-        <div>Brak wpisów do wyświetlenia</div>    
-    <?php endif; ?>
+    <section>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-xxl-7">
+                    <?php else : ?>
+                        <div class="search--heading text-muted">Brak wpisów do wyświetlenia</div>    
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
 
 <?php get_footer(); ?>

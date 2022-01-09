@@ -1,0 +1,23 @@
+.form-search {
+    padding: 1rem 0;
+}
+
+.search-heading {
+    padding: 8rem 0 6rem;
+
+    &--heading {
+        text-align: center;
+        margin-bottom: 2rem;
+
+        .search-for {
+            color: darkgoldenrod;
+        }
+    }
+}
+
+.search {
+
+    &--heading {
+        text-align: center;
+    }
+}

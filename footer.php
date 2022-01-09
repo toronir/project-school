@@ -9,6 +9,13 @@ $linkL = get_theme_mod('linkL');
 <!-- Start footer -->
 <footer class="footer">
     <div class="container">
+
+        <div class="row">
+            <div class="col">
+                <hr class="footer--line">
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-md-3">
                 <nav class="footer--menu">
@@ -36,12 +43,6 @@ $linkL = get_theme_mod('linkL');
                         <a href="<?php echo $linkL?>" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                     <?php endif; ?>
                 </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col">
-                <hr class="footer--line">
             </div>
         </div>
 

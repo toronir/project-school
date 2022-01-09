@@ -27,6 +27,10 @@ $logo = get_theme_mod('logo');
                     <a href="<?php echo bloginfo('url') ?>"><img src="<?php echo $logo?>"
                             alt="<?php bloginfo('name');?>" class="header--logo"></a>
                     <?php endif; ?>
+                    <form action="<?php echo home_url(); ?>" method='GET' class="form-search">
+                            <input type="text" placeholder='Szukaj' name='s' value='<?php echo get_search_query(); ?>'>
+                            <button type='submit' class="btn btn-warning mb-2"> <i class="fas fa-search"></i> </button>
+                        </form>
                 </div>
                 <div class="col-8 col-xl-6 col-xxl-4">
                     <div class="header--menu-toggle-wrapper">
@@ -37,11 +41,6 @@ $logo = get_theme_mod('logo');
                         <?php echo wp_nav_menu([
                             'theme_location' => 'header_nav'
                         ]); ?>
-
-                        <form action="<?php echo home_url(); ?>" method='GET' class="form-search">
-                            <input type="text" placeholder='Szukaj' name='s' value='<?php echo get_search_query(); ?>'>
-                            <button type='submit' class="btn btn-warning mb-2"> <i class="fas fa-search"></i> </button>
-                        </form>
                     </nav>
                 </div>
             </div>
