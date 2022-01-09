@@ -4,8 +4,8 @@ import AOS from 'aos';
 import slick from 'slick-carousel';
 import React from 'react'
 
-import Newsletter from './newsletter';
 import reactDom from 'react-dom';
+import Contact from './contact';
 
 
 $(() => {
@@ -18,7 +18,7 @@ $(() => {
         prevArrow: $('.fa-chevron-left'),
     });
 
-    reactDom.render(<Newsletter />, document.getElementById("newsletter"));
+    reactDom.render(<Contact />, document.getElementById("contact"));
 
 });
 

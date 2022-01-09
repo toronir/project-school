@@ -40,3 +40,14 @@ include get_template_directory() . './inc/theme-options.php';
 include get_template_directory() . './inc/cpt.php';
 include get_template_directory() . './inc/api.php';
 
+
+// Add user by change post status in Subcription
+add_action('publish_subscription', function ($post_id, $post) {
+    $updated_post = get_post($post_id,ARRAY_A );
+    $custom_meta = get_post_meta($post_id);
+    $user_id = wp_create_user($updated_post['post_title'], 'qwerty', $updated_post['post_title']);
+   
+
+
+   // update_field('test_field', 'Aaaa', 'user_' . $user_id);
+}, 10, 2);

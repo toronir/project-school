@@ -1,3 +1,10 @@
+
 .contact {
     padding: 10rem 0;
+    background-color: $light;
+    color: black;
+
+    &--heading {
+        margin-bottom: 2rem;
+    }
 }

@@ -19,7 +19,7 @@ $customFieldCategoryValue = $_GET['customFieldCategoryValue'] ? $_GET['customFie
 
 $oferta_lable = get_field('oferta_lable');
 $oferta_discript = get_field('oferta_discript');
-$isLogIn = false;
+$isLogIn = true;
 
 $lng = [
     'post_type' => 'oferta',

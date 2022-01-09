@@ -3,72 +3,73 @@
 function add_cpt()
 {
 
-//     $argsFunctionsCategories = [
-//         'labels' => [
-//             'name' => 'Kategor fuction'
-//         ],
-//         'hierarchical'=>true,
+    //     $argsFunctionsCategories = [
+    //         'labels' => [
+    //             'name' => 'Kategor fuction'
+    //         ],
+    //         'hierarchical'=>true,
 
-//     ];
+    //     ];
 
-     $argsOffersCategories = [
-         'labels' => [
-             'name' => 'Oferta fuction'
-         ],
-        'hierarchical'=>true,
+    $argsOffersCategories = [
+        'labels' => [
+            'name' => 'Oferta fuction'
+        ],
+        'hierarchical' => true,
 
-     ];
- 
-  register_taxonomy('offers_categories',['oferta'],$argsOffersCategories);
-//  register_taxonomy('cariera_categories',['cariera'],$argsCarieraCategories);
+    ];
 
-
-//     $functionArgs = [
-//         'labels' => [
-//             'name' => 'Funkcija'
-//         ],
-//         'public' => true,
-//         'menu_icon' => 'dashicons-list-view',
-//         'supports' => ['title', 'editor',]
-//     ];
-//     $testimmArgs = [
-//         'labels' => [
-//             'name' => 'Testimon'
-//         ],
-//         'public' => true,
-//         'menu_icon' => 'dashicons-list-view',
-//         'supports' => ['title', 'editor', 'text']
-//     ];
-
-//     $subscriptionArgs = [
-//         'labels' => [
-//             'name' => 'Subscription'
-//         ],
-//         'public' => false,
-//         'show_ui' => true,
-//         'menu_icon' => 'dashicons-list-view',
-//         'supports' => ['title']
-//     ];
-
-//     $carieraArgs = [
-//         'labels' => [
-//             'name' => 'Cariera'
-//         ],
-//         'public' => true,
-//         'menu_icon' => 'dashicons-list-view',
-//         'supports' => ['title', 'editor', 'text']
-//     ];
+    register_taxonomy('offers_categories', ['oferta'], $argsOffersCategories);
+    //  register_taxonomy('cariera_categories',['cariera'],$argsCarieraCategories);
 
 
-// $argsLanguagesCategories = [
-//             'labels' => [
-//                 'name' => 'Kategorie języków'
-//             ],
-//             'hierarchical'=>true,
-    
-//         ];
+    //     $functionArgs = [
+    //         'labels' => [
+    //             'name' => 'Funkcija'
+    //         ],
+    //         'public' => true,
+    //         'menu_icon' => 'dashicons-list-view',
+    //         'supports' => ['title', 'editor',]
+    //     ];
+    //     $testimmArgs = [
+    //         'labels' => [
+    //             'name' => 'Testimon'
+    //         ],
+    //         'public' => true,
+    //         'menu_icon' => 'dashicons-list-view',
+    //         'supports' => ['title', 'editor', 'text']
+    //     ];
 
-//          register_taxonomy('languages_categories',['languages'],$argsLanguagesCategories);
+
+    //     $carieraArgs = [
+    //         'labels' => [
+    //             'name' => 'Cariera'
+    //         ],
+    //         'public' => true,
+    //         'menu_icon' => 'dashicons-list-view',
+    //         'supports' => ['title', 'editor', 'text']
+    //     ];
+
+
+    // $argsLanguagesCategories = [
+    //             'labels' => [
+    //                 'name' => 'Kategorie języków'
+    //             ],
+    //             'hierarchical'=>true,
+
+    //         ];
+
+    //          register_taxonomy('languages_categories',['languages'],$argsLanguagesCategories);
+    $subscriptionArgs = [
+        'labels' => [
+            'name' => 'Subscription'
+        ],
+        'public' => false,
+        'show_ui' => true,
+        'menu_icon' => 'dashicons-list-view',
+        'supports' => ['title']
+    ];
+
 
 
     $languagesArgs = [
@@ -86,9 +87,9 @@ function add_cpt()
         ],
         'public' => true,
         'menu_icon' => 'dashicons-list-view',
-        'supports' => ['title', 'editor', 'text','thumbnail']
+        'supports' => ['title', 'editor', 'text', 'thumbnail']
     ];
-    
+
     $levelsArgs = [
         'labels' => [
             'name' => 'Oferowane poziomy nauczania'
@@ -124,13 +125,14 @@ function add_cpt()
         "menu_icon" => "dashicons-format-chat",
         "supports" => ["title", "editor", "image"]
     ];
-    
+
     register_post_type('teachers', $teachersArgs);
     register_post_type('testimonials', $testimonialsArgs);
     register_post_type('about', $aboutArgs);
     register_post_type('oferta', $ofertaArgs);
     register_post_type('languages', $languagesArgs);
     register_post_type('levels', $levelsArgs);
+    register_post_type('subscription', $subscriptionArgs);
 }
 
 
