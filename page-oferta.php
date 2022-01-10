@@ -19,7 +19,7 @@ $customFieldTypeKey =  $_GET['types_select'] ? $_GET['types_select'] : '';
 
 $oferta_lable = get_field('oferta_lable');
 $oferta_discript = get_field('oferta_discript');
-$isLogIn = true;
+$isLogIn = is_user_logged_in();
 
 $lng = [
     'post_type' => 'oferta',
@@ -44,10 +44,12 @@ if ($customFieldLenguageKey || $customFieldLevelKey || $customFieldTypeKey) {
                 'value'        => $customFieldLenguageKey,
 
             ),
+          
             array(
                 'key'        => 'chose_course_type',
                 'value'        => $customFieldTypeKey,
             ),
+       
             array(
                 'key'        => 'courses_level',
                 'value'        => $customFieldLevelKey,
@@ -171,14 +173,16 @@ $lng_query = new WP_Query($lng);
                         </a>
 
                         <a class='row p-1'>
+                        <?php if ($isLogIn) : ?>
                             <p>Type</p>
 
-
+                       
                             <select name='types_select' class="form-select" aria-label="Default select example">
                                 <option value="" disabled selected>Choose type</option>
                                 <option value="Online">Online</option>
                                 <option value="Offline">Offline</option>
                             </select>
+                            <?php endif ;?>
                             </br>
                         </a>
                         <button class="button_gold" type='submit'>Submit</button>

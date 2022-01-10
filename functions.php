@@ -23,7 +23,6 @@ add_action('after_setup_theme', function () {
         'footer_nav_2' => 'Footer navigation 2',
     ]);
 });
-<<<<<<< Updated upstream
 
 // start changing menu for user login and logout
 add_filter( 'wp_nav_menu_args', 'logged_in_out_menu' );
@@ -36,10 +35,8 @@ function logged_in_out_menu( $args ){
 }
 // end changing menu for user login and logout
 
-add_action('init',function(){
-=======
+
 add_action('init', function () {
->>>>>>> Stashed changes
     register_sidebar([
         'name' => 'Primary sidebar',
         'id' => 'sidebar-1',
@@ -59,7 +56,37 @@ include get_template_directory() . './inc/api.php';
 // Add user by change post status in Subcription
 add_action('publish_subscription', function ($post_id, $post) {
     $updated_post = get_post($post_id, ARRAY_A);
-    $custom_meta = get_post_meta($post_id,ARRAY_A);
+    $telephone_meta = get_post_meta($post_id,'telephone',true);
     $user_id = wp_create_user($updated_post['post_title'], 'qwerty', $updated_post['post_title']);
-    update_field('user_phone_number', $custom_meta['telephone']   ,  $user_id);
+    update_field('user_phone_number', $telephone_meta   ,  $user_id);
 }, 10, 2);
+
+
+
+
+function wpse_cpt_enqueue( $hook_suffix ){
+    $cpt = 'subscription';
+
+    if( in_array($hook_suffix, array('post.php', 'post-new.php') ) ){
+        $screen = get_current_screen();
+
+        if( is_object( $screen ) && $cpt == $screen->post_type ){
+
+            add_filter(
+                'gettext',
+                function($translated,$text_domain,$original){
+                    if($translated === 'Publish'){
+                        return __('Add New User', 'print-my-blog');
+                    }
+                    return $translated;
+                },
+                10,
+                3
+            );
+
+        }
+    }
+}
+
+add_action( 'admin_enqueue_scripts', 'wpse_cpt_enqueue');
+
