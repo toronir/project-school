@@ -9,6 +9,7 @@ add_action('rest_api_init', function () {
             $phone = $request['phone'] ? $request['phone'] : '';
             $name = $request['name'] ? $request['name'] : '';
             $birthday = $request['birthday'] ? $request['birthday'] : '';
+            $pass = randomPassword();
 
 
             $to = 'toronir5@gmail.com';
@@ -24,9 +25,10 @@ add_action('rest_api_init', function () {
                     'post_status' => 'draft',
                     'post_type' => 'subscription',
                     'meta_input' => array(
-                        'first_name' => $name,
-                        'telephone' => $phone,
-                        'user_birthday' => $birthday,
+                        'subscription_first_name' => $name,
+                        'subscription_user_password' => $pass,
+                        'subscription_telephone' => $phone,
+                        'subscription_user_birthday' => $birthday,
                     )
 
 

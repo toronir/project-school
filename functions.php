@@ -51,12 +51,24 @@ include get_template_directory() . './inc/theme-options.php';
 include get_template_directory() . './inc/cpt.php';
 include get_template_directory() . './inc/api.php';
 
+function randomPassword() {
+    $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+    $pass = array(); //remember to declare $pass as an array
+    $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+    for ($i = 0; $i < 8; $i++) {
+        $n = rand(0, $alphaLength);
+        $pass[] = $alphabet[$n];
+    }
+    return implode($pass); //turn the array into a string
+}
+
 
 // Add user by change post status in Subcription
 add_action('publish_subscription', function ($post_id, $post) {
     $updated_post = get_post($post_id, ARRAY_A);
-    $telephone_meta = get_post_meta($post_id,'telephone',true);
-    $user_id = wp_create_user($updated_post['post_title'], 'qwerty', $updated_post['post_title']);
+    $telephone_meta = get_post_meta($post_id,'subscription_telephone',true);
+    $pass =  get_post_meta($post_id,'subscription_user_password',true);
+    $user_id = wp_create_user($updated_post['post_title'], $pass, $updated_post['post_title']);
     update_field('user_phone_number', $telephone_meta   ,  $user_id);
 }, 10, 2);
 
