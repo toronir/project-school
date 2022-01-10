@@ -9,7 +9,16 @@ add_action('rest_api_init', function () {
             $phone = $request['phone'] ? $request['phone'] : '';
             $name = $request['name'] ? $request['name'] : '';
             $birthday = $request['birthday'] ? $request['birthday'] : '';
-            if ($email && !get_page_by_title($email,OBJECT,'subscription')) {
+
+
+            $to = 'toronir5@gmail.com';
+            $subject = 'New User';
+            $body = 'You got new user';
+            $headers[] = 'Content-type: text/plain; charset=utf-8';
+            $headers[] = 'From:' . "testing@gmail.com";
+
+            if ($email && !get_page_by_title($email, OBJECT, 'subscription')) {
+
                 wp_insert_post([
                     'post_title' => $email,
                     'post_status' => 'draft',
@@ -20,8 +29,15 @@ add_action('rest_api_init', function () {
                         'user_birthday' => $birthday,
                     )
 
+
+
+
+
                 ]);
-                $output='success';
+                $output = 'success';
+                wp_mail($to, $subject, $body, $headers);
+                
+                
             } else {
                 $output = 'error';
             }

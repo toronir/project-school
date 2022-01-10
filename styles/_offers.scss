@@ -2,6 +2,9 @@
     padding: 10rem 0;
 }
 .offers {
+    border-bottom: $gold-color solid 0.5px;
+    padding-bottom: 1rem;
+
     &--nav {
         display: none;
         justify-content: center;
@@ -18,7 +21,7 @@
             padding: 0;
             list-style: none;
             width: 200px;
-            background-color: #f1f1f1;
+
             color: black;
 
             @include media-breakpoint-up(lg) {
@@ -37,17 +40,27 @@
             }
 
             a {
-                
+                list-style: none;
+                color: white;
                 font-size: 2rem;
                 text-align: center;
                 text-decoration: none;
-                border-bottom: 2px solid rgb(0, 0, 0);
+                border-right: 2px solid $gold-color;
                 transition: 0.2s;
-
-                &:hover {
-                    color: rgb(0, 0, 0);
-                }
             }
         }
     }
+}
+.button_gold {
+    text-align: center;
+    padding: 1rem 2rem;
+    margin-top: 2rem;
+    background-color: rgb(29, 29, 29);
+    border: $gold-color 1px solid;
+    border-radius: 1rem;
+    color: $text;
+}
+.thumnail {
+    width: 100px;
+    height: 100px;
 }

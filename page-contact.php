@@ -8,7 +8,7 @@ get_header();
 
 ?>
 
-<section id='contact' class="contact">
+<section id='contact_page' class="contact">
 
 </section>
 

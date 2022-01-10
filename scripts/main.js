@@ -18,7 +18,7 @@ $(() => {
         prevArrow: $('.fa-chevron-left'),
     });
 
-    reactDom.render(<Contact />, document.getElementById("contact"));
+    reactDom.render(<Contact />, document.getElementById("contact_page"));
 
 });
 
