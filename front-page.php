@@ -80,7 +80,8 @@ get_header();
 
 
 <!-- Start start -->
-<section id="start" class="start" style="background-image: url('<?php echo $start_bg; ?>');">
+<section id="start" class="start" <?php if ($start_bg) : ?>
+    style="background-image: url('<?php echo $start_bg; ?>') <?php endif;?>;">
     <div class="container">
         <div class="row">
             <div class="col">

@@ -37,6 +37,10 @@ if ($_POST['hidden-data-input'] == 'change_data') {
     if (get_field('user_phone_number', $logged_in_user_data->ID) !== $new_phone_value ) {
         update_field('user_phone_number', $new_phone_value, $logged_in_user_data->ID );
     }
+    //urodziny
+    // if (get_field('user_birthday', $logged_in_user_data->ID) !== $new_phone_value ) {
+    //     update_field('user_phone_number', $new_phone_value, $logged_in_user_data->ID );
+    // }
 };
 //
 //nowa wartość telefonu
@@ -159,7 +163,7 @@ get_header();
                         <span><?php printf( __( '%s', 'textdomain' ), esc_html( $current_user->user_lastname ) ); ?></span>
                     </div>
                     <div>
-                        <label for="mail">E-mail:</label>
+                        <label for="mail">E-mail (login):</label>
                         <input type="hidden" name='hidden-data-input' value='change_data'>
                         <input type="text" name='mail' value='<?php
 
@@ -181,6 +185,17 @@ get_header();
                             }
                             ?>'>
                     </div>
+                    <!-- <div>
+                        <label for="birthday">Nr telefonu:</label>
+                        <input type="date" name='birthday' value='<?php
+
+                            if ($_POST['hidden-data-input'] == 'change_data') {
+                                echo $new_birthday_value;
+                            } else {
+                                echo $user_birthday;
+                            }
+                            ?>'>
+                    </div> -->
                     <!-- <div class='logged-in--data__flex'></div> -->
 
                     <button type='submit'>Zmień dane</button>

@@ -89,4 +89,3 @@ function wpse_cpt_enqueue( $hook_suffix ){
 }
 
 add_action( 'admin_enqueue_scripts', 'wpse_cpt_enqueue');
-
