@@ -14,13 +14,13 @@
         height: auto;
         margin-right: 2rem;
 
-        @include media-breakpoint-down(lg) { 
+        @include media-breakpoint-down(lg) {
             height: auto;
             position: absolute;
             top: 100%;
             left: 50%;
             transform: translate(-50%, -50%);
-         }
+        }
     }
 
     &--menu-toggle-wrapper {
@@ -38,6 +38,7 @@
 
     &--nav {
         display: none;
+        margin-top: 1.6rem;
 
         @include media-breakpoint-up(lg) {
             display: block;
