@@ -114,7 +114,7 @@ get_header();
 <!-- End start -->
 
 <!-- Start forms -->
-<section id="forms" class="forms">
+<section id="forms" class="forms" data-aos="zoom-in-up" data-aos-once='true'>
     <div class="container">
         <div class="row">
             <h2 class='py-5 text-center'><?php echo $form_title?> </h2>
@@ -137,7 +137,7 @@ get_header();
 <!-- End forms -->
 
 <!-- Start languages -->
-<section id="languages" class="languages">
+<section id="languages" class="languages" data-aos="zoom-in-up" data-aos-once='true'>
     <div class="container">
 
         <h2 class='py-5 text-center'><?php echo $languages_title?></h2>
@@ -168,7 +168,7 @@ get_header();
 <!-- End languages -->
 
 <!-- Start levels -->
-<section id="levels" class="levels">
+<section id="levels" class="levels" data-aos="zoom-in-up" data-aos-once='true'>
     <div class="container">
 
         <h2 class='py-5 text-center'><?php echo $start_levels_title ?></h2>
@@ -197,7 +197,7 @@ get_header();
 <!-- Start more -->
 
 <?php if ($start_offer_title) : ?>
-<section id="more" class="more">
+<section id="more" class="more" data-aos="zoom-in-up" data-aos-once='true'>
     <div class="container">
 
         <h2 class='py-5 text-center'><?php echo $start_offer_title ?></h2>
