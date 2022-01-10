@@ -1,5 +1,18 @@
 .form-search {
+    margin-top: 2rem;
     padding: 1rem 0;
+
+    @include media-breakpoint-down(md) { 
+        input {
+            width: 80px;
+        }
+    }
+
+    @include media-breakpoint-up(md) { 
+        input {
+            width: 150px;
+        }
+     }
 }
 
 .search-heading {
@@ -10,7 +23,7 @@
         margin-bottom: 2rem;
 
         .search-for {
-            color: darkgoldenrod;
+            color: $gold-color;
         }
     }
 }

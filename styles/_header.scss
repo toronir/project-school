@@ -7,15 +7,20 @@
     padding: 1rem 0;
     background-color: $dark;
     // box-shadow: 0 0 2rem rgba(0, 0, 0, 0.3);
-    border-bottom: 1px solid rgb(238, 213, 71);
+    border-bottom: 1px solid $gold-color;
 
     &--logo {
-        max-width: 11rem;
+        max-width: 8rem;
         height: auto;
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        margin-right: 2rem;
+
+        @include media-breakpoint-down(lg) { 
+            height: auto;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+         }
     }
 
     &--menu-toggle-wrapper {
@@ -62,7 +67,7 @@
                     left: 50%;
                     transform: translateX(-50%);
                     background-color: #212529;
-                    border-bottom: 1px solid #eed547;
+                    border-bottom: 1px solid $gold-color;
                     padding: 0 4rem;
                     margin: 0;
                     display: none;
@@ -89,19 +94,18 @@
             a {
                 font-size: 2rem;
                 text-decoration: none;
-                color: rgb(238, 213, 71);
+                color: $gold-color;
                 transition: 0.2s;
 
                 &:hover {
-                    color: rgb(255, 237, 132);
+                    color: $gold-color;
                 }
             }
         }
+    }
 
-        // .form-search {
-        //     flex-direction: row;
-        //     justify-content: space-around;
-        // }
+    .btn-gold {
+        background-color: $gold-color;
     }
 }
 

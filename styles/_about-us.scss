@@ -50,7 +50,7 @@
         height: 100%;
 
         &__contact {
-            background-color: rgb(164, 139, 77);
+            background-color: $gold-color;
             color: $white;
             text-align: center;
             display: flex;
@@ -76,7 +76,7 @@
         width: 6rem;
         height: 6rem;
         border-radius: 50%;
-        background-color: rgb(164, 139, 77);
+        background-color: $gold-color;
         color: $white;
         line-height: 6rem;
         text-align: center;

@@ -35,7 +35,6 @@ function logged_in_out_menu( $args ){
 }
 // end changing menu for user login and logout
 
-
 add_action('init', function () {
     register_sidebar([
         'name' => 'Primary sidebar',

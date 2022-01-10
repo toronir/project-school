@@ -1,5 +1,4 @@
 .footer {
-    // padding: 5rem 0;
     background-color: $dark;
 
     @include media-breakpoint-up(lg) {
@@ -9,21 +8,23 @@
     &--menu {
         margin: 0;
         padding: 0;
-        list-style: none;
+        
+        ul {
+            list-style-type: none;
 
-        li:not(:last-child) {
-            margin-bottom: 1rem;
-        }
-
-        a {
-            color: $light;
-            text-decoration: none;
-            transition: all .25s;
-
-            &:hover {
-                // text-decoration: underline;
-                padding-left: 3px;
-                color: $text-muted;
+            li:not(:last-child) {
+                margin-bottom: 1rem;
+            }
+    
+            a {
+                color: $light;
+                text-decoration: none;
+                transition: all .25s;
+    
+                &:hover {
+                    padding-left: 3px;
+                    color: $text-muted;
+                }
             }
         }
     }
@@ -42,7 +43,7 @@
             height: 4rem;
             border-radius: 50%;
             background-color: rgb(52, 52, 52);
-            color: goldenrod;
+            color: $gold-color;
             text-align: center;
             line-height: 4rem;
             transition: all 0.25s;
@@ -52,7 +53,7 @@
             }
 
             &:hover {
-                background-color: goldenrod;
+                background-color: $gold-color;
                 color: $white;
             }
         }
