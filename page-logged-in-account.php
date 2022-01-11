@@ -20,10 +20,14 @@ $logged_in_saved_title = get_field('logged_in_saved_title');
 
 
 //zmiana danych
+$new_name = $_POST['first_name'];
+$new_surname = $_POST['surname'];
 $new_email_value = $_POST['mail'];
 $new_phone_value = $_POST['phone'];
+$new_birthday = $_POST['birthday'];
 
 if ($_POST['hidden-data-input'] == 'change_data') {
+    
     //mail
     if ($logged_in_user_data->user_email !== $new_email_value ) {
         global $wpdb;
@@ -37,14 +41,29 @@ if ($_POST['hidden-data-input'] == 'change_data') {
     if (get_field('user_phone_number', $logged_in_user_data->ID) !== $new_phone_value ) {
         update_field('user_phone_number', $new_phone_value, $logged_in_user_data->ID );
     }
+    //imię
+    if (get_field('user_name', $logged_in_user_data->ID) !== $new_name ) {
+        update_field('user_name', $new_name, $logged_in_user_data->ID );
+    }
+    //nazwisko
+    if (get_field('user_surname', $logged_in_user_data->ID) !== $new_surname ) {
+        update_field('user_surname', $new_surname, $logged_in_user_data->ID );
+    }
+    
     //urodziny
-    // if (get_field('user_birthday', $logged_in_user_data->ID) !== $new_phone_value ) {
-    //     update_field('user_phone_number', $new_phone_value, $logged_in_user_data->ID );
-    // }
+    if (get_field('user_birthday', $logged_in_user_data->ID) !== $new_birthday ) {
+        update_field('user_birthday', $new_birthday, $logged_in_user_data->ID );
+    }
 };
 //
-//nowa wartość telefonu
+//warunkowa wartość telefonu
 $user_phone = get_field('user_phone_number', $logged_in_user_data->ID);
+//warunkowa wartość imię
+$user_name = get_field('user_name', $logged_in_user_data->ID);
+//warunkowa wartość nazwisko
+$user_surname = get_field('user_surname', $logged_in_user_data->ID);
+//warunkowa wartość urodzin
+$user_birthday = get_field('user_birthday', $logged_in_user_data->ID);
 
 //zmiana hasła
 $real_password = get_userdata($logged_in_user_data->ID)->user_pass;
@@ -148,20 +167,8 @@ get_header();
             <?php endif; ?>
         </div>
         <div class="row justify-content-center mb-5">
-            <div class="logged-in--data col-lg-4">
+            <div class="logged-in--data col-lg-5">
                 <form class='form-data' method="POST">
-                    <div>
-                        <p>Login:</p>
-                        <span><?php echo $logged_in_user_data->user_login?></span>
-                    </div>
-                    <div>
-                        <p>Imię:</p>
-                        <span><?php printf( __( '%s', 'textdomain' ), esc_html( $current_user->user_firstname ) );?></span>
-                    </div>
-                    <div>
-                        <p>Nazwisko:</p>
-                        <span><?php printf( __( '%s', 'textdomain' ), esc_html( $current_user->user_lastname ) ); ?></span>
-                    </div>
                     <div>
                         <label for="mail">E-mail (login):</label>
                         <input type="hidden" name='hidden-data-input' value='change_data'>
@@ -175,52 +182,79 @@ get_header();
                             ?>'>
                     </div>
                     <div>
+
+                        <p>Imię:</p>
+                        <input type="text" name='first_name' value='<?php
+
+                            if ($_POST['hidden-data-input'] == 'change_data') {
+                                echo $new_name;
+                            } else {
+                                echo $user_name;
+                            }
+                            ?>'>
+                    </div>
+                    <div>
+                        <p>Nazwisko:</p>
+                        <input type="text" name='surname' value='<?php
+
+                            if ($_POST['hidden-data-input'] == 'change_data') {
+                                echo $new_surname;
+                            } else {
+                                echo $user_surname;
+                            }
+                            ?>'>
+                    </div>
+
+                    <div>
                         <label for="phone">Nr telefonu:</label>
                         <input type="text" name='phone' value='<?php
 
                             if ($_POST['hidden-data-input'] == 'change_data') {
                                 echo $new_phone_value;
                             } else {
-                                print_r($user_phone);
+                                echo $user_phone;
                             }
                             ?>'>
                     </div>
-                    <!-- <div>
-                        <label for="birthday">Nr telefonu:</label>
+                    <div>
+                        <label for="birthday">Data urodzenia:</label>
                         <input type="date" name='birthday' value='<?php
 
                             if ($_POST['hidden-data-input'] == 'change_data') {
-                                echo $new_birthday_value;
+                                echo $new_birthday;
                             } else {
                                 echo $user_birthday;
                             }
                             ?>'>
-                    </div> -->
+                    </div>
+                    <!-- <p><?php print_r($new_birthday_value) ?></p> -->
+
+
                     <!-- <div class='logged-in--data__flex'></div> -->
 
-                    <button type='submit'>Zmień dane</button>
+                    <button class='btn-gold-secondary' type='submit'>Zmień dane</button>
 
 
                 </form>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-5">
                 <form class='form-password' method='POST'>
                     <input type="hidden" name='hidden-data-input' value='change_password'>
                     <div>
                         <label for="old-password">Stare hasło:</label>
-                        <input type="password" name='old-password' value=''>
+                        <input type="password" name='old-password' value='' placeholder='********'>
                     </div>
                     <div>
                         <label for="new-password-1">Nowe hasło:</label>
-                        <input type="password" name='new-password-1' value=''>
+                        <input type="password" name='new-password-1' value='' placeholder='********'>
                     </div>
                     <div>
                         <label for="new-password-2">Powtórz nowe hasło:</label>
-                        <input type="password" name='new-password-2' value=''>
+                        <input type="password" name='new-password-2' value='' placeholder='********'>
                     </div>
                     <div class='logged-in--data__flex'></div>
                     <p><?php echo $pass?></p>
-                    <button type='submit'>Zmień hasło</button>
+                    <button class='btn-gold-primary' type='submit'>Zmień hasło</button>
                 </form>
 
             </div>
@@ -233,7 +267,7 @@ get_header();
             <?php if ($new_password_1 == $new_password_2) : ?>
             <p class='data-change--success'>Pomyślnie zmieniłeś hasło!</p>
             <?php else: ?>
-            <p class='data-change--error'>Wprowadź poprawne hasło</p>
+            <p class='data-change--error'>Hasła różnią się</p>
             <?php endif; ?>
             <?php else: ?>
             <p class='data-change--error'>Wprowadź poprawne hasło</p>
@@ -251,9 +285,9 @@ get_header();
     <div class="row justify-content-lg-center">
         <div class="col-lg-8">
             <!-- start saved courses -->
-            <section id="-in-courses" class="logged-in-courses">
+            <section id="-in-courses" class="logged-in-courses" style='height: 100%'>
 
-                <div class="container">
+                <div class="container position-relative" style='height: 100%'>
 
                     <h2 class='py-5 text-center'><?php echo $logged_in_saved_title?></h2>
 
@@ -281,7 +315,8 @@ get_header();
                             <p> <?php echo get_the_excerpt(); ?> </p>
                             <p> Poziom: <?php echo get_field("courses_level", get_the_ID()) ?> </p>
                             <p> Czas trwania kursu: <?php echo get_field("courses_time", get_the_ID()) ?>h </p>
-                            <a href="<?php echo get_the_permalink()?>">Czytaj więcej...</a>
+                            <a class='btn-gold-primary' href="<?php echo get_the_permalink()?>">Czytaj więcej <i
+                                    class="fas fa-chevron-right"></i></a>
                             <form method="POST">
                                 <input type="hidden" name='delete' value='delete-saved-course'>
                                 <input type="hidden" name='course_ID' value='<?php echo get_the_ID() ?>'>
@@ -294,7 +329,7 @@ get_header();
 
 
                     </div>
-                    <div class="pagination pagination-lg justify-content-center logged-in-saved-courses--pagination">
+                    <div class="pagination pagination-lg justify-content-center logged-in-saved-courses--pagination ">
 
                         <?php
                 $big = 9999999;
@@ -344,7 +379,8 @@ get_header();
                             <div class="logged-in-visited-courses__item--desc">
                                 <p> Poziom: <?php echo get_field("courses_level", $course->ID) ?> </p>
                                 <p> Czas trwania kursu: <?php echo get_field("courses_time", $course->ID) ?>h </p>
-                                <a href="<?php echo $course->guid?>">Czytaj więcej...</a>
+                                <a class='btn-gold-secondary' href="<?php echo $course->guid?>">Czytaj więcej <i
+                                        class="fas fa-chevron-right"></i></a>
                             </div>
                             <div class='logged-in-visited-courses__item--img'>
                                 <img src="<?php echo get_the_post_thumbnail_url($course->ID, 'medium'); ?>" alt=""
@@ -360,9 +396,6 @@ get_header();
                     <?php else : ?>
                     <p>Brak postów do wyświetlenia.</p>
                     <?php endif; ?>
-
-                    <!-- <p><?php echo get_field('user_saved_courses', $logged_in_user_data->ID);?></p> -->
-
 
                 </div>
 

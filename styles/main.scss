@@ -6,25 +6,7 @@
 @import "@fortawesome/fontawesome-free/scss/fontawesome";
 @import '/node_modules/slick-carousel/slick/slick.scss';
 @import '/node_modules/aos/src/sass/aos.scss';
-@import "header";
-@import "start";
-@import "quote";
-@import "functions";
-@import "testimonials";
-@import "footer";
-@import "about-content";
-@import "news";
-@import "news-single";
-@import "contact";
-@import "functions-page";
-@import "about-us";
-@import "search";
-@import "offers";
-@import "teachers";
-@import "logged-in-account";
-@import "single-oferta";
-@import "login";
-@import "logout";
+
 
 .btn-outline-primary {
     background-color: rgba($white, .1);
@@ -44,3 +26,127 @@ h1,
 h2 {
     text-transform: uppercase;
 }
+
+a {
+    text-decoration: none;
+}
+
+
+.btn-gold-primary {
+    display: block;
+    text-align: center;
+    padding: 1rem 2rem;
+    background-color: $gold-color;
+    border: $btn-dark 2px solid;
+    border-radius: 1rem;
+    color: $btn-dark;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: 0.2s;
+
+    &:hover {
+        transform: scale(1.05);
+        background-color: $btn-dark;
+        color: $gold-color;
+        border: $gold-color 2px solid;
+    }
+}
+
+.btn-gold-secondary {
+    display: block;
+    text-align: center;
+    padding: 1rem 2rem;
+    background-color: $btn-dark;
+    border: $gold-color 2px solid;
+    border-radius: 1rem;
+    color: $gold-color;
+    text-transform: uppercase;
+    transition: 0.2s;
+
+    &:hover {
+        transform: scale(1.05);
+        color: $gold-color;
+    }
+
+}
+
+
+.gold-border-left {
+    border-left: $gold-color solid 1px;
+}
+
+.gold-border-right {
+    border-right: $gold-color solid 1px;
+}
+
+.gold-border-top {
+    border-top: $gold-color solid 1px;
+}
+
+.gold-border-bottom {
+    border-bottom: $gold-color solid 1px;
+}
+
+.pagination {
+
+    text-transform: uppercase;
+
+    &>*:nth-child(2n):not(:nth-last-child(1)) {
+        border-left: none;
+        border-right: none;
+
+    }
+
+    &>a:first-child,
+    &>span:first-child {
+        border-top-left-radius: 1rem;
+        border-bottom-left-radius: 1rem;
+    }
+
+    &>a:last-child,
+    &>span:last-child {
+        border-top-right-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+    }
+
+    a,
+    span {
+        border: $gold-color solid 2px;
+        background-color: $btn-dark;
+        color: $gold-color;
+        font-size: var(--bs-body-font-size);
+        transition: 0.2s;
+    }
+
+    span:hover {
+        background-color: $btn-dark;
+        color: $gold-color;
+        border: $gold-color solid 2px;
+    }
+
+    a:hover {
+        background-color: black;
+        color: $gold-color;
+        border: $gold-color solid 2px;
+    }
+}
+
+@import "header";
+@import "start";
+@import "quote";
+@import "functions";
+@import "testimonials";
+@import "footer";
+@import "about-content";
+@import "news";
+@import "news-single";
+@import "contact";
+@import "functions-page";
+@import "about-us";
+@import "search";
+@import "offers";
+@import "teachers";
+@import "logged-in-account";
+@import "single-oferta";
+@import "login";
+@import "logout";

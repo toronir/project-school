@@ -30,17 +30,14 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 1rem;
+        padding: 2rem;
+        border: $gold-color 1px solid;
 
-        flex- &.form-data {
-            // width: 80%;
-            padding-right: 10%;
-        }
+        // &.form-data {}
 
         &.form-password {
-            margin-left: 10%;
+            // margin-left: 10%;
             height: 100%;
-            border: $gold-color solid 0.5px;
 
         }
 
@@ -57,15 +54,7 @@
 
 
         button {
-            text-align: center;
-            padding: 1rem 2rem;
             margin-top: 2rem;
-            background-color: rgb(29, 29, 29);
-            border: $gold-color 1px solid;
-            border-radius: 1rem;
-            color: $text;
-            // flex-grow: 1;
-            // height: 2rem;
             flex-basis: auto;
 
         }
@@ -156,22 +145,16 @@
                     width: 20%;
                 }
             }
+
+
         }
 
         &--pagination {
-            margin-top: 2rem;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
 
-            a,
-            span {
-                border: $gold-color solid 1px;
-                background-color: rgb(29, 29, 29);
-                color: $text;
-                transition: 0.2s;
-            }
-
-            a:hover {
-                background-color: black;
-            }
         }
 
     }

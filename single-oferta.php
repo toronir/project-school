@@ -4,8 +4,8 @@
 
 $time = get_field('reading_time');
 $tags = get_the_tags();
-print_r($tags);
 $authorId = $post->post_author;
+$mode = get_field('chose_course_type');
 
         
 // aktualizowanie ostatnio oglądanych
@@ -68,64 +68,47 @@ if (in_array($current_post_ID, $array_saved_courses_ID)) {
 get_header();
 ?>
 
-<section class="news-single--start start__subpage">
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <h1 class="start--heading"><?php the_title(); ?></h1>
-                <div class="start--breadcrumbs">
-                    <a href="<?php echo get_home_url(); ?>">Start</a>
-                    <i class="fas fa-chevron-right"></i>
-                    <span><?php the_title(); ?></span>
-                    <?php if (!$added_course) :?>
-                    <form method="POST">
-                        <input type="hidden" name='save' value='save_course'>
-                        <button type='submit'>Zapisz kurs</button>
-                    </form>
-                    <?php else : ?>
-                    <form method="POST">
-                        <input type="hidden" name='delete' value='delete_course'>
-                        <button type='submit'>Usuń kurs z zapisanych</button>
-                    </form>
-                    <?php endif; ?>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 <section class="news-single">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-lg-8 text-muted">
-                <span><i class="fas fa-user"></i> Autor: <a href="<?php echo get_author_posts_url($authorId); ?>">
-                        <?php $authorName = the_author_meta($field = 'user_nickname', $user_id = $authorId);?>
-                    </a></span>
-                <span><i class="ms-2 fas fa-clock"></i> Reading time:<?php echo $time?></span>
-                <span><i class="ms-2 fas fa-tags"></i> Tagi:
-                    <?php if ($tags) :?>
-                    <?php foreach ($tags as $tag) : ?>
+            <div class="col-lg-3 shortcut gold-border-right px-5">
+                <img src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'medium'); ?>" alt="">
 
-                    <a href="<?php echo get_tag_link($tag->term_id); ?>"><?php echo $tag->name; ?></a>
-
-                    <?php endforeach; ?>
-                </span>
-                <?php endif ;?>
-                <hr>
             </div>
-            <div class="col-lg-8">
-                <div class='news-single--img'>
-                    <h2><?php echo get_the_title(); ?></h2>
-                    <img src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'medium'); ?>" alt="">
+            <div class="col-lg-7">
+                <div class='d-flex justify-content-between align-items-center mx-5' style="height: 100%;">
+                    <h1><?php echo get_the_title(); ?></h1>
+                    <?php if (!$added_course) :?>
+                    <form method="POST">
+                        <input type="hidden" name='save' value='save_course'>
+                        <button class='btn-gold-primary' type='submit'><i class="far fa-star"></i> Zapisz kurs</button>
+                    </form>
+                    <?php else : ?>
+                    <form method="POST" class='form-slider d-flex gap-4'>
+                        <input type="hidden" name='delete' value='delete_course'>
+                        <div class='btn-gold-secondary d-inline'><i class="fas fa-star"></i> Zapisano!</div>
+                        <button type='submit' class='d-inline'>
+                            <span>| Usuń</span></button>
+                    </form>
+                    <?php endif; ?>
+
                 </div>
 
-                <p>
-                    <?php the_content(); ?>
-                </p>
-
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-3 shortcut gold-border-right px-5">
+                <p> Poziom: <?php echo get_field("courses_level", get_the_ID()) ?></p>
+                <p> Czas trwania kursu: <?php echo get_field("courses_time", get_the_ID()) ?>h</p>
+                <p> Tryb: <?php echo $mode ?></p>
+                <p> Lektor: </p>
+            </div>
+            <div class="col-lg-7 px-5">
+                <p><?php echo the_content(); ?> </p>
             </div>
         </div>
     </div>
 </section>
+
 
 <?php get_footer(); ?>

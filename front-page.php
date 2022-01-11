@@ -86,14 +86,14 @@ get_header();
         <div class="row">
             <div class="col">
                 <?php if ($start_heading) : ?>
-                <h1 class="start--heading text-center py-8">
+                <h1 class="start--heading text-center">
                     <?php echo $start_heading ?>
                 </h1>
                 <?php endif; ?>
             </div>
 
         </div>
-        <div class="row my-2">
+        <div class="row my-5">
             <div class="col-lg-7">
                 <?php if ($start_desc) : ?>
                 <p class="start--description">
@@ -104,7 +104,7 @@ get_header();
             </div>
             <div class="col-lg-5">
                 <?php if ($start_btn) : ?>
-                <a href="<?php echo $start_btn['url'] ?>" class="btn btn-lg">
+                <a href="<?php echo $start_btn['url'] ?>" class="btn-gold-primary d-inline">
                     <?php echo $start_btn['title'] ?>
                 </a>
                 <?php endif; ?>
@@ -206,12 +206,12 @@ get_header();
 
         <div class="wrapper">
             <?php if ($start_offer_button_1) : ?>
-            <a class='btn first'
+            <a class='btn-gold-primary'
                 href="<?php echo $start_offer_button_1['url']?>"><?php echo $start_offer_button_1['title']?></a>
             <?php endif; ?>
 
             <?php if ($start_offer_button_2) : ?>
-            <a class='btn second'
+            <a class='btn-gold-secondary'
                 href="<?php echo $start_offer_button_2['url']?>"><?php echo $start_offer_button_2['title']?></a>
             <?php endif; ?>
         </div>

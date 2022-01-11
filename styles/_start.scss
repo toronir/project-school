@@ -1,6 +1,6 @@
 .start {
     position: relative;
-    height: 60vh;
+    height: 100vh;
     background-size: cover;
     display: flex;
     align-items: center;
@@ -8,8 +8,15 @@
     background-size: cover;
     text-align: center;
 
+    @include media-breakpoint-up(sm) {}
+
+    @include media-breakpoint-up(md) {}
+
+    @include media-breakpoint-up(lg) {}
+
     @include media-breakpoint-up(lg) {
         text-align: left;
+        height: 60vh;
     }
 
     .container {
@@ -28,16 +35,15 @@
         background-color: rgba(#000, 0.3);
     }
 
-    &--heading {
-        color: $light;
-        margin-bottom: 3rem;
-        margin-top: 10rem;
-    }
+
 
     &--description {
         color: $white;
-        // margin-bottom: 3rem;
-        text-align: right;
+        text-align: center;
+
+        @include media-breakpoint-up(lg) {
+            text-align: right;
+        }
     }
 
     a {

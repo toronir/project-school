@@ -86,8 +86,8 @@ function wpse_cpt_enqueue( $hook_suffix ){
             add_filter(
                 'gettext',
                 function($translated,$text_domain,$original){
-                    if($translated === 'Publish'){
-                        return __('Add New User', 'print-my-blog');
+                    if($translated === 'Opublikuj'){
+                        return __('Dodaj nowego użytkownika', 'print-my-blog');
                     }
                     return $translated;
                 },

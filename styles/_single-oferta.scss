@@ -1,20 +1,47 @@
-.news-single--start {
-    background-position: center center;
-    background-size: cover;
-
-}
-
 .news-single {
+    padding: 4rem;
 
-    &--img {
-        margin: 2rem 0;
-        display: flex;
-        justify-content: space-between;
-        // gap: 4%;
 
-        &>img {
-            width: 45%;
+    .form-slider {
+        transform: translateX(15%);
+        transition: 0.3s;
+
+        &:hover {
+            transform: translateX(0);
+
+            & span {
+                display: inline;
+            }
         }
+
+        button {
+            color: red;
+            font-size: 1.2rem;
+            vertical-align: baseline;
+            background-color: transparent;
+            border: none;
+
+            span {
+                display: none;
+            }
+        }
+    }
+
+    div.btn-gold-secondary {
+
+        &:hover {
+            transform: scale(1);
+        }
+    }
+
+
+    img {
+        width: 100%;
+        margin-bottom: 3rem;
+    }
+
+    .shortcut>* {
+        text-align: center;
     }
 
 }
