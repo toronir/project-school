@@ -10,6 +10,8 @@ Template name: Oferta
 
 get_header();
 
+
+
 $lenguages = [];
 $levels = [];
 
@@ -21,86 +23,126 @@ $oferta_lable = get_field('oferta_lable');
 $oferta_discript = get_field('oferta_discript');
 $isLogIn = is_user_logged_in();
 
-$lng = [
-    'post_type' => 'oferta',
 
-];
+$meta_q = array(
+    'meta_query' => array(
+        'relation' => 'AND',
+
+    ),
+);
+
+
+if ($customFieldLenguageKey) {
+    $new = array(
+        'key' => 'lenguage',
+        'value'        => $customFieldLenguageKey,
+        'compare' => '=',
+    );
+
+    array_push($meta_q, $new);
+}
+if ($customFieldTypeKey) {
+    $new = array(
+        'key'     => 'chose_course_type',
+        'value'   => $customFieldTypeKey,
+        'compare' => '='
+    );
+
+    array_push($meta_q, $new);
+}
+if ($customFieldLevelKey) {
+    $new = array(
+        'key'     => 'courses_level',
+        'value'   => $customFieldLevelKey,
+        'compare' => '='
+    );
+
+    array_push($meta_q, $new);
+}
+
 
 $args = [
     'post_type' => 'oferta',
-    'meta_query' => [],
+    'meta_query' => $meta_q,
 
     'paged' => get_query_var('paged'),
 ];
 
 
-if ($customFieldLenguageKey || $customFieldLevelKey || $customFieldTypeKey) {
-    $args = [
-        'post_type' => 'oferta',
-        'meta_query'    => array(
-            'relation'        => 'OR',
-            array(
-                'key'        => 'lenguage',
-                'value'        => $customFieldLenguageKey,
-
-            ),
-          
-            array(
-                'key'        => 'chose_course_type',
-                'value'        => $customFieldTypeKey,
-            ),
-       
-            array(
-                'key'        => 'courses_level',
-                'value'        => $customFieldLevelKey,
-            )
-        )
-    ];
-}
-// if ($customFieldLenguageKey || $customFieldLevelKey || $customFieldTypeKey) {
-//     $args = [
-//         'post_type' => 'oferta',
-//         'meta_query'    => array(
-//             'relation'        => 'OR',
-//             array(
-//                 'key'        => 'lenguage',
-//                 'value'        => $customFieldLenguageKey,
-
-//             ),
-//             array(
-//                 'key'        =>'chose_course_type',
-//                 'value'        => $customFieldTypeKey,
-//             ),
-//             array(
-//                 'key'        => 'courses_level',
-//                 'value'        => $customFieldLevelKey,
-//             )
-//         )
-//     ];
-// }
-
 
 $oferta_query = new WP_Query($args);
-$lng_query = new WP_Query($lng);
 
 ?>
 
 
-
+<!-- Side Menu start -->
 
 <section class="start start__subpage bg-light">
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row m-5 offers  ">
+
+            <nav class="offers--nav">
+
+                <form>
+
+                    <div class=" ">
+                        <p>Languages</p>
+                        <select name='languages_select' class="form-select" aria-label="Default select example">
+                            <option value="" disabled selected>Choose language</option>
+                            <?php
+                            $field = get_field_object('field_61d2d2687de17');
+                            $choices = $field['choices']; ?>
+                            <?php foreach ($choices as $choice) : ?>
+                                <option value="<?php echo $choice ?>"><?php echo $choice ?> </option>
+                            <?php endforeach; ?>
+                        </select>
+                        </br>
+                    </div>
 
 
+                    <div class="">
+                        <p>Level</p>
 
+
+                        <select name='levels_select' class="form-select" aria-label="Default select example">
+                            <option value="" disabled selected>Choose level</option>
+                            <?php
+                            $field = get_field_object('field_61d2d2ef7de19');
+                            $choices = $field['choices']; ?>
+                            <?php foreach ($choices as $choice) : ?>
+                                <option value="<?php echo $choice ?>"><?php echo $choice ?> </option>
+                            <?php endforeach; ?>
+                        </select>
+                        </br>
+                    </div>
+
+                    <div class=" ">
+                        <?php if ($isLogIn) : ?>
+                            <p>Type</p>
+                            <select name='types_select' class="form-select" aria-label="Default select example">
+                                <option value="" disabled selected>Choose type</option>
+                                <?php
+                                $field = get_field_object('field_61d1feddb3b0a');
+                                $choices = $field['choices']; ?>
+                                <?php foreach ($choices as $choice) : ?>
+                                    <option value="<?php echo $choice ?>"><?php echo $choice ?> </option>
+                                <?php endforeach; ?>
+                            </select>
+                        <?php endif; ?>
+                        </br>
+                    </div>
+                    <div class="row">
+                        <button class="button_gold" type='submit'>Submit</button>
+                    </div>
+                </form>
+
+            </nav>
 
         </div>
     </div>
-    </div>
 </section>
 
-
+<!-- Side Menu end -->
 <!-- testimonials do zmiany -->
 <section class=".logged-in--data">
     <div class="container">
@@ -117,90 +159,19 @@ $lng_query = new WP_Query($lng);
         </div>
     </div>
 
-    <!-- Side Menu start -->
-    <div class="row m-5 offers  ">
-        <div class="col-lg-3">
-            <nav class="offers--nav">
-                <ul class="">
-                    <form>
-                        <a class='row p-1'>
-                            <p>Type</p>
-
-                            <select name='languages_select' class="form-select" aria-label="Default select example">
-                                <option value="" disabled selected>Choose language</option>
-                                <?php if ($lng_query->have_posts()) : ?>
-                                    <?php while ($lng_query->have_posts()) : ?>
-                                        <?php $lng_query->the_post();
-                                        $vari = 0; ?>
-                                        <?php foreach ($lenguages as $lenguage) : ?>
-                                            <?php if ($lenguage === get_field('lenguage')) $vari++; ?>
-                                        <?php endforeach; ?>
-                                        <?php if ($vari < 1) : ?>
-                                            <?php array_push($lenguages, get_field('lenguage')); ?>
-                                            <option value="<?php echo get_field('lenguage') ?>"><?php echo get_field('lenguage') ?> </option>
-                                        <?php endif; ?>
 
 
-                                    <?php endwhile; ?>
-                                <?php endif; ?>
-                            </select>
-                            </br>
-                        </a>
-
-                        <a class='row p-1'>
-                            <p>Level</p>
 
 
-                            <select name='levels_select' class="form-select" aria-label="Default select example">
-                                <option value="" disabled selected>Choose level</option>
-                                <?php if ($lng_query->have_posts()) : ?>
-                                    <?php while ($lng_query->have_posts()) : ?>
-                                        <?php $lng_query->the_post();
-                                        $vari = 0; ?>
-                                        <?php foreach ($levels as $level) : ?>
-                                            <?php if ($level === get_field('courses_level')) $vari++; ?>
-                                        <?php endforeach; ?>
-                                        <?php if ($vari < 1) : ?>
-                                            <?php array_push($lenguages, get_field('courses_level')); ?>
-                                            <option value="<?php echo get_field('courses_level') ?>"><?php echo get_field('courses_level') ?> </option>
-                                        <?php endif; ?>
 
-
-                                    <?php endwhile; ?>
-                                <?php endif; ?>
-                            </select>
-                            </br>
-                        </a>
-
-                        <a class='row p-1'>
-                        <?php if ($isLogIn) : ?>
-                            <p>Type</p>
-
-                       
-                            <select name='types_select' class="form-select" aria-label="Default select example">
-                                <option value="" disabled selected>Choose type</option>
-                                <option value="Online">Online</option>
-                                <option value="Offline">Offline</option>
-                            </select>
-                            <?php endif ;?>
-                            </br>
-                        </a>
-                        <button class="button_gold" type='submit'>Submit</button>
-                    </form>
-                </ul>
-            </nav>
-        </div>
-
-        <!-- Side Menu end -->
-
-
-        <div class="row col-lg-9 ">
+    <div class="container">
+        <div class="row   justify-content-center">
             <?php if ($oferta_query->have_posts()) : ?>
                 <?php while ($oferta_query->have_posts()) : ?>
                     <?php $oferta_query->the_post(); ?>
                     <?php if (get_field('chose_course_type') === 'Online' || $isLogIn) : ?>
 
-                       
+                        <div class="d-flex">
                             <div class="col-lg-2  ">
 
                                 <img class="thumnail" src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'medium'); ?>" alt="" class="img-fluid">
@@ -210,36 +181,36 @@ $lng_query = new WP_Query($lng);
                                 <div class="">
                                     <p><?php echo get_the_excerpt(); ?></p>
                                 </div>
-                                <div class="d-flex justify-content-between align-items-end ">
+                                <div class="d-flex justify-content-between  ">
                                     <p>Courses type: <?php echo get_field('chose_course_type'); ?></p>
                                     <a href="<?php echo get_the_permalink(); ?>" class="button_gold ">Czytaj więcej <i class="fas fa-ardiv-right ml-1 small"></i></a>
                                 </div>
                             </div>
-                      
+                        </div>
 
 
                     <?php endif; ?>
                 <?php endwhile; ?>
+        </div>
 
+        <div class="pagination pagination-lg justify-content-center">
+            <?php
+                $big = 9999999;
+                echo paginate_links([
+                    'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
+                    'format' => '?paged=%#%',
+                    'current' => max(1, get_query_var('paged')),
+                    'total' => $oferta_query->max_num_pages
+                ]);
 
-                <div class="pagination pagination-lg justify-content-center">
-                    <?php
-                    $big = 9999999;
-                    echo paginate_links([
-                        'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
-                        'format' => '?paged=%#%',
-                        'current' => max(1, get_query_var('paged')),
-                        'total' => $oferta_query->max_num_pages
-                    ]);
-
-                    ?>
-                </div>
-
-            <?php else : ?>
-                <div>You dont have posts</div>
-            <?php endif;
             ?>
         </div>
+
+    <?php else : ?>
+        <div>You dont have posts</div>
+    <?php endif;
+    ?>
+    </div>
 </section>
 
 
