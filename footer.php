@@ -17,20 +17,20 @@ $linkL = get_theme_mod('linkL');
         </div>
 
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-8">
                 <nav class="footer--menu">
                 <?php echo wp_nav_menu([
                             'theme_location' => 'footer_nav_1'
                         ]); ?>
                 </nav>
             </div>
-            <div class="col-md-5">
+            <!-- <div class="col-md-5">
                 <nav class="footer--menu">
                 <?php echo wp_nav_menu([
-                            'theme_location' => 'footer_nav_2'
+                            'theme_location' => 'footer_nav_1'
                         ]); ?>
                 </nav>
-            </div>
+            </div> -->
             <div class="col-md-4">
                 <div class="footer--social">
                 <?php if($linkF) : ?>

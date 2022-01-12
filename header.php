@@ -2,7 +2,6 @@
 $logo = get_theme_mod('logo');
 ?>
 
-
 <!DOCTYPE html>
 <html lang="<?php echo get_language_attributes(); ?>">
 
@@ -27,27 +26,37 @@ $logo = get_theme_mod('logo');
                     <a href="<?php echo bloginfo('url') ?>"><img src="<?php echo $logo?>"
                             alt="<?php bloginfo('name');?>" class="header--logo"></a>
                     <?php endif; ?>
-                    <form action="<?php echo home_url(); ?>" method='GET' class="form-search">
-                        <!-- <input type="text" placeholder='Szukaj' name='s' value='<?php echo get_search_query(); ?>'> -->
-                        <!-- <button type='submit' class="btn btn-gold mb-2"> <i class="fas fa-search"></i> </button> -->
-                            <div class="input-group">
-                                <div class="form-outline">
-                                    <input type="text" class="form-control" placeholder='Szukaj' name='s' value='<?php echo get_search_query(); ?>'>
-                                </div>
-                            <button type="button" type='submit' class="btn btn-gold"><i class="fas fa-search"></i></button>
-                        </div>
-                    </form>
                 </div>
-                <div class="col-8 col-xl-6 col-xxl-6">
+                <div class="col-8 col-xl-8 col-xxl-6">
                     <div class="header--menu-toggle-wrapper">
                         <i class="fas fa-bars" onclick="document.body.classList.toggle('menu-open')"></i>
                     </div>
 
-                    <nav class="header--nav">
-                        <?php echo wp_nav_menu([
-                            'theme_location' => 'header_nav'
-                        ]); ?>
-                    </nav>
+<!-- start changing menu for user login and logout -->
+                    <?php if (!is_user_logged_in()) : ?>
+                        <nav class="header--nav">
+                            <?php echo wp_nav_menu([
+                                'theme_location' => 'main_menu'
+                            ]); ?>
+                            <?php echo wp_nav_menu([
+                                'theme_location' => 'logged_out',
+                                'menu_class' => 'nav-logged-out'
+                            ]); ?>
+                        </nav>
+                        
+                    <?php else : ?>
+                        <nav class="header--nav">
+                            <?php echo wp_nav_menu([
+                                'theme_location' => 'main_menu'
+                            ]); ?>
+                            <?php echo wp_nav_menu([
+                                'theme_location' => 'logged_in',
+                                'menu_class' => 'nav-logged-in'
+                            ]); ?>
+                        </nav>
+                    <?php endif ?>
+<!-- end changing menu for user login and logout -->
+
                 </div>
             </div>
         </div>

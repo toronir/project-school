@@ -5,6 +5,7 @@ Template name: Lektorzy
 
 $teachers_heading = get_field("teachers_heading");
 $teachers_desc = get_field("teachers_desc");
+
 $teachers = get_posts([
     "numberposts" => -1,
     "post_type" => "teachers"
@@ -15,6 +16,7 @@ $teachers = get_posts([
 // $teacher_email = get_field("teacher_email");
 
 ?>
+
 <?php get_header(); ?>
 
 <!-- start description about teachers -->
@@ -50,7 +52,10 @@ $teachers = get_posts([
                     <div><strong><?= get_field("teacher_cert", $teacher->ID) ?></strong></div>
                     <div><?= get_field("teacher_language", $teacher->ID) ?></div>
                     <div><p><?= get_field("teacher_email", $teacher->ID) ?></p></div>
+                    <a href="<?php echo $teacher->guid; ?>" class="button_gold "> Poznaj mnie <i class="fas fa-ardiv-right ml-1 small"></i></a>
                 </div>
+                </div>
+                <div>
             <?php endforeach; ?>
         </div>
     </div>

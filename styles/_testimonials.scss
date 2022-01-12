@@ -18,10 +18,11 @@
             line-height: 6rem;
         
         img {
-            width: 6rem;
-            height: 6rem;
+            width: 6.5rem;
+            height: 6.5rem;
             background-color: $light;
             border-radius: 50%;
+            object-fit: cover;
         }
         
         }

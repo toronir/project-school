@@ -101,7 +101,7 @@ get_header();
                 <p> Poziom: <?php echo get_field("courses_level", get_the_ID()) ?></p>
                 <p> Czas trwania kursu: <?php echo get_field("courses_time", get_the_ID()) ?>h</p>
                 <p> Tryb: <?php echo $mode ?></p>
-                <p> Lektor: </p>
+                <p> Lektor: <?php echo get_field("lector_name", get_the_ID()) ?></p>
             </div>
             <div class="col-lg-7 px-5">
                 <p><?php echo the_content(); ?> </p>

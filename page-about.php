@@ -29,17 +29,20 @@ $testimonials = get_posts([
 <?php get_header(); ?>
 
 <!-- start about us picture -->
-<section id="about-us-picture" class="about-us-picture" style="background-image: url('<?= $about_us_picture ?>')";>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 about-us-title">
-                <div class="about-us-title">
-                    <?php if ($about_us_header) : ?>
-                        <h1><?= $about_us_header ?></h1>
-                    <?php endif; ?>
-                    <?php if ($learn_more_about_us) : ?>
-                        <a href="<?= $learn_more_about_us["url"] ?>" target="<?= $learn_more_about_us["target"] ?>" class="btn btn-lg btn-about-us"><?= $learn_more_about_us["title"] ?></a>
-                    <?php endif; ?>
+<section id="about-us-picture" class="about-us-picture" 
+    <?php if ($about_us_picture) : ?> style="background-image: url('<?php echo $about_us_picture; ?>') <?php endif;?>;">
+    <div class="img-overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 about-us-title">
+                    <div class="about-us-title">
+                        <?php if ($about_us_header) : ?>
+                            <h1><?= $about_us_header ?></h1>
+                        <?php endif; ?>
+                        <?php if ($learn_more_about_us) : ?>
+                            <a href="<?= $learn_more_about_us["url"] ?>" target="<?= $learn_more_about_us["target"] ?>" class="btn btn-lg btn-about-us"><?= $learn_more_about_us["title"] ?></a>
+                        <?php endif; ?>
+                    </div>
                 </div>
             </div>
         </div>
@@ -116,10 +119,10 @@ $testimonials = get_posts([
                                 <div><img src="<?= get_field("testimonials_avatar", $testimonial->ID) ?>"></div>
                                 <div class="testimonials--user-opinions">
                                     <span><?= $testimonial->post_title; ?></span>
+                                    Kurs: <?= get_field("language_testimonials", $testimonial->ID) ?>
                                 </div>
                                 <div class="testimonials--slider-item-text justify-content-center"><?= $testimonial->post_content; ?></div>
                             </div>
-                            Kurs: <strong><?= get_field("language_testimonials", $testimonial->ID) ?></strong>
                         </div>
                     <?php endforeach; ?>
 

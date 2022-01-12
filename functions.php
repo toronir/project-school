@@ -18,23 +18,24 @@ add_action('wp_enqueue_scripts', function () {
 
 add_action('after_setup_theme', function () {
     register_nav_menus([
-        'header_nav' => 'Header navigation',
+        'main_menu' => 'Header navigation',
+        'logged_in' => 'Header login',
+        'logged_out' => 'Header logout',
         'footer_nav_1' => 'Footer navigation 1',
-        'footer_nav_2' => 'Footer navigation 2',
     ]);
 });
 
-// start changing menu for user login and logout
-add_filter('wp_nav_menu_args', 'logged_in_out_menu');
-function logged_in_out_menu($args)
-{
-    if ($args['theme_location'] == 'header_nav') {
-        $args['menu'] = is_user_logged_in() ? 'logged_in' : 'logged_out';
-    }
-
-    return $args;
-}
-// end changing menu for user login and logout
+// start font awesome icon in menu
+add_filter('wp_nav_menu_objects', function($items) {
+	foreach ($items as &$item) {
+		$icon = get_field('fa_icons', $item);			
+		if ($icon) {
+			$item->title = $item->title . '<i class="' . $icon . ' icons-menu"></i>';
+		}
+	}
+	return $items;
+});
+// end font awesome icon in menu
 
 add_action('init', function () {
     register_sidebar([
@@ -94,11 +95,9 @@ function wpse_cpt_enqueue($hook_suffix)
                 function($translated,$text_domain,$original){
                     if($translated === 'Opublikuj'){
                         return __('Dodaj nowego użytkownika', 'print-my-blog');
-                        if ($translated === 'Publish') {
-                            return __('Add New User', 'print-my-blog');
-                        }
-              
-                }},
+                    }
+                    return $translated;
+                },
                 10,
                 3
             );

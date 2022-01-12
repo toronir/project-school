@@ -6,7 +6,6 @@
     width: 100%;
     padding: 1rem 0;
     background-color: $dark;
-    // box-shadow: 0 0 2rem rgba(0, 0, 0, 0.3);
     border-bottom: 1px solid $gold-color;
 
     &--logo {
@@ -41,8 +40,7 @@
         margin-top: 1.6rem;
 
         @include media-breakpoint-up(lg) {
-            display: block;
-            justify-content: space-between;
+            display: flex;
         }
 
         ul {
@@ -55,32 +53,42 @@
 
             @include media-breakpoint-up(lg) {
                 flex-direction: row;
-                justify-content: space-around;
             }
 
             li {
                 position: relative;
-                padding: 1rem 0;
+                padding: 1rem;
 
                 ul {
                     position: absolute;
-                    top: 100%;
-                    left: 50%;
-                    transform: translateX(-50%);
+                    top: 0;
+                    left: -100%;
                     background-color: #212529;
                     border-bottom: 1px solid $gold-color;
-                    padding: 0 4rem;
+                    
                     margin: 0;
                     display: none;
 
-                    &:hover {
-                        position: absolute;
-                        display: block;
+                    @include media-breakpoint-up(lg) {
+                        transform: translateX(-50%);
+                        top: 100%;
+                        left: 50%;
+                        padding: 0 4rem;
+                    }
+
+                    li {
+                        padding: 1rem 0;
                     }
                 }
 
                 &:hover ul {
-                    display: block;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+
+                    @include media-breakpoint-up(lg) {
+                        display: block;
+                    }
                 }
             }
 
@@ -103,6 +111,25 @@
                 }
             }
         }
+
+        ul.nav-logged-in, .nav-logged-out {
+
+            li {
+                height: 100%;
+                background-color: $gold-color;
+
+                &:hover {
+                    background-color:$background-dark ;
+                    a {
+                        color: $gold-color;
+                    }
+                }
+
+                a {
+                    color: $background-dark;
+                }
+            }
+        }
     }
 
     .btn-gold {
@@ -112,4 +139,8 @@
 
 .menu-open header nav {
     display: block;
+}
+
+.icons-menu {
+    padding-left: 1rem;
 }

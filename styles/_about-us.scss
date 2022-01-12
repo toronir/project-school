@@ -7,8 +7,24 @@
     text-align: center;
 }
 
+.img-overlay {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    // background: rgba(0, 0, 0, 0.5);
+    background: #000;
+    // background: -webkit-linear-gradient(rgba(0, 0, 0, 0.8) 80%, rgba($gold-color, 0.2));
+    background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.5) 57%, rgba($gold-color, 0.2));
+}
+
 .about-us-title {
-    margin-top: -12%;
+    margin-top: 6rem;
+    
+    h1 {
+        // text-transform: none;
+        color: $text;
+    }
 
     a {
         border: solid 1px #000;
@@ -23,12 +39,13 @@
     padding: 10rem 0 10rem;
 
     &--heading {
+        // text-transform: none;
         text-align: center;
         margin-bottom: 2rem;
     }
 
     &--description {
-        color: $text-muted;
+        color: $text;
         text-align: center;
         margin-bottom: 3rem;
     }
@@ -44,7 +61,7 @@
 
     &--item {
         position: relative;
-        box-shadow: 0 0 1rem rgba($dark, 0.15);
+        box-shadow: 0 0 1rem rgba($gold-color, 0.15);
         border-radius: $border-radius;
         padding: 4rem 2rem 2rem;
         height: 100%;
