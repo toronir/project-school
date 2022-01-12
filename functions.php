@@ -91,17 +91,20 @@ function wpse_cpt_enqueue($hook_suffix)
 
             add_filter(
                 'gettext',
-                function ($translated, $text_domain, $original) {
-                    if ($translated === 'Publish') {
-                        return __('Add New User', 'print-my-blog');
-                    }
-                    return $translated;
-                },
+                function($translated,$text_domain,$original){
+                    if($translated === 'Opublikuj'){
+                        return __('Dodaj nowego użytkownika', 'print-my-blog');
+                        if ($translated === 'Publish') {
+                            return __('Add New User', 'print-my-blog');
+                        }
+              
+                }},
                 10,
                 3
             );
         }
     }
+    
 }
 
 add_action('admin_enqueue_scripts', 'wpse_cpt_enqueue');
@@ -133,4 +136,3 @@ function acf_load_color_field_choices($field)
     // return the field
     return $field;
 }
-

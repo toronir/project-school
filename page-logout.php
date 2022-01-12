@@ -5,8 +5,6 @@ Template name: Wyloguj
 
 $logout_img = get_field('logout_img');
 
-// wp_loginout( , false);
-echo wp_logout_url(home_url());
 
 get_header();
 

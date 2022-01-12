@@ -1,55 +1,103 @@
-.offers-single {
-    padding: 10rem 0;
-}
-.offers {
-    border-bottom: $gold-color solid 0.5px;
-    padding-bottom: 1rem;
+// .offer-filter .container,
+// .offer-display .container {
+//     margin: 0 1rem;
+// }
 
-    &--nav {
-        display: none;
-        justify-content: center;
+.offer-filter {
+    h2 {
+        margin: 5rem 0;
+    }
 
-        @include media-breakpoint-up(lg) {
-            display: flex;
-        }
+    .row {
+        // padding-bottom: 1rem;
 
         form {
+            margin-bottom: 3rem;
             display: flex;
-
-            align-items: center;
-            flex-wrap: wrap;
-   
+            flex-direction: column;
+            align-items: stretch;
+            // 
             color: black;
+            gap: 3rem;
+
             &>div {
-                flex-basis: 30%;
+                flex-grow: 1;
+                text-align: center;
+            }
+
+            @include media-breakpoint-up(sm) {
+                margin: 0 2rem 3rem;
+                justify-content: space-between;
+                // align-items: center;
+                // flex-direction: row;
+
+            }
+
+            @include media-breakpoint-up(md) {
+                margin: 0 2rem 3rem;
+                justify-content: space-between;
+                align-items: center;
+                flex-direction: row;
+
             }
 
             @include media-breakpoint-up(lg) {
-                justify-content: space-around;
-                margin-top: 4rem;
-                margin-bottom: 2rem;
+                margin: 0 auto 3rem;
+                justify-content: space-between;
+                align-items: center;
+                flex-direction: row;
+
             }
 
-            li:not(:last-child) {
-                margin-bottom: 1rem;
-
-                @include media-breakpoint-up(lg) {
-                    margin-bottom: 0;
-                }
-            }
         }
     }
 }
-.button_gold {
-    text-align: center;
-    padding: 1rem 2rem;
-    margin-top: 2rem;
-    background-color: rgb(29, 29, 29);
-    border: $gold-color 1px solid;
-    border-radius: 1rem;
-    color: $text;
+
+.offer-display {
+    .container {
+        padding: 0 2rem;
+    }
+
+    &--item {
+        margin: 0 2rem 4rem;
+        padding: 2rem;
+        border: $gold-color solid 2px;
+        border-radius: 2rem;
+        gap: 3rem;
+
+        h4 {
+            margin-bottom: 1rem;
+        }
+
+        div.img {
+            // width: 50rem;
+            // flex-basis: 50%;
+            flex-grow: 1;
+            height: auto;
+            background-position: center center;
+            background-size: cover;
+
+        }
+
+        div.desc {
+            flex-basis: 60%;
+        }
+
+
+
+        div.buttons {
+            justify-content: flex-end;
+            gap: 3rem;
+        }
+
+        a {
+            display: inline;
+            // margin: 1rem;
+        }
+    }
+
 }
+
 .thumnail {
-    width: 100px;
-    height: 100px;
+    width: 30%;
 }

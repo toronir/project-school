@@ -379,7 +379,7 @@ get_header();
                             <div class="logged-in-visited-courses__item--desc">
                                 <p> Poziom: <?php echo get_field("courses_level", $course->ID) ?> </p>
                                 <p> Czas trwania kursu: <?php echo get_field("courses_time", $course->ID) ?>h </p>
-                                <a class='btn-gold-secondary' href="<?php echo $course->guid?>">Czytaj więcej <i
+                                <a class='btn-gold-primary' href="<?php echo $course->guid?>">Czytaj więcej <i
                                         class="fas fa-chevron-right"></i></a>
                             </div>
                             <div class='logged-in-visited-courses__item--img'>
