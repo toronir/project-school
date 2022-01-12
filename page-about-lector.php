@@ -25,11 +25,11 @@ $teachers = get_posts([
         <div class="row justify-content-center">
             <div class="col-lg-8 col-xxl-7">
                 <?php if ($teachers_heading) : ?>
-                    <h2 class="teachers--heading"><?= $teachers_heading; ?></h2>
+                <h2 class="teachers--heading"><?= $teachers_heading; ?></h2>
                 <?php endif; ?>
 
                 <?php if ($teachers_desc) : ?>
-                    <p class="teachers--description"><?= $teachers_desc; ?></p>
+                <p class="teachers--description"><?= $teachers_desc; ?></p>
                 <?php endif; ?>
             </div>
         </div>
@@ -42,20 +42,25 @@ $teachers = get_posts([
     <div class="container">
         <div class="row justify-content-center">
             <?php foreach ($teachers as $teacher) : ?>
-                <div class="col-xxl-4 col-xl-6 col-sm-12 mb-4">
-                    <img src="<?= get_field("teacher_img", $teacher->ID) ?>">
-                </div>
-                <div class="col-xxl-8 col-xl-6 col-sm-12 mb-4">
-                    <div><h3><?= $teacher->post_title; ?></h3></div>
-                    <div><?= $teacher->post_content; ?></div>
-                    <div><strong><?= get_field("teacher_experience", $teacher->ID) ?></strong></div>
-                    <div><strong><?= get_field("teacher_cert", $teacher->ID) ?></strong></div>
-                    <div><?= get_field("teacher_language", $teacher->ID) ?></div>
-                    <div><p><?= get_field("teacher_email", $teacher->ID) ?></p></div>
-                    <a href="<?php echo $teacher->guid; ?>" class="button_gold "> Poznaj mnie <i class="fas fa-ardiv-right ml-1 small"></i></a>
-                </div>
-                </div>
+            <div class="col-xxl-4 col-xl-6 col-sm-12 mb-4">
+                <img src="<?= get_field("teacher_img", $teacher->ID) ?>">
+            </div>
+            <div class="col-xxl-8 col-xl-6 col-sm-12 mb-4">
                 <div>
+                    <h3><?= $teacher->post_title; ?></h3>
+                </div>
+                <div><?= $teacher->post_content; ?></div>
+                <div><strong><?= get_field("teacher_experience", $teacher->ID) ?></strong></div>
+                <div><strong><?= get_field("teacher_cert", $teacher->ID) ?></strong></div>
+                <div><?= get_field("teacher_language", $teacher->ID) ?></div>
+                <div>
+                    <p><?= get_field("teacher_email", $teacher->ID) ?></p>
+                </div>
+                <a href="<?php echo $teacher->guid; ?>" class="btn-gold-primary d-inline-block"> Poznaj mnie <i
+                        class="fas fa-ardiv-right ml-1 small"></i></a>
+            </div>
+        </div>
+        <div>
             <?php endforeach; ?>
         </div>
     </div>
@@ -63,4 +68,3 @@ $teachers = get_posts([
 <!-- End teachers list -->
 
 <?php get_footer(); ?>
-
