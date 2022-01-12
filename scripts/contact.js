@@ -1,21 +1,45 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
+import bootstrap from "bootstrap";
+import { Button, Form, Alert } from "react-bootstrap";
+import AlertDismissible from "./alertSuccess.js";
+import AlertDismissibleExample from "./alertError.js";
+
+
 
 const Contact = () => {
     const inputEmailRef = useRef();
     const inputNameRef = useRef();
     const inputPhoneRef = useRef();
     const inputBirthdayRef = useRef();
+    const [validated, setValidated] = useState(false);
+    const [backEndResp, setBackEndResp] = useState("");
+
+
+    const handleSubmit = (event) => {
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        setValidated(true);
+    };
 
 
     const submitHandler = async (event) => {
         event.preventDefault();
+        const form = event.currentTarget;
 
         const email = inputEmailRef.current.value;
         const name = inputNameRef.current.value;
         const phone = inputPhoneRef.current.value;
         const birthday = inputBirthdayRef.current.value;
+        console.log(form.checkValidity());
+        if (email && form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
 
-        if (email) {
+
             const response = await fetch(`${page.api_url}work-on/contact`, {
                 method: "POST",
                 headers: {
@@ -27,80 +51,142 @@ const Contact = () => {
 
             const responseData = await response.json();
 
-            console.log(responseData);
 
-            if (responseData === "success") {
-                alert("Dziękujemy")
-            } else {
-                alert("Coś poszło nie tak")
+            switch (responseData) {
+                case "success":
+                    setBackEndResp("success")
+                    break;
+                case "user_exists":
+                    setBackEndResp("user_exists")
+                    break;
+                // case "error":
+                //     alert("Coś poszło nie tak")
+                //     break;
+
+
+
+                default:
+                    alert("Unknow error")
+                    break;
             }
 
-            inputRef.current.value = "";
+
+
+            inputEmailRef.current.value = "";
+            inputNameRef.current.value = "";
+            inputPhoneRef.current.value = "";
+            inputBirthdayRef.current.value = "";
+            setValidated(false);
 
         } else {
-            alert("Podaj adres e-mail")
+
+            setValidated(true);
         }
     }
 
     return (
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header">Register</div>
-                        <div class="card-body">
+        <>
+            {(backEndResp === "success") ? <AlertDismissible /> : ""}
+            {(backEndResp === "user_exists") ? <AlertDismissibleExample /> : ""}
 
-                            <form class="form-horizontal" method="post" onSubmit={submitHandler}>
+            <>
+                <div class="container">
 
-                                <div class="form-group">
-                                    <label for="name" class="cols-sm-2 control-label">Your Name</label>
-                                    <div class="cols-sm-10">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                            <input type="text" class="form-control" name="name" id="name" placeholder="Enter your Name" ref={inputNameRef} />
+
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header">Register</div>
+                                <div class="card-body">
+
+                                    <Form class="form-horizontal" method="post" validated={validated} onSubmit={submitHandler} noValidate  >
+
+                                        <Form.Group>
+                                            <Form.Label>Your Name</Form.Label>
+                                            <div class="cols-sm-10">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-user fa px-3" aria-hidden="true"></i></span>
+                                                    <Form.Control
+                                                        required
+                                                        type="text"
+                                                        placeholder="Name"
+                                                        ref={inputNameRef}
+                                                    />
+                                                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                                </div>
+                                            </div>
+                                        </Form.Group>
+                                        <Form.Group>
+                                            <Form.Label>Your Email</Form.Label>
+
+                                            <div class="cols-sm-10">
+                                                <div class="input-group has-validation">
+                                                    <span class="input-group-addon"><i class="fa fa-envelope  fa px-3" aria-hidden="true"></i></span>
+                                                    <Form.Control
+                                                        required
+                                                        type="email"
+                                                        name="email"
+                                                        id="email"
+                                                        placeholder="Email"
+                                                        ref={inputEmailRef}
+                                                    />
+                                                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                                </div>
+                                            </div>
+                                        </Form.Group>
+                                        <Form.Group>
+                                            <Form.Label>Telephone</Form.Label>
+
+                                            <div class="cols-sm-10">
+                                                <div class="input-group has-validation">
+                                                    <span class="input-group-addon"><i class="fa fa-phone fa px-3" aria-hidden="true"></i></span>
+                                                    <Form.Control
+                                                        required
+                                                        type="number"
+                                                        name="phone"
+                                                        id="phone"
+                                                        placeholder="Telephone"
+                                                        ref={inputPhoneRef}
+                                                    />
+                                                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                                </div>
+                                            </div>
+                                        </Form.Group>
+                                        <Form.Group>
+                                            <Form.Label>Birthday</Form.Label>
+
+                                            <div class="cols-sm-10">
+                                                <div class="input-group has-validation">
+                                                    <span class="input-group-addon"><i class="fa fa-link fa px-3" aria-hidden="true"></i></span>
+                                                    <Form.Control
+                                                        required
+                                                        type="data"
+                                                        name="birthday"
+                                                        id="birthday"
+                                                        placeholder="Birthday"
+                                                        ref={inputBirthdayRef}
+                                                    />
+                                                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                                </div>
+                                            </div>
+                                        </Form.Group>
+                                        <div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="email" class="cols-sm-2 control-label">Your Email</label>
-                                    <div class="cols-sm-10">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                                            <input type="text" class="form-control" name="email" id="email" placeholder="Enter your Email" ref={inputEmailRef}/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="password" class="cols-sm-2 control-label">Telephone</label>
-                                    <div class="cols-sm-10">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-phone fa-lg" aria-hidden="true"></i></span>
-                                            <input type="text" class="form-control" name="phone" id="phone" placeholder="Enter your Telephone" ref={inputPhoneRef} />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="confirm" class="cols-sm-2 control-label">Birthday</label>
-                                    <div class="cols-sm-10">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-link fa-lg" aria-hidden="true"></i></span>
-                                            <input type="text" class="form-control" name="birthday" id="birthday" placeholder="Enter your Birthday" ref={inputBirthdayRef} />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                </div>
-                                <div class="form-group ">
-                                    <button type="submit" class="btn btn-primary btn-lg btn-block login-button">Register</button>
+                                        <br />
+                                        <Form.Group>
+                                            <Button type="submit">Submit form</Button>
+                                        </Form.Group>
+
+                                    </Form>
                                 </div>
 
-                            </form>
+                            </div>
                         </div>
-
                     </div>
                 </div>
-            </div>
-        </div>
+            </>
+
+        </>
     )
 }
 

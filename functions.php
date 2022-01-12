@@ -72,6 +72,9 @@ add_action('publish_subscription', function ($post_id, $post) {
     $pass =  get_post_meta($post_id, 'subscription_user_password', true);
     $user_id = wp_create_user($updated_post['post_title'], $pass, $updated_post['post_title']);
     update_field('user_phone_number', $telephone_meta,  $user_id);
+    wp_delete_post( $post_id, true );
+    wp_redirect( admin_url( 'edit.php?post_type=subscription'));
+    exit;   
 }, 10, 2);
 
 
@@ -88,15 +91,9 @@ function wpse_cpt_enqueue($hook_suffix)
 
             add_filter(
                 'gettext',
-<<<<<<< Updated upstream
-                function($translated,$text_domain,$original){
-                    if($translated === 'Opublikuj'){
-                        return __('Dodaj nowego użytkownika', 'print-my-blog');
-=======
                 function ($translated, $text_domain, $original) {
                     if ($translated === 'Publish') {
                         return __('Add New User', 'print-my-blog');
->>>>>>> Stashed changes
                     }
                     return $translated;
                 },

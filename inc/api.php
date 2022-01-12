@@ -18,7 +18,14 @@ add_action('rest_api_init', function () {
             $headers[] = 'Content-type: text/plain; charset=utf-8';
             $headers[] = 'From:' . "testing@gmail.com";
 
-            if ($email && !get_page_by_title($email, OBJECT, 'subscription')) {
+            $userList = get_users('blog_id=0&orderby=nicename');
+            foreach ($userList as $user) {
+               if ($user->user_email == $email){
+                $output = 'user_exists';;
+               }
+            }
+
+            if ($email && !get_page_by_title($email, OBJECT, 'subscription' ) && !$output) {
 
                 wp_insert_post([
                     'post_title' => $email,
@@ -38,10 +45,9 @@ add_action('rest_api_init', function () {
                 ]);
                 $output = 'success';
                 wp_mail($to, $subject, $body, $headers);
-                
-                
             } else {
-                $output = 'error';
+                
+                $output = !$output ? "error" : $output;
             }
 
             return $output;

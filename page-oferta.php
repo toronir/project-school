@@ -23,7 +23,10 @@ $oferta_lable = get_field('oferta_lable');
 $oferta_discript = get_field('oferta_discript');
 $isLogIn = is_user_logged_in();
 
-
+$userList = get_users( 'blog_id=0&orderby=nicename  ' );
+foreach ( $userList as $user ) { 
+	echo '<span>' . esc_html( $user->user_email ) . '</span>'; 
+} 
 $meta_q = array(
     'meta_query' => array(
         'relation' => 'AND',
