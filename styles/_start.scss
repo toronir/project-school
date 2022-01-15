@@ -84,8 +84,29 @@
 }
 
 .forms .container {
+
     border-bottom: $gold-color solid 0.5px;
-    padding-bottom: 1rem;
+    padding-bottom: 3rem;
+
+    .form>h3 {
+        padding-bottom: 1rem;
+        width: 40%;
+        margin-right: auto;
+        margin-left: auto;
+        border-bottom: $gold-color solid 1px;
+
+
+
+        @include media-breakpoint-up(md) {
+            width: 50%;
+        }
+
+        @include media-breakpoint-up(xl) {
+            width: 40%;
+        }
+    }
+
+
 }
 
 
@@ -93,59 +114,63 @@
     border-bottom: $gold-color solid 0.5px;
     padding-bottom: 1rem;
 
+    .card {
+        background-color: $gold-color;
+        color: $btn-dark;
+        transition: 0.2s;
 
-    .languages--box {
-        flex-wrap: wrap;
-        gap: 4%;
-        row-gap: 2rem;
-
-
-        &__item {
-            display: flex;
-            flex-basis: 48%;
-            gap: 1.5rem;
-            flex-direction: column;
-            // align-items: center;
-
-            div.languages--img {
-                display: flex;
-                gap: 4%;
-                align-items: center;
-
-                &>img {
-                    width: 20%;
-                }
+        @include media-breakpoint-up(lg) {
+            &:hover {
+                transform: scale(1.04);
             }
         }
+
     }
+
 }
 
 
-.levels .container {
+.levels {
 
-    .levels--box {
-        flex-wrap: wrap;
-        // border: 0.5px solid #ffe13a;
-        // border: 0.5px solid $gold-color;
 
-        &__item {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            align-items: center;
-            flex-basis: calc(100% / 3);
+    &--item {
+        text-align: center;
+        padding: 2rem;
 
-            text-align: center;
-            padding: 2rem;
+        &:nth-child(2n+1) {
+            background-color: $gold-color;
+            color: $dark;
+        }
+
+        @include media-breakpoint-up(md) {
+            &:nth-child(n) {
+                background-color: transparent;
+                color: $text;
+            }
+
+            &:nth-child(2),
+            &:nth-child(3),
+            &:nth-child(6) {
+                background-color: $gold-color;
+                color: $dark;
+            }
+        }
+
+        @include media-breakpoint-up(lg) {
+            &:nth-child(n) {
+                background-color: transparent;
+                color: $text;
+            }
 
             &:nth-child(2n) {
                 background-color: $gold-color;
                 color: $dark;
             }
-
-
         }
+
+
     }
+
 }
 
 .more {
@@ -154,33 +179,19 @@
     background-color: $gold-color;
     color: $dark;
 
-    .wrapper {
-        width: 70%;
-        padding-bottom: 2rem;
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-around;
+    h2 {
+        font-weight: 600;
+    }
 
-        a {
-            display: inline-block;
-            padding: 2rem 3rem;
-            text-transform: uppercase;
+    .btn-gold-primary {
+        border-color: $background-dark;
 
-            &.first {
-                border: $dark solid 2px;
-                color: $dark;
-
-                &:hover {
-                    background-color: $dark;
-                    color: $gold-color;
-                }
-            }
-
-            &.second {
-                background-color: $dark;
-                color: $gold-color;
-            }
+        &:hover {
+            background-color: $background-dark;
         }
     }
 
+    .btn-gold-secondary {
+        background-color: $background-dark;
+    }
 }

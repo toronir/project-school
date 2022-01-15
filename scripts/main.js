@@ -10,7 +10,7 @@ import Contact from './contact';
 
 $(() => {
     AOS.init({
-        offset: 100
+        offset: 80
     });
 
     $('.testimonials--slider').slick({

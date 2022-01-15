@@ -134,9 +134,6 @@ $savedArgs = [
 ];
 
 $saved_courses = new WP_Query($savedArgs);
-//
-
-// try
 
 
 get_header();
@@ -161,15 +158,15 @@ get_header();
 <!-- start data -->
 <section id="logged-in--data" class="logged-in--data">
     <div class="container">
-        <div class="row">
-            <?php if ($logged_in_data_title) : ?>
-            <h2><?= $logged_in_data_title ?></h2>
-            <?php endif; ?>
-        </div>
-        <div class="row justify-content-center mb-5">
-            <div class="logged-in--data col-lg-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-4 logged-in--data__title ">
+                <?php if ($logged_in_data_title) : ?>
+                <h2><?= $logged_in_data_title ?></h2>
+                <?php endif; ?>
+            </div>
+            <div class="col-12 col-md-8 logged-in--data__change">
                 <form class='form-data' method="POST">
-                    <div>
+                    <div class='mt-0'>
                         <label for="mail">E-mail (login):</label>
                         <input type="hidden" name='hidden-data-input' value='change_data'>
                         <input type="text" name='mail' value='<?php
@@ -227,20 +224,20 @@ get_header();
                             }
                             ?>'>
                     </div>
-                    <!-- <p><?php print_r($new_birthday_value) ?></p> -->
 
-
-                    <!-- <div class='logged-in--data__flex'></div> -->
-
-                    <button class='btn-gold-secondary' type='submit'>Zmień dane</button>
-
+                    <button class='btn-gold-primary' type='submit'>Zmień dane</button>
 
                 </form>
             </div>
-            <div class="col-lg-5">
+            <div class="col-12 col-md-4 logged-in--data__title mt-5">
+                <?php if ($logged_in_data_title) : ?>
+                <h2><?= $logged_in_data_title ?></h2>
+                <?php endif; ?>
+            </div>
+            <div class="col-12 col-md-8 logged-in--data__change mt-5">
                 <form class='form-password' method='POST'>
                     <input type="hidden" name='hidden-data-input' value='change_password'>
-                    <div>
+                    <div class='mt-0'>
                         <label for="old-password">Stare hasło:</label>
                         <input type="password" name='old-password' value='' placeholder='********'>
                     </div>
@@ -252,12 +249,11 @@ get_header();
                         <label for="new-password-2">Powtórz nowe hasło:</label>
                         <input type="password" name='new-password-2' value='' placeholder='********'>
                     </div>
-                    <div class='logged-in--data__flex'></div>
-                    <p><?php echo $pass?></p>
                     <button class='btn-gold-primary' type='submit'>Zmień hasło</button>
                 </form>
 
             </div>
+
         </div>
         <div class="row logged-in--data__joined">
             <?php if ($_POST['hidden-data-input'] == 'change_data') : ?>
@@ -275,15 +271,15 @@ get_header();
             <?php endif; ?>
             <p>Dołączono: <span><?php echo $logged_in_user_data->user_registered?></span></p>
         </div>
-
     </div>
+
 </section>
 <!-- start data -->
 
 <!-- start kursy -->
 <div class="container">
     <div class="row justify-content-lg-center">
-        <div class="col-lg-8">
+        <div class="col-12 col-xl-8">
             <!-- start saved courses -->
             <section id="-in-courses" class="logged-in-courses" style='height: 100%'>
 
@@ -312,7 +308,7 @@ get_header();
                                 <h3> <?php echo get_the_title(); ?> </h3>
 
                             </div>
-                            <p> <?php echo get_the_excerpt(); ?> </p>
+                            <p> <?php echo wp_trim_words( get_the_content(), 45, ' [...]' ) ?> </p>
                             <p> Poziom: <?php echo get_field("courses_level", get_the_ID()) ?> </p>
                             <p> Czas trwania kursu: <?php echo get_field("courses_time", get_the_ID()) ?>h </p>
                             <a class='btn-gold-primary' href="<?php echo get_the_permalink()?>">Czytaj więcej <i
@@ -351,7 +347,7 @@ get_header();
             <!-- end saved courses -->
         </div>
 
-        <div class="col-lg-4 border-left">
+        <div class="col-12 col-xl-4 border-left">
             <!-- start visited courses -->
             <section id="logged-in-courses" class="logged-in-courses">
 

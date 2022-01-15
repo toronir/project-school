@@ -17,11 +17,6 @@ $languagesArgs = [
     'post_status' => 'publish',
     'posts_per_page' => '50',
     'paged' => get_query_var('paged'),
-    // 'tax_query' => [
-    //     [
-    //         'taxonomy'=> 'languages_categories'
-    //     ]
-    // ]
 ];
 
 $languages_query = new WP_Query($languagesArgs);
@@ -119,20 +114,21 @@ get_header();
     <div class="container">
         <div class="row">
             <h2 class='py-5 text-center'><?php echo $form_title?> </h2>
-            <div class="d-flex">
-                <div>
-                    <h3><?= $first_form ?></h3>
-                    <p><?= $form_desc_1 ?></p>
-                </div>
-
-                <?php if ($second_form) : ?>
-                <div>
-                    <h3><?= $second_form ?></h3>
-                    <p><?= $form_desc_2 ?></p>
-                </div>
-                <?php endif; ?>
-            </div>
         </div>
+        <div class="row justify-content-center">
+            <div class="col-10 col-md form">
+                <h3 class='text-center'><?= $first_form ?></h3>
+                <p><?= $form_desc_1 ?></p>
+            </div>
+
+            <?php if ($second_form) : ?>
+            <div class="col-10 col-md form">
+                <h3 class='text-center'><?= $second_form ?></h3>
+                <p><?= $form_desc_2 ?></p>
+            </div>
+            <?php endif; ?>
+        </div>
+
     </div>
 </section>
 <!-- End forms -->
@@ -140,28 +136,23 @@ get_header();
 <!-- Start languages -->
 <section id="languages" class="languages" data-aos="zoom-in-up" data-aos-once='true'>
     <div class="container">
-
-        <h2 class='py-5 text-center'><?php echo $languages_title?></h2>
-        <div class="languages--box d-flex ">
-
+        <div class="row">
+            <h2 class='py-5 text-center'><?php echo $languages_title?></h2>
+        </div>
+        <div class="row mb-5 justify-content-center">
 
             <?php if ($languages_query->have_posts()) : ?>
-
             <?php while ($languages_query->have_posts()) : ?>
             <?php $languages_query->the_post(); ?>
-            <div class="languages--box__item">
-                <div class='languages--img'>
-                    <img src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'post-thumbnail'); ?>" alt=""
-                        class="img-fluid">
-                    <h3><?php echo get_the_title(); ?></h3>
-                </div>
-                <div>
-                    <?php the_content(); ?>
-                </div>
+
+            <div class="card col-5 col-md-5 col-lg m-2 d-flex flex-column justify-content-between">
+                <img class="card-img-top my-2"
+                    src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'post-thumbnail'); ?>"
+                    alt="Card image cap">
+                <h5 class="card-title text-center my-5"><?php echo get_the_title(); ?></h5>
             </div>
+
             <?php endwhile; ?>
-
-
             <?php endif; ?>
         </div>
     </div>
@@ -175,14 +166,13 @@ get_header();
         <h2 class='py-5 text-center'><?php echo $start_levels_title ?></h2>
         <p class='text-center mb-5'><?php echo $start_levels_desc ?></p>
 
-        <div class="levels--box d-flex ">
+        <div class="row">
 
             <?php if ($levels_query->have_posts()) : ?>
-
             <?php while ($levels_query->have_posts()) : ?>
             <?php $levels_query->the_post(); ?>
 
-            <div class="levels--box__item">
+            <div class="col-12 col-md-6 col-lg-4 levels--item">
                 <h3><?php echo get_the_title(); ?></h3>
                 <?php the_content(); ?>
             </div>
@@ -191,6 +181,7 @@ get_header();
             <?php endif; ?>
 
         </div>
+
     </div>
 </section>
 <!-- End levels -->
@@ -204,7 +195,25 @@ get_header();
         <h2 class='py-5 text-center'><?php echo $start_offer_title ?></h2>
         <p class='text-center mb-5'><?php echo $start_offer_desc ?></p>
 
-        <div class="wrapper">
+        <div class="row justify-content-center">
+
+            <?php if ($start_offer_button_1) : ?>
+            <div class="col-5  col-lg-3">
+                <a class='btn-gold-primary'
+                    href="<?php echo $start_offer_button_1['url']?>"><?php echo $start_offer_button_1['title']?></a>
+            </div>
+            <?php endif; ?>
+
+            <?php if ($start_offer_button_2) : ?>
+            <div class="col-md-1 d-none d-md-block"></div>
+            <div class="col-5 col-lg-3">
+                <a class='btn-gold-secondary'
+                    href="<?php echo $start_offer_button_2['url']?>"><?php echo $start_offer_button_2['title']?></a>
+            </div>
+            <?php endif; ?>
+
+        </div>
+        <!-- <div class="wrapper">
             <?php if ($start_offer_button_1) : ?>
             <a class='btn-gold-primary'
                 href="<?php echo $start_offer_button_1['url']?>"><?php echo $start_offer_button_1['title']?></a>
@@ -214,7 +223,7 @@ get_header();
             <a class='btn-gold-secondary'
                 href="<?php echo $start_offer_button_2['url']?>"><?php echo $start_offer_button_2['title']?></a>
             <?php endif; ?>
-        </div>
+        </div> -->
     </div>
 </section>
 <?php endif; ?>

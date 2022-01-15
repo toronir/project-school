@@ -179,71 +179,80 @@ $register_btn_target = get_field('offer_register_btn')['target'];
         <?php if (get_field('chose_course_type') === 'Online' || $isLogIn) : ?>
 
         <?php switch (get_field("courses_level", get_the_ID())) {
-    case 'A1':
-        $border_color = 'rgb(76, 189, 53)';
+        case 'A1':
+            $border_color = 'rgb(76, 189, 53)';
+            break;
+        case 'A2':
+            $border_color = 'rgb(27, 131, 41)';
+            break;
+        case 'B1':
+            $border_color = 'rgb(51, 214, 206)';
+            break;
+        case 'B2':
+            $border_color = 'rgb(21, 129, 148)';
+            break;
+        case 'C1':
+            $border_color = 'rgb(235, 107, 33)';
+            break;
+        case 'C2':
+            $border_color = 'rgb(202, 71, 19)';
         break;
-    case 'A2':
-        $border_color = 'rgb(27, 131, 41)';
-        break;
-    case 'B1':
-        $border_color = 'rgb(51, 214, 206)';
-        break;
-    case 'B2':
-        $border_color = 'rgb(21, 129, 148)';
-        break;
-    case 'C1':
-        $border_color = 'rgb(235, 107, 33)';
-        break;
-    case 'C2':
-        $border_color = 'rgb(202, 71, 19)';
-        break;
-}
-?>
+        }
+        ?>
 
         <div class="row justify-content-center ">
 
-            <div class="col-lg-10 col-xl-8 offer-display--item d-flex"
+            <div class="col-lg-10 col-xl-8 offer-display--item"
                 style='border-right: <?php echo $border_color?> solid 1.8rem'>
 
-                <div class="img"
-                    style='background-image: url("<?php echo get_the_post_thumbnail_url(get_the_ID(), 'medium'); ?>");'>
+                <div class="d-flex align-items-end">
+                    <div class="img"
+                        style='background-image: url("<?php echo get_the_post_thumbnail_url(get_the_ID(), 'medium'); ?>");'>
+                    </div>
+                    <div class="title mx-4">
+                        <h4><?php echo get_the_title(); ?></h4>
+                        <span>Poziom:
+                            <strong><?php echo get_field('courses_level'); ?></strong></span>
+                        <span class='mx-4'>Tryb: <strong><?php echo get_field('chose_course_type'); ?></strong>
+                        </span>
+                    </div>
                 </div>
-                <div class="desc">
-                    <h4><?php echo get_the_title(); ?></h4>
-                    <span>Poziom:
-                        <strong><?php echo get_field('courses_level'); ?></strong></span>
-                    <span class='mx-4'>Tryb: <strong><?php echo get_field('chose_course_type'); ?></strong> </span>
-                    <hr>
-                    <p class='my-4'><?php echo wp_trim_words( get_the_content(), 45, ' [...]' ) ?></p>
 
-                    <div class="buttons d-flex">
+                <hr>
+                <p class='my-4'><?php echo wp_trim_words( get_the_content(), 45, ' [...]' ) ?></p>
 
-                        <?php if ($isLogIn) : ?>
-                        <?php if (!in_array(get_the_ID(), $array_saved_course_ID)) : ?>
-                        <form method="POST" class='d-inline'>
-                            <input type="hidden" name='save' value='save-course'>
-                            <input type="hidden" name='course_id' value='<?php echo get_the_ID()?>'>
-                            <button class='btn-gold-primary ' type='submit'><i class="far fa-star"></i> Zapisz
-                                kurs</button>
-                        </form>
-                        <?php else : ?>
+                <div class="buttons d-flex">
+
+                    <?php if ($isLogIn) : ?>
+                    <?php if (!in_array(get_the_ID(), $array_saved_course_ID)) : ?>
+                    <form method="POST" class='d-inline'>
+                        <input type="hidden" name='save' value='save-course'>
+                        <input type="hidden" name='course_id' value='<?php echo get_the_ID()?>'>
+                        <button class='btn-gold-primary save-button' type='submit'><i class="far fa-star"></i>
+                            Zapisz kurs</button>
+                    </form>
+                    <?php else : ?>
+                    <div style='overflow: hidden'>
                         <form method="POST" class='form-slider d-flex gap-4'>
                             <input type="hidden" name='delete' value='delete-course'>
                             <input type="hidden" name='course_id' value='<?php echo get_the_ID()?>'>
+
                             <div class='btn-gold-secondary d-inline'><i class="fas fa-star"></i> Zapisano!</div>
                             <button type='submit' class='d-inline'>
                                 <span>| Usuń</span></button>
-                        </form>
-                        <?php endif; ?>
-                        <?php else : ?>
-                        <a href="<?php echo $register_btn_url?>" target='<?php echo $register_btn_target?>'
-                            class="btn-gold-secondary"><?php echo $register_btn_title?></a>
-                        <?php endif; ?>
-                        <a href="<?php echo get_the_permalink(); ?>" class="btn-gold-primary">Czytaj więcej <i
-                                class="fas fa-chevron-right"></i></a>
-                    </div>
 
+                        </form>
+                    </div>
+                    <?php endif; ?>
+                    <?php else : ?>
+                    <a href="<?php echo $register_btn_url?>" target='<?php echo $register_btn_target?>'
+                        class="btn-gold-secondary"><?php echo $register_btn_title?></a>
+                    <?php endif; ?>
+                    <a href="<?php echo get_the_permalink(); ?>" class="btn-gold-primary">Czytaj więcej <i
+                            class="fas fa-chevron-right"></i></a>
                 </div>
+
+
             </div>
 
 

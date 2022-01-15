@@ -73,11 +73,12 @@ get_header();
         <div class="row justify-content-center">
             <div class="col-lg-3 shortcut gold-border-right px-5">
                 <img src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'medium'); ?>" alt="">
-
             </div>
+
             <div class="col-lg-7">
                 <div class='d-flex justify-content-between align-items-center mx-5' style="height: 100%;">
                     <h1><?php echo get_the_title(); ?></h1>
+
                     <?php if (!$added_course) :?>
                     <form method="POST">
                         <input type="hidden" name='save' value='save_course'>
@@ -93,8 +94,8 @@ get_header();
                     <?php endif; ?>
 
                 </div>
-
             </div>
+
         </div>
         <div class="row justify-content-center">
             <div class="col-lg-3 shortcut gold-border-right px-5">

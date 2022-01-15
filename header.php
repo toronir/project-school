@@ -14,6 +14,10 @@ $logo = get_theme_mod('logo');
 
 
     <?php wp_head(); ?>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Saira+Semi+Condensed:wght@200;400;600&display=swap"
+        rel="stylesheet">
 </head>
 
 <body <?php body_class();?>>
@@ -32,30 +36,30 @@ $logo = get_theme_mod('logo');
                         <i class="fas fa-bars" onclick="document.body.classList.toggle('menu-open')"></i>
                     </div>
 
-<!-- start changing menu for user login and logout -->
+                    <!-- start changing menu for user login and logout -->
                     <?php if (!is_user_logged_in()) : ?>
-                        <nav class="header--nav">
-                            <?php echo wp_nav_menu([
+                    <nav class="header--nav">
+                        <?php echo wp_nav_menu([
                                 'theme_location' => 'main_menu'
                             ]); ?>
-                            <?php echo wp_nav_menu([
+                        <?php echo wp_nav_menu([
                                 'theme_location' => 'logged_out',
                                 'menu_class' => 'nav-logged-out'
                             ]); ?>
-                        </nav>
-                        
+                    </nav>
+
                     <?php else : ?>
-                        <nav class="header--nav">
-                            <?php echo wp_nav_menu([
+                    <nav class="header--nav">
+                        <?php echo wp_nav_menu([
                                 'theme_location' => 'main_menu'
                             ]); ?>
-                            <?php echo wp_nav_menu([
+                        <?php echo wp_nav_menu([
                                 'theme_location' => 'logged_in',
                                 'menu_class' => 'nav-logged-in'
                             ]); ?>
-                        </nav>
+                    </nav>
                     <?php endif ?>
-<!-- end changing menu for user login and logout -->
+                    <!-- end changing menu for user login and logout -->
 
                 </div>
             </div>
