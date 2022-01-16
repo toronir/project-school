@@ -23,6 +23,10 @@ $oferta_lable = get_field('oferta_lable');
 $oferta_discript = get_field('oferta_discript');
 $isLogIn = is_user_logged_in();
 
+<<<<<<< Updated upstream
+=======
+//Var that yous do search category
+>>>>>>> Stashed changes
 $meta_q = array(
     'meta_query' => array(
         'relation' => 'AND',
@@ -30,7 +34,7 @@ $meta_q = array(
     ),
 );
 
-
+// If some category was selected -> push it to $mate_q to search by more that 1 category
 if ($customFieldLenguageKey) {
     $new = array(
         'key' => 'lenguage',
@@ -261,7 +265,7 @@ $register_btn_target = get_field('offer_register_btn')['target'];
         <?php endif; ?>
         <?php endwhile; ?>
     </div>
-
+<!-- End display courses -->
     <div class="pagination pagination-lg justify-content-center">
         <?php
                 $big = 9999999;

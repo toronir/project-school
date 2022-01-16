@@ -26,14 +26,14 @@ add_action('after_setup_theme', function () {
 });
 
 // start font awesome icon in menu
-add_filter('wp_nav_menu_objects', function($items) {
-	foreach ($items as &$item) {
-		$icon = get_field('fa_icons', $item);			
-		if ($icon) {
-			$item->title = $item->title . '<i class="' . $icon . ' icons-menu"></i>';
-		}
-	}
-	return $items;
+add_filter('wp_nav_menu_objects', function ($items) {
+    foreach ($items as &$item) {
+        $icon = get_field('fa_icons', $item);
+        if ($icon) {
+            $item->title = $item->title . '<i class="' . $icon . ' icons-menu"></i>';
+        }
+    }
+    return $items;
 });
 // end font awesome icon in menu
 
@@ -73,14 +73,14 @@ add_action('publish_subscription', function ($post_id, $post) {
     $pass =  get_post_meta($post_id, 'subscription_user_password', true);
     $user_id = wp_create_user($updated_post['post_title'], $pass, $updated_post['post_title']);
     update_field('user_phone_number', $telephone_meta,  $user_id);
-    wp_delete_post( $post_id, true );
-    wp_redirect( admin_url( 'edit.php?post_type=subscription'));
-    exit;   
+    wp_delete_post($post_id, true);
+    wp_redirect(admin_url('edit.php?post_type=subscription'));
+    exit;
 }, 10, 2);
 
 
 
-
+//Functon that change button text in adminePanale WP
 function wpse_cpt_enqueue($hook_suffix)
 {
     $cpt = 'subscription';
@@ -92,8 +92,8 @@ function wpse_cpt_enqueue($hook_suffix)
 
             add_filter(
                 'gettext',
-                function($translated,$text_domain,$original){
-                    if($translated === 'Opublikuj'){
+                function ($translated, $text_domain, $original) {
+                    if ($translated === 'Opublikuj') {
                         return __('Dodaj nowego użytkownika', 'print-my-blog');
                     }
                     return $translated;
@@ -103,7 +103,6 @@ function wpse_cpt_enqueue($hook_suffix)
             );
         }
     }
-    
 }
 
 add_action('admin_enqueue_scripts', 'wpse_cpt_enqueue');

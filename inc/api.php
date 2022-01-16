@@ -9,6 +9,9 @@ add_action('rest_api_init', function () {
             $phone = $request['phone'] ? $request['phone'] : '';
             $name = $request['name'] ? $request['name'] : '';
             $birthday = $request['birthday'] ? $request['birthday'] : '';
+            $massage = $request['massage'] ? $request['massage'] : '';
+            $file = $request['file'] ? $request['file'] : '';
+
             $pass = randomPassword();
 
 
@@ -20,12 +23,12 @@ add_action('rest_api_init', function () {
 
             $userList = get_users('blog_id=0&orderby=nicename');
             foreach ($userList as $user) {
-               if ($user->user_email == $email){
-                $output = 'user_exists';;
-               }
+                if ($user->user_email == $email) {
+                    $output = 'user_exists';;
+                }
             }
 
-            if ($email && !get_page_by_title($email, OBJECT, 'subscription' ) && !$output) {
+            if ($email && !get_page_by_title($email, OBJECT, 'subscription') && !$output) {
 
                 wp_insert_post([
                     'post_title' => $email,
@@ -36,6 +39,8 @@ add_action('rest_api_init', function () {
                         'subscription_user_password' => $pass,
                         'subscription_telephone' => $phone,
                         'subscription_user_birthday' => $birthday,
+                        'subscription_discription' => $massage,
+                        'subscription_user_file' => $file,
                     )
 
 
@@ -46,7 +51,7 @@ add_action('rest_api_init', function () {
                 $output = 'success';
                 wp_mail($to, $subject, $body, $headers);
             } else {
-                
+
                 $output = !$output ? "error" : $output;
             }
 

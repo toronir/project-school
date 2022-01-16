@@ -1,8 +1,9 @@
 import React, { useRef, useState } from "react";
 import bootstrap from "bootstrap";
-import { Button, Form, Alert } from "react-bootstrap";
+import { Button, Form, Alert, InputGroup } from "react-bootstrap";
 import AlertDismissible from "./alertSuccess.js";
 import AlertDismissibleExample from "./alertError.js";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 
@@ -11,20 +12,10 @@ const Contact = () => {
     const inputNameRef = useRef();
     const inputPhoneRef = useRef();
     const inputBirthdayRef = useRef();
+    const inputMassageRef = useRef();
+    const inputFileRef = useRef();
     const [validated, setValidated] = useState(false);
     const [backEndResp, setBackEndResp] = useState("");
-
-
-    const handleSubmit = (event) => {
-        const form = event.currentTarget;
-        if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
-
-        setValidated(true);
-    };
-
 
     const submitHandler = async (event) => {
         event.preventDefault();
@@ -34,6 +25,9 @@ const Contact = () => {
         const name = inputNameRef.current.value;
         const phone = inputPhoneRef.current.value;
         const birthday = inputBirthdayRef.current.value;
+        const massage = inputMassageRef.current.value;
+        const file = inputFileRef.current;
+
         console.log(form.checkValidity());
         if (email && form.checkValidity()) {
             event.preventDefault();
@@ -45,7 +39,7 @@ const Contact = () => {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ email: email, name: name, phone: phone, birthday: birthday, })
+                body: JSON.stringify({ email: email, name: name, phone: phone, birthday: birthday, massage: massage, file: file })
 
             });
 
@@ -76,6 +70,9 @@ const Contact = () => {
             inputNameRef.current.value = "";
             inputPhoneRef.current.value = "";
             inputBirthdayRef.current.value = "";
+            inputMassageRef.current.value = "";
+            inputFileRef.current.value = "";
+           
             setValidated(false);
 
         } else {
@@ -86,48 +83,50 @@ const Contact = () => {
 
     return (
         <>
+            {/* Add error or success alerts */}
             {(backEndResp === "success") ? <AlertDismissible /> : ""}
             {(backEndResp === "user_exists") ? <AlertDismissibleExample /> : ""}
 
             <>
-                <div class="container">
-
-
-                    <div class="row justify-content-center">
-                        <div class="col-md-8">
-                            <div class="card">
-                                <div class="card-header">Register</div>
-                                <div class="card-body">
-
-                                    <Form class="form-horizontal" method="post" validated={validated} onSubmit={submitHandler} noValidate  >
-
+                {/* Form end  */}
+                <div className="container">
+                    <div className="row justify-content-center">
+                        <div className="col-md-8">
+                            <div className="card">
+                                <h3 className="card-header align-self-center mt-3">Register</h3>
+                                <div className="card-body">
+                                    <Form className="form-horizontal m-4" method="post" validated={validated} onSubmit={submitHandler} noValidate  >
                                         <Form.Group>
-                                            <Form.Label>Your Name</Form.Label>
-                                            <div class="cols-sm-10">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon"><i class="fa fa-user fa px-3" aria-hidden="true"></i></span>
+                                            <div className="cols-sm-10 mb-3 ">
+                                                <div className="input-group">
+                                                    <InputGroup.Text id="basic-addon1"><span className="input-group-addon">
+                                                        <i className="fa fa-user fa px-3 form-control-icon" aria-hidden="true"></i>
+                                                    </span></InputGroup.Text>
                                                     <Form.Control
+                                                        className="custom-form-control"
                                                         required
                                                         type="text"
-                                                        placeholder="Name"
+                                                        placeholder="Your Name"
                                                         ref={inputNameRef}
                                                     />
+
                                                     <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                                                 </div>
                                             </div>
                                         </Form.Group>
                                         <Form.Group>
-                                            <Form.Label>Your Email</Form.Label>
-
-                                            <div class="cols-sm-10">
-                                                <div class="input-group has-validation">
-                                                    <span class="input-group-addon"><i class="fa fa-envelope  fa px-3" aria-hidden="true"></i></span>
+                                            <div className="cols-sm-10 mb-3 ">
+                                                <div className="input-group has-validation">
+                                                    <InputGroup.Text id="basic-addon1">
+                                                        <span className="input-group-addon"><i className="fa fa-envelope  fa px-3" aria-hidden="true"></i></span>
+                                                    </InputGroup.Text>
                                                     <Form.Control
+                                                        className="custom-form-control"
                                                         required
                                                         type="email"
                                                         name="email"
                                                         id="email"
-                                                        placeholder="Email"
+                                                        placeholder="Your Email"
                                                         ref={inputEmailRef}
                                                     />
                                                     <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -135,17 +134,18 @@ const Contact = () => {
                                             </div>
                                         </Form.Group>
                                         <Form.Group>
-                                            <Form.Label>Telephone</Form.Label>
-
-                                            <div class="cols-sm-10">
-                                                <div class="input-group has-validation">
-                                                    <span class="input-group-addon"><i class="fa fa-phone fa px-3" aria-hidden="true"></i></span>
+                                            <div className="cols-sm-10 mb-3 ">
+                                                <div className="input-group has-validation">
+                                                    <InputGroup.Text id="basic-addon1">
+                                                        <span className="input-group-addon"><i className="fa fa-phone fa px-3" aria-hidden="true"></i></span>
+                                                    </InputGroup.Text>
                                                     <Form.Control
+                                                        className="custom-form-control"
                                                         required
-                                                        type="number"
+                                                        type="tel"
                                                         name="phone"
                                                         id="phone"
-                                                        placeholder="Telephone"
+                                                        placeholder="Your Telephone"
                                                         ref={inputPhoneRef}
                                                     />
                                                     <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -153,18 +153,51 @@ const Contact = () => {
                                             </div>
                                         </Form.Group>
                                         <Form.Group>
-                                            <Form.Label>Birthday</Form.Label>
-
-                                            <div class="cols-sm-10">
-                                                <div class="input-group has-validation">
-                                                    <span class="input-group-addon"><i class="fa fa-link fa px-3" aria-hidden="true"></i></span>
+                                            <div className="cols-sm-10 mb-3 ">
+                                                <div className="input-group has-validation">
+                                                    <InputGroup.Text id="basic-addon1"><span className="input-group-addon">
+                                                        <i className="fa fa-link fa px-3" aria-hidden="true"></i>
+                                                    </span></InputGroup.Text>
                                                     <Form.Control
+                                                        className="custom-form-control off-style"
                                                         required
-                                                        type="data"
+                                                        type="date"
                                                         name="birthday"
                                                         id="birthday"
-                                                        placeholder="Birthday"
+                                                        placeholder="Your Birthday"
+                                                        ref={inputMassageRef}
+                                                    />
+                                                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                                </div>
+                                            </div>
+                                        </Form.Group>
+                                        <Form.Group>
+                                            <div className="cols-sm-10 mb-3 ">
+                                                <div className="input-group has-validation">
+                                                    <Form.Control
+                                                        required
+                                                        as="textarea"
+                                                        name="massage"
+                                                        id="massage"
+                                                        placeholder="Massage..."
+                                                        rows={5}
                                                         ref={inputBirthdayRef}
+                                                    />
+                                                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                                </div>
+                                            </div>
+                                        </Form.Group>
+                                        <Form.Group>
+                                            <div className=" col-sm-10 col-lg-4 mb-3 ">
+                                                <div className="input-group has-validation">
+                                                    <Form.Control
+
+
+                                                        type="file"
+                                                        name="file"
+                                                        id="file"
+                                                        placeholder="File"
+                                                        ref={inputFileRef}
                                                     />
                                                     <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                                                 </div>
@@ -173,8 +206,9 @@ const Contact = () => {
                                         <div>
                                         </div>
                                         <br />
-                                        <Form.Group>
-                                            <Button type="submit">Submit form</Button>
+
+                                        <Form.Group >
+                                            <Button type="submit" className="btn-gold-primary">Submit form</Button>
                                         </Form.Group>
 
                                     </Form>
@@ -184,6 +218,7 @@ const Contact = () => {
                         </div>
                     </div>
                 </div>
+                {/* Form end */}
             </>
 
         </>
