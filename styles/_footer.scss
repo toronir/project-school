@@ -10,10 +10,13 @@
         padding: 0;
         
         ul {
+            display: flex;
+            flex-direction: row;
             list-style-type: none;
+            padding: 0;
 
             li:not(:last-child) {
-                margin-bottom: 1rem;
+                margin: 0 2rem 1rem 0;
             }
     
             a {
@@ -22,7 +25,6 @@
                 transition: all .25s;
     
                 &:hover {
-                    padding-left: 3px;
                     color: $text-muted;
                 }
             }

@@ -24,13 +24,7 @@ $linkL = get_theme_mod('linkL');
                         ]); ?>
                 </nav>
             </div>
-            <!-- <div class="col-md-5">
-                <nav class="footer--menu">
-                <?php echo wp_nav_menu([
-                            'theme_location' => 'footer_nav_1'
-                        ]); ?>
-                </nav>
-            </div> -->
+            
             <div class="col-md-4">
                 <div class="footer--social">
                 <?php if($linkF) : ?>

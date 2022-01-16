@@ -40,7 +40,7 @@ $testimonials = get_posts([
                             <h1><?= $about_us_header ?></h1>
                         <?php endif; ?>
                         <?php if ($learn_more_about_us) : ?>
-                            <a href="<?= $learn_more_about_us["url"] ?>" target="<?= $learn_more_about_us["target"] ?>" class="btn btn-lg btn-about-us"><?= $learn_more_about_us["title"] ?></a>
+                            <a href="<?= $learn_more_about_us["url"] ?>" target="<?= $learn_more_about_us["target"] ?>" class="btn btn-lg  btn-gold-primary d-inline-block"><?= $learn_more_about_us["title"] ?></a>
                         <?php endif; ?>
                     </div>
                 </div>

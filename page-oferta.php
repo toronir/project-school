@@ -5,11 +5,7 @@ Template name: Oferta
 
 */
 
-
-
-
 get_header();
-
 
 
 $lenguages = [];
@@ -23,10 +19,8 @@ $oferta_lable = get_field('oferta_lable');
 $oferta_discript = get_field('oferta_discript');
 $isLogIn = is_user_logged_in();
 
-<<<<<<< Updated upstream
-=======
+
 //Var that yous do search category
->>>>>>> Stashed changes
 $meta_q = array(
     'meta_query' => array(
         'relation' => 'AND',
@@ -69,7 +63,6 @@ $args = [
     'meta_query' => $meta_q,
     'paged' => get_query_var('paged'),
 ];
-
 
 
 $oferta_query = new WP_Query($args);

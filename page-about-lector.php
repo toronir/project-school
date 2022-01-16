@@ -3,17 +3,27 @@
 Template name: Lektorzy
 */
 
-$teachers_heading = get_field("teachers_heading");
-$teachers_desc = get_field("teachers_desc");
+$meta_q = array(
+    'meta_query' => array(
+        'relation' => 'AND',
+    ),
+);
 
 $teachers = get_posts([
     "numberposts" => -1,
     "post_type" => "teachers"
 ]);
-// $teacher_ experience = get_field("teacher_ experience");
-// $teacher_cert = get_field("teacher_cert");
-// $teacher_language = get_field("teacher_language");
-// $teacher_email = get_field("teacher_email");
+
+$args = [
+    'post_type' => 'teachers',
+    'meta_query' => $meta_q,
+    'paged' => get_query_var('paged'),
+];
+
+$teachers_query = new WP_Query($args);
+
+$teachers_heading = get_field("teachers_heading");
+$teachers_desc = get_field("teachers_desc");
 
 ?>
 
@@ -40,29 +50,53 @@ $teachers = get_posts([
 <!-- Start teachers list -->
 <section id="teachers-list" class="teachers-list">
     <div class="container">
-        <div class="row justify-content-center">
-            <?php foreach ($teachers as $teacher) : ?>
-            <div class="col-xxl-4 col-xl-6 col-sm-12 mb-4">
-                <img src="<?= get_field("teacher_img", $teacher->ID) ?>">
+    <?php if ($teachers_query->have_posts()) : ?>
+            <?php while ($teachers_query->have_posts()) : ?>
+                <?php $teachers_query->the_post(); ?>
+                    <div class="row justify-content-center">
+                            <div class="col-6">
+                                <div class="row justify-content-center">
+                                    <div class="col-xxl-4 col-xl-6 col-sm-12 mb-4">
+                                        <img src="<?php echo get_field("teacher_img") ?>">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="row justify-content-center">
+                                    <div class="col-xxl-8 col-xl-6 col-sm-12 mb-4">
+                                        <div><h3><?php echo get_field('teacher_name'); ?></h3></div>
+                                        <div><strong><?php echo get_field("teacher_experience") ?></strong></div>
+                                        <div><strong><?php echo get_field("teacher_cert") ?></strong></div>
+                                        <div><?php echo get_field("teacher_language") ?></div>
+                                        <div><p><?php echo get_field("teacher_email") ?></p></div>
+                                        <a href="<?php echo get_the_permalink(); ?>" class="btn-gold-primary d-inline-block"> Poznaj mnie <i class="fas fa-chevron-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <div>
+            <?php endwhile; ?>
+
+            <div class="pagination pagination-lg justify-content-center">
+            <?php
+                $big = 9999999;
+                echo paginate_links([
+                    'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
+                    'format' => '?page=%#%',
+                    'current' => max(1, get_query_var('paged')),
+                    'total' => $teachers_query->max_num_pages
+                ]);
+
+            ?>
             </div>
-            <div class="col-xxl-8 col-xl-6 col-sm-12 mb-4">
-                <div>
-                    <h3><?= $teacher->post_title; ?></h3>
-                </div>
-                <div><?= $teacher->post_content; ?></div>
-                <div><strong><?= get_field("teacher_experience", $teacher->ID) ?></strong></div>
-                <div><strong><?= get_field("teacher_cert", $teacher->ID) ?></strong></div>
-                <div><?= get_field("teacher_language", $teacher->ID) ?></div>
-                <div>
-                    <p><?= get_field("teacher_email", $teacher->ID) ?></p>
-                </div>
-                <a href="<?php echo $teacher->guid; ?>" class="btn-gold-primary d-inline-block"> Poznaj mnie <i
-                        class="fas fa-ardiv-right ml-1 small"></i></a>
+
+            <?php else : ?>
+            <div class='text-center'>
+            <p>Niestety w tym momencie nie posiadamy lektorów.</p>
+
             </div>
-        </div>
-        <div>
-            <?php endforeach; ?>
-        </div>
+            <?php endif;?>
+        </div>    
     </div>
 </section>
 <!-- End teachers list -->

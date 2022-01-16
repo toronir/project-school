@@ -114,9 +114,11 @@
 
         ul.nav-logged-in, .nav-logged-out {
 
-            li {
-                height: 100%;
+            li:last-child {
+                // height: 100%;
                 background-color: $gold-color;
+                border: $gold-color 0.5px solid;
+                border-radius: 1rem;
 
                 &:hover {
                     background-color:$background-dark ;
