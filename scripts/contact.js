@@ -3,7 +3,6 @@ import bootstrap from "bootstrap";
 import { Button, Form, Alert, InputGroup } from "react-bootstrap";
 import AlertDismissible from "./alertSuccess.js";
 import AlertDismissibleExample from "./alertError.js";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 
@@ -72,7 +71,7 @@ const Contact = () => {
             inputBirthdayRef.current.value = "";
             inputMassageRef.current.value = "";
             inputFileRef.current.value = "";
-           
+
             setValidated(false);
 
         } else {
