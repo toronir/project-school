@@ -129,28 +129,89 @@
 
 
     .logged-in-saved-courses {
-        flex-wrap: wrap;
-        gap: 4%;
-        row-gap: 2rem;
-
 
         &__item {
-            display: flex;
-            flex-basis: 48%;
-            gap: 1.5rem;
-            flex-direction: column;
-            // align-items: center;
+            margin: 0 2rem 4rem;
+            padding: 2rem;
+            border: $gold-color solid 2px;
+            border-radius: 2rem;
+            gap: 3rem;
 
             &--img {
-                display: flex;
-                gap: 4%;
-                align-items: center;
+                width: 30%;
+                height: 8rem;
+                background-position: center center;
+                background-size: cover;
 
-                &>img {
+                @include media-breakpoint-up(md) {
                     width: 20%;
+                }
+
+                @include media-breakpoint-up(lg) {
+                    height: 10rem;
+                }
+
+                h4 {
+                    margin-bottom: 1rem;
                 }
             }
 
+            div.buttons {
+                justify-content: space-between;
+                gap: 3rem;
+
+                @include media-breakpoint-up(md) {
+                    justify-content: flex-end;
+                }
+
+                .form-slider {
+                    transform: translateX(0);
+                    transition: 0.3s;
+
+
+                    @include media-breakpoint-up(md) {
+                        transform: translateX(29%);
+                    }
+
+                    .btn-gold-secondary {
+                        z-index: 5;
+                    }
+
+                    span {
+                        display: inline-block;
+                        z-index: 3;
+                        transform: translateX(-170%);
+                        transition: 0.2s;
+                    }
+
+                    &:hover {
+                        transform: translateX(0);
+
+                        & span {
+                            transform: translateX(0);
+                        }
+                    }
+
+                    button {
+                        border: none;
+                        background-color: transparent;
+                        vertical-align: baseline;
+                        font-size: 1.2rem;
+                        color: red;
+
+                    }
+
+                    div.btn-gold-secondary {
+                        cursor: default;
+
+                        &:hover {
+                            transform: scale(1);
+                        }
+
+                    }
+
+                }
+            }
 
         }
 
