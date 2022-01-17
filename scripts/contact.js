@@ -9,7 +9,6 @@ import AlertDismissibleExample from "./alertError.js";
 >>>>>>> Stashed changes
 
 
-
 const Contact = () => {
     const inputEmailRef = useRef();
     const inputNameRef = useRef();
