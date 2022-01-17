@@ -1,8 +1,12 @@
 import React, { useRef, useState } from "react";
-import bootstrap from "bootstrap";
+
 import { Button, Form, Alert, InputGroup } from "react-bootstrap";
 import AlertDismissible from "./alertSuccess.js";
 import AlertDismissibleExample from "./alertError.js";
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 
 
 
@@ -25,9 +29,10 @@ const Contact = () => {
         const phone = inputPhoneRef.current.value;
         const birthday = inputBirthdayRef.current.value;
         const massage = inputMassageRef.current.value;
-        const file = inputFileRef.current;
+        const file = inputFileRef.current.value;
 
         console.log(form.checkValidity());
+        console.log(file);
         if (email && form.checkValidity()) {
             event.preventDefault();
             event.stopPropagation();
@@ -88,11 +93,11 @@ const Contact = () => {
 
             <>
                 {/* Form end  */}
-                <div className="container">
+                <div className="container ">
                     <div className="row justify-content-center">
                         <div className="col-md-8">
                             <div className="card">
-                                <h3 className="card-header align-self-center mt-3">Register</h3>
+                                <h3 className="card-header align-self-center mt-3">Rejestracja</h3>
                                 <div className="card-body">
                                     <Form className="form-horizontal m-4" method="post" validated={validated} onSubmit={submitHandler} noValidate  >
                                         <Form.Group>
@@ -105,11 +110,11 @@ const Contact = () => {
                                                         className="custom-form-control"
                                                         required
                                                         type="text"
-                                                        placeholder="Your Name"
+                                                        placeholder="Imię i Nazwisko..."
                                                         ref={inputNameRef}
                                                     />
 
-                                                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                                    <Form.Control.Feedback>Wygląda dobrze!</Form.Control.Feedback>
                                                 </div>
                                             </div>
                                         </Form.Group>
@@ -125,10 +130,10 @@ const Contact = () => {
                                                         type="email"
                                                         name="email"
                                                         id="email"
-                                                        placeholder="Your Email"
+                                                        placeholder="Twój email..."
                                                         ref={inputEmailRef}
                                                     />
-                                                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                                    <Form.Control.Feedback>Wygląda dobrze!</Form.Control.Feedback>
                                                 </div>
                                             </div>
                                         </Form.Group>
@@ -144,10 +149,10 @@ const Contact = () => {
                                                         type="tel"
                                                         name="phone"
                                                         id="phone"
-                                                        placeholder="Your Telephone"
+                                                        placeholder="Twój telefon..."
                                                         ref={inputPhoneRef}
                                                     />
-                                                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                                    <Form.Control.Feedback>Wygląda dobrze!</Form.Control.Feedback>
                                                 </div>
                                             </div>
                                         </Form.Group>
@@ -163,10 +168,10 @@ const Contact = () => {
                                                         type="date"
                                                         name="birthday"
                                                         id="birthday"
-                                                        placeholder="Your Birthday"
+                                                        placeholder="Data urodzenia..."
                                                         ref={inputMassageRef}
                                                     />
-                                                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                                    <Form.Control.Feedback>Wygląda dobrze!</Form.Control.Feedback>
                                                 </div>
                                             </div>
                                         </Form.Group>
@@ -178,27 +183,28 @@ const Contact = () => {
                                                         as="textarea"
                                                         name="massage"
                                                         id="massage"
-                                                        placeholder="Massage..."
+                                                        placeholder="Napisz o sobie..."
                                                         rows={5}
                                                         ref={inputBirthdayRef}
                                                     />
-                                                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                                    <Form.Control.Feedback>Wygląda dobrze!</Form.Control.Feedback>
                                                 </div>
                                             </div>
                                         </Form.Group>
                                         <Form.Group>
                                             <div className=" col-sm-10 col-lg-4 mb-3 ">
                                                 <div className="input-group has-validation">
-                                                    <Form.Control
+                                                        <Form.Control
 
+                                                            accept=".pdf"
+                                                            type="file"
+                                                            name="file"
+                                                            id="file"
+                                                            placeholder="Plik PDF"
+                                                            ref={inputFileRef}
+                                                        />
+                                                        <Form.Control.Feedback>Wygląda dobrze!</Form.Control.Feedback>
 
-                                                        type="file"
-                                                        name="file"
-                                                        id="file"
-                                                        placeholder="File"
-                                                        ref={inputFileRef}
-                                                    />
-                                                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                                                 </div>
                                             </div>
                                         </Form.Group>
@@ -207,7 +213,7 @@ const Contact = () => {
                                         <br />
 
                                         <Form.Group >
-                                            <Button type="submit" className="btn-gold-primary">Submit form</Button>
+                                            <Button type="submit" className="btn-gold-primary">Wysłać</Button>
                                         </Form.Group>
 
                                     </Form>

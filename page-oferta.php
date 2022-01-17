@@ -19,7 +19,10 @@ $oferta_lable = get_field('oferta_lable');
 $oferta_discript = get_field('oferta_discript');
 $isLogIn = is_user_logged_in();
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 //Var that yous do search category
 $meta_q = array(
     'meta_query' => array(
