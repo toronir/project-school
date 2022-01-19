@@ -19,10 +19,6 @@ $oferta_lable = get_field('oferta_lable');
 $oferta_discript = get_field('oferta_discript');
 $isLogIn = is_user_logged_in();
 
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 //Var that yous do search category
 $meta_q = array(
     'meta_query' => array(
@@ -248,7 +244,7 @@ $register_btn_target = get_field('offer_register_btn')['target'];
                     <a href="<?php echo $register_btn_url?>" target='<?php echo $register_btn_target?>'
                         class="btn-gold-secondary"><?php echo $register_btn_title?></a>
                     <?php endif; ?>
-                    <a href="<?php echo get_the_permalink(); ?>" class="btn-gold-primary">Czytaj więcej <i
+                    <a href="<?php echo get_the_permalink(); ?>" class="btn-gold-primary">Sprawdź ofertę <i
                             class="fas fa-chevron-right"></i></a>
                 </div>
 
@@ -261,7 +257,7 @@ $register_btn_target = get_field('offer_register_btn')['target'];
         <?php endif; ?>
         <?php endwhile; ?>
     </div>
-<!-- End display courses -->
+    <!-- End display courses -->
     <div class="pagination pagination-lg justify-content-center">
         <?php
                 $big = 9999999;

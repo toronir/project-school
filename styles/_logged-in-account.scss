@@ -21,14 +21,25 @@
         text-align: center;
     }
 
-    .container {
+    .container--data {
         width: 95%;
-        border: $gold-color solid 1px;
-        margin: 2rem auto 1rem;
+        border: $gold-color solid 2px;
+        border-radius: 2rem;
+        margin: 2rem auto 0;
 
         @include media-breakpoint-up(lg) {
             max-width: 800px;
         }
+    }
+
+    .container--alerts {
+        width: 80%;
+        margin: 2rem auto 0;
+
+        @include media-breakpoint-up(lg) {
+            max-width: 800px;
+        }
+
     }
 
 
@@ -65,18 +76,42 @@
         }
 
         input {
+            padding: 0.5rem 1rem;
             background-color: rgb(29, 29, 29);
             border: none;
+            border-radius: 1rem;
             text-align: right;
             color: $text;
 
             &:focus {
                 background-color: black;
+                outline: $gold-color 1px solid;
             }
+
+
         }
 
+        input[type="date"] {
+            position: relative;
+            padding: 10px;
+        }
 
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            opacity: 0;
+            z-index: 6;
+        }
 
+        input[type="date"]:after {
+            display: block;
+            position: absolute;
+            top: 50%;
+            right: 1.6rem;
+            font-family: "Font Awesome 5 Free";
+            content: "\f073";
+            transform: translateY(-50%);
+            z-index: 5;
+            color: $gold-color;
+        }
 
     }
 
@@ -84,46 +119,54 @@
         flex-grow: 1;
     }
 
-    &__joined p {
-        // padding-top: 2rem;
-        text-align: center;
-
-        &.data-change {
-            &--success {
-                color: green;
-                font-style: italic;
-            }
-
-            &--error {
-                color: red;
-                font-style: italic;
-            }
-        }
-    }
-
 }
 
 .border-left {
-    border-left: $gold-color solid 1px;
+    @include media-breakpoint-up(xl) {
+        border-left: $gold-color solid 2px;
+    }
 }
 
 .logged-in-courses .container {
     padding-bottom: 1rem;
 
-    &>p {
-        text-align: center;
-        font-style: italic;
-    }
+    // &>p {
+    //     text-align: center;
+    //     font-style: italic;
+    // }
 
 
     .clean-visited-form button,
     .clean-saved-form button {
         display: block;
-        margin: 0 0 0 auto;
+        margin: 2rem 2rem 2rem auto;
+        padding: 1rem;
         background-color: transparent;
-        border: none;
-        color: $text;
+        border: red solid 1px;
+        border-radius: 1rem;
+        color: red;
         font-style: italic;
+        width: 4rem;
+        transition: 0.2s;
+        white-space: nowrap;
+        overflow: hidden;
+
+        span {
+            display: none;
+
+        }
+
+        &:hover {
+            width: 15rem;
+
+            span {
+                display: inline;
+            }
+        }
+    }
+
+    .clean-visited-form button {
+        margin: 2rem 0 2rem auto;
     }
 
 
@@ -131,11 +174,16 @@
     .logged-in-saved-courses {
 
         &__item {
-            margin: 0 2rem 4rem;
-            padding: 2rem;
+            margin: 0 1rem 4rem;
+            padding: 1.5rem;
             border: $gold-color solid 2px;
             border-radius: 2rem;
             gap: 3rem;
+
+            @include media-breakpoint-up(sm) {
+                padding: 2rem;
+                margin: 0 2rem 4rem;
+            }
 
             &--img {
                 width: 30%;

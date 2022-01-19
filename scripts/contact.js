@@ -3,10 +3,6 @@ import React, { useRef, useState } from "react";
 import { Button, Form, Alert, InputGroup } from "react-bootstrap";
 import AlertDismissible from "./alertSuccess.js";
 import AlertDismissibleExample from "./alertError.js";
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 
 
 const Contact = () => {
@@ -193,16 +189,16 @@ const Contact = () => {
                                         <Form.Group>
                                             <div className=" col-sm-10 col-lg-4 mb-3 ">
                                                 <div className="input-group has-validation">
-                                                        <Form.Control
+                                                    <Form.Control
 
-                                                            accept=".pdf"
-                                                            type="file"
-                                                            name="file"
-                                                            id="file"
-                                                            placeholder="Plik PDF"
-                                                            ref={inputFileRef}
-                                                        />
-                                                        <Form.Control.Feedback>Wygląda dobrze!</Form.Control.Feedback>
+                                                        accept=".pdf"
+                                                        type="file"
+                                                        name="file"
+                                                        id="file"
+                                                        placeholder="Plik PDF"
+                                                        ref={inputFileRef}
+                                                    />
+                                                    <Form.Control.Feedback>Wygląda dobrze!</Form.Control.Feedback>
 
                                                 </div>
                                             </div>

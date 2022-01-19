@@ -51,13 +51,17 @@
 
     &--item {
         margin: 0 2rem 4rem;
-        padding: 2rem;
+        padding: 1.5rem;
         border: $gold-color solid 2px;
         border-radius: 2rem;
         gap: 3rem;
 
         h4 {
             margin-bottom: 1rem;
+        }
+
+        @include media-breakpoint-up(sm) {
+            padding: 2rem;
         }
 
         div.img {
@@ -140,15 +144,17 @@
 
         }
 
-        .save-button {
-            i {
-                transition: 0.3s;
-            }
 
-            &:hover i {
-                transform: rotate(360deg);
-            }
-        }
     }
 
+}
+
+.save-button {
+    i {
+        transition: 0.3s;
+    }
+
+    &:hover i {
+        transform: rotate(360deg);
+    }
 }

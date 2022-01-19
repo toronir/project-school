@@ -63,6 +63,7 @@ $user_surname = get_field('user_surname', $logged_in_user_data->ID);
 $user_birthday = get_field('user_birthday', $logged_in_user_data->ID);
 
 //zmiana hasła
+if (is_user_logged_in()) {
 $real_password = get_userdata($logged_in_user_data->ID)->user_pass;
 $old_password = $_POST['old-password'];
 $password_match = wp_check_password( $old_password, $real_password, $logged_in_user_data->ID );
@@ -75,7 +76,7 @@ if ($_POST['hidden-data-input'] == 'change_password') {
         }
     }
 }
-
+}
 
 //visited pages
 $logged_in_visited_title = get_field('logged_in_visited_title');
@@ -94,7 +95,7 @@ $visitedArgs = [
     'post_status' => 'publish',
     'post__in' => $array_visited_course_ID,
     'orderby' => 'post__in',
-    'numberposts' => 6,
+    'numberposts' => 7,
 ];
 
 $visited_courses = get_posts($visitedArgs);
@@ -152,9 +153,34 @@ get_header();
 </section>
 <!-- end my account logged -->
 
+<?php if (is_user_logged_in()) : ?>
+
 <!-- start data -->
 <section id="logged-in--data" class="logged-in--data">
-    <div class="container">
+
+    <?php if ($_POST['hidden-data-input'] == 'change_data') : ?>
+    <div class="container--alerts alert alert-success text-center" style='margin-top: 3rem' role="alert">Pomyślnie
+        zmieniłeś dane!
+    </div>
+    <?php elseif ($_POST['hidden-data-input'] == 'change_password') : ?>
+    <?php if ($password_match) : ?>
+    <?php if ($new_password_1 == $new_password_2) : ?>
+    <div class="container--alerts alert alert-success text-center" style='margin-top: 3rem' role="alert">Pomyślnie
+        zmieniłeś
+        hasło!</div>
+    <?php else: ?>
+    <div class="container--alerts alert alert-warning text-center" style='margin-top: 3rem' role="alert">Podane hasła
+        różnią
+        się</div>
+    <?php endif; ?>
+    <?php else: ?>
+    <div class="container--alerts alert alert-danger text-center" style='margin-top: 3rem' role="alert">Wprowadź
+        poprawne hasło
+    </div>
+    <?php endif; ?>
+    <?php endif; ?>
+
+    <div class="container--data">
         <div class="row justify-content-center">
             <div class="col-12 col-md-4 logged-in--data__title ">
                 <?php if ($logged_in_data_title) : ?>
@@ -252,22 +278,7 @@ get_header();
             </div>
 
         </div>
-        <div class="row logged-in--data__joined">
-            <?php if ($_POST['hidden-data-input'] == 'change_data') : ?>
-            <p class='data-change--success'>Pomyślnie zmieniłeś dane!</p>
-            <?php elseif ($_POST['hidden-data-input'] == 'change_password') : ?>
-            <?php if ($password_match) : ?>
-            <?php if ($new_password_1 == $new_password_2) : ?>
-            <p class='data-change--success'>Pomyślnie zmieniłeś hasło!</p>
-            <?php else: ?>
-            <p class='data-change--error'>Hasła różnią się</p>
-            <?php endif; ?>
-            <?php else: ?>
-            <p class='data-change--error'>Wprowadź poprawne hasło</p>
-            <?php endif; ?>
-            <?php endif; ?>
-            <p>Dołączono: <span><?php echo $logged_in_user_data->user_registered?></span></p>
-        </div>
+        <p class='text-center'>Dołączono: <span><?php echo $logged_in_user_data->user_registered?></span></p>
     </div>
 
 </section>
@@ -278,18 +289,19 @@ get_header();
     <div class="container">
         <div class="row justify-content-center">
             <!-- start saved courses -->
-            <div class="col-12 col-xl-8 logged-in-saved-courses position-relative" style='height: 100%'>
+            <div class="col-12 col-xl-8 logged-in-saved-courses position-relative p-0 pb-5" style='height: 100%'>
 
-                <h2 class='py-5 text-center'><?php echo $logged_in_saved_title?></h2>
+                <h2 class='mt-5 text-center'><?php echo $logged_in_saved_title?></h2>
 
                 <?php if (get_field('user_saved_courses',$logged_in_user_data->ID)) : ?>
 
                 <form method='POST' class="clean-saved-form">
                     <input type="hidden" name="clean" value="clean-saved-pages">
                     <div class="form-group">
-                        <button type="submit">Wyczyść listę</button>
+                        <button type="submit"><i class="fas fa-trash-alt"></i><span> Wyczyść listę</span></button>
                     </div>
                 </form>
+                <!-- <button type="button" data-bs-toggle="modal" data-bs-target="#delete-saved">cos</button> -->
 
                 <?php while ($saved_courses->have_posts()) : ?>
                 <?php $saved_courses->the_post(); ?>
@@ -349,7 +361,7 @@ get_header();
                             </form>
                         </div>
 
-                        <a href="<?php echo get_the_permalink(); ?>" class="btn-gold-primary">Czytaj więcej <i
+                        <a href="<?php echo get_the_permalink(); ?>" class="btn-gold-primary">Sprawdź ofertę <i
                                 class="fas fa-chevron-right"></i></a>
                     </div>
 
@@ -371,7 +383,7 @@ get_header();
 
                 </div>
                 <?php else : ?>
-                <p>Brak postów do wyświetlenia.</p>
+                <p class='m-5 text-center' style='font-style: italic'>Brak postów do wyświetlenia.</p>
                 <?php endif; ?>
 
 
@@ -385,14 +397,15 @@ get_header();
 
                     <div class="container">
 
-                        <h2 class='py-5 text-center'><?php echo $logged_in_visited_title?></h2>
+                        <h2 class='mt-5 mb-2 text-center'><?php echo $logged_in_visited_title?></h2>
 
                         <?php if (get_field('user_visited_courses',$logged_in_user_data->ID)) : ?>
 
                         <form method='POST' class="clean-visited-form">
                             <input type="hidden" name="clean" value="clean-visited-pages">
                             <div class="form-group">
-                                <button type="submit">Wyczyść listę</button>
+                                <button type="submit"><i class="fas fa-trash-alt"></i><span> Wyczyść
+                                        listę</span></button>
 
                             </div>
                         </form>
@@ -407,7 +420,7 @@ get_header();
                                 <div class="logged-in-visited-courses__item--desc">
                                     <p> Poziom: <?php echo get_field("courses_level", $course->ID) ?> </p>
                                     <p> Czas trwania kursu: <?php echo get_field("courses_time", $course->ID) ?>h </p>
-                                    <a class='btn-gold-primary' href="<?php echo $course->guid?>">Czytaj więcej <i
+                                    <a class='btn-gold-primary' href="<?php echo $course->guid?>">Sprawdź ofertę <i
                                             class="fas fa-chevron-right"></i></a>
                                 </div>
                                 <div class='logged-in-visited-courses__item--img'>
@@ -422,7 +435,7 @@ get_header();
 
                         </div>
                         <?php else : ?>
-                        <p>Brak postów do wyświetlenia.</p>
+                        <p class='m-5 text-center' style='font-style: italic'>Brak postów do wyświetlenia.</p>
                         <?php endif; ?>
 
                     </div>
@@ -437,7 +450,9 @@ get_header();
     </div>
 </section>
 <!-- end kursy -->
-
+<?php else : ?>
+<h3 class='text-center m-5'>Zaloguj się, aby przejść do strony Moje Konto.</h3>
+<?php endif; ?>
 
 
 
@@ -447,3 +462,28 @@ get_header();
 
 
 <?php get_footer(); ?>
+
+
+
+<!-- modale -->
+
+<div class="modal fade" id="delete-saved" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
