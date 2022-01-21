@@ -18,6 +18,7 @@ $logo = get_theme_mod('logo');
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Saira+Semi+Condensed:wght@200;400;600&display=swap"
         rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
 <body <?php body_class();?>>

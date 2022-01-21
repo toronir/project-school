@@ -263,7 +263,7 @@ $register_btn_target = get_field('offer_register_btn')['target'];
                 $big = 9999999;
                 echo paginate_links([
                     'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
-                    'format' => '?page=%#%',
+                    'format' => '?paged=%#%',
                     'current' => max(1, get_query_var('paged')),
                     'total' => $oferta_query->max_num_pages
                 ]);

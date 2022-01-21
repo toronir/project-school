@@ -82,7 +82,7 @@ get_header();
 <section class="news-single">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-12 col-xl-7 px-4">
+            <div class="col-12 col-lg-10 col-xl-7 px-4">
                 <div class="d-flex align-items-center">
                     <div class="img"
                         style='background-image: url("<?php echo get_the_post_thumbnail_url(get_the_ID(), 'medium'); ?>");'>
@@ -121,75 +121,27 @@ get_header();
                 <hr>
                 <p><?php echo the_content(); ?> </p>
             </div>
-            <div class="col-12 col-xl-3 d-flex flex-column justify-content-center teacher-col">
-                <h2>Prowadzący</h2>
+            <div class="col-12 col-xl-3 d-xl-flex flex-column justify-content-center teacher-col">
+                <h2 class='mt-5 mt-xl-0'>Prowadzący</h2>
                 <?php foreach ($teachers_query as $teacher) : ?>
                 <?php if ($teacher->post_title == get_field("lector_name", $course_ID)) : ?>
                 <?php $lector_ID = $teacher->ID ?>
-                <img style='margin: 3rem 0' src="<?php echo get_field('teacher_img', $lector_ID) ?>" alt="">
-                <div class="text-center">
-                    <p> <?php echo get_field('teacher_name', $lector_ID) ?></p>
-                    <p> Certyfikaty: <?php echo get_field('teacher_cert', $lector_ID) ?></p>
-                    <p> Mail: <?php echo get_field('teacher_email', $lector_ID) ?></p>
-                </div>
-                <?php endif; ?>
-                <?php endforeach; ?>
-            </div>
-        </div>
-
-
-        <!-- test end -->
-        <!-- <div class="row justify-content-center">
-            <div class="col-lg-3 shortcut gold-border-right px-5">
-                <img src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'medium'); ?>" alt="">
-            </div>
-
-            <div class="col-lg-7">
-                <div class='d-flex justify-content-between align-items-center mx-5' style="height: 100%;">
-                    <h1><?php echo get_the_title(); ?></h1>
-                    <?php if (is_user_logged_in()) : ?>
-                    <?php if (!$added_course) :?>
-                    <form method="POST">
-                        <input type="hidden" name='save' value='save_course'>
-                        <button class='btn-gold-primary save-button' type='submit'><i class="far fa-star"></i> Zapisz
-                            kurs</button>
-                    </form>
-                    <?php else : ?>
-                    <div style='overflow: hidden'>
-                        <form method="POST" class='form-slider d-flex gap-4'>
-                            <input type="hidden" name='delete' value='delete_course'>
-                            <div class='btn-gold-secondary d-inline'><i class="fas fa-star"></i> Zapisano!</div>
-                            <button type='submit' class='d-inline'>
-                                <span>| Usuń</span></button>
-                        </form>
+                <div class="d-flex flex-column flex-md-row flex-xl-column justify-content-center align-items-center">
+                    <img style='margin: 3rem 0' src="<?php echo get_field('teacher_img', $lector_ID) ?>" alt="">
+                    <div class="text-center m-4">
+                        <p> <?php echo get_field('teacher_name', $lector_ID) ?></p>
+                        <p> Certyfikaty: <?php echo get_field('teacher_cert', $lector_ID) ?></p>
+                        <p class='mb-5'> Mail: <?php echo get_field('teacher_email', $lector_ID) ?></p>
+                        <a class="btn-gold-primary d-inline" href="<?php echo $teacher->guid ?>">Więcej kursów
+                            <i class="fas fa-chevron-right"></i></a>
                     </div>
-                    <?php endif; ?>
-                    <?php endif; ?>
-
                 </div>
-            </div>
-
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-lg-3 shortcut gold-border-right px-5">
-                <p> Poziom: <?php echo get_field("courses_level", get_the_ID()) ?></p>
-                <p> Czas trwania kursu: <?php echo get_field("courses_time", get_the_ID()) ?>h</p>
-                <p> Tryb: <?php echo $mode ?></p>
-                <?php foreach ($teachers_query as $teacher) : ?>
-                <?php if ($teacher->post_title == get_field("lector_name", $course_ID)) : ?>
-                <?php $lector_ID = $teacher->ID ?>
-                <img src="<?php echo get_field('teacher_img', $lector_ID) ?>" alt="">
-                <p> Lektor: <?php echo get_field('teacher_name', $lector_ID) ?></p>
-                <p> Certyfikaty: <?php echo get_field('teacher_cert', $lector_ID) ?></p>
-                <p> Mail: <?php echo get_field('teacher_email', $lector_ID) ?></p>
                 <?php endif; ?>
                 <?php endforeach; ?>
             </div>
-            <div class="col-lg-7 px-5">
-                <p><?php echo the_content(); ?> </p>
-            </div>
         </div>
-    </div> -->
+
+
 </section>
 
 

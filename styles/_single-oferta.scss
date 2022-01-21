@@ -69,11 +69,22 @@
         margin-bottom: 3rem;
     }
 
-    .shortcut>* {
-        text-align: center;
-    }
 
     .teacher-col {
-        border-left: 2px $gold-color solid;
+        @include media-breakpoint-up(xl) {
+            border-left: 2px $gold-color solid;
+        }
+
+        img {
+            width: 80%;
+
+            @include media-breakpoint-up(md) {
+                width: 40%;
+            }
+
+            @include media-breakpoint-up(xl) {
+                width: 100%;
+            }
+        }
     }
 }

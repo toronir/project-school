@@ -1,9 +1,14 @@
 <?php
 
-$start_heading = get_field('start_heading');
-$start_desc = get_field('start_desc');
-$start_btn = get_field('start_btn');
+$logo = get_theme_mod('logo');
 $start_bg = get_field('start_bg');
+$start_img = get_field('start_img');
+$start_heading = get_field('start_heading');
+$start_desc_1 = get_field('start_desc_1');
+$start_desc_2 = get_field('start_desc_2');
+$start_btn_1 = get_field('start_btn_1');
+$start_btn_2 = get_field('start_btn_2');
+$start_earth = get_field('start_earth');
 
 $form_title = get_field('form_title');
 $first_form = get_field('first_form');
@@ -79,30 +84,42 @@ get_header();
     style="background-image: url('<?php echo $start_bg; ?>') <?php endif;?>;">
     <div class="container">
         <div class="row">
-            <div class="col">
-                <?php if ($start_heading) : ?>
-                <h1 class="start--heading text-center">
-                    <?php echo $start_heading ?>
+            <div class="col-1 col-lg-1 col-xl-2"></div>
+            <div class="col-10 col-sm-12 col-md-9 col-xl-6 start--slogan" data-aos="zoom-in-up" data-aos-once='true'>
+
+                <img class='position-absolute start--slogan-png d-none d-md-block' src="<?php echo $start_img?>" alt="">
+
+                <h1><?php echo $start_heading?> <span class="logo-name"><?php echo get_bloginfo('name')?>!</span>
                 </h1>
+                <div class='d-flex gap-5 align-items-center justify-content-center my-5 mx-lg-5'>
+                    <img class='start--slogan-logo' src="<?php echo $start_earth ?>" alt="">
+                    <div class='catch'>
+                        <p>Nie czekaj -</p>
+                        <p>- Cat<span>(ch)</span> them All!</p>
+                    </div>
+                </div>
+                <?php if ($start_desc_1) : ?>
+                <h2 class='align-left mb-5'>
+                    <?php echo $start_desc_1?>
+                    <?php if ($start_desc_2) :?>
+                    <br><?php echo $start_desc_2?>
+                    <?php endif; ?>
+                </h2>
                 <?php endif; ?>
-            </div>
 
-        </div>
-        <div class="row my-5">
-            <div class="col-lg-7">
-                <?php if ($start_desc) : ?>
-                <p class="start--description">
-                    <?php echo $start_desc ?>
-                </p>
-                <?php endif; ?>
+                <div class='justify-content-center align-items-center d-flex gap-5'>
+                    <?php if ($start_btn_1) : ?>
+                    <a href="<?php echo $start_btn_1['url'] ?>" class="btn-gold-primary">
+                        <?php echo $start_btn_1['title'] ?>
+                    </a>
+                    <?php endif; ?>
 
-            </div>
-            <div class="col-lg-5">
-                <?php if ($start_btn) : ?>
-                <a href="<?php echo $start_btn['url'] ?>" class="btn-gold-primary d-inline">
-                    <?php echo $start_btn['title'] ?>
-                </a>
-                <?php endif; ?>
+                    <?php if ($start_btn_2) : ?>
+                    <a class='btn-gold-secondary'
+                        href="<?php echo $start_btn_2['url']?>"><?php echo $start_btn_2['title']?></a>
+                    <?php endif; ?>
+
+                </div>
             </div>
         </div>
     </div>
@@ -213,17 +230,6 @@ get_header();
             <?php endif; ?>
 
         </div>
-        <!-- <div class="wrapper">
-            <?php if ($start_offer_button_1) : ?>
-            <a class='btn-gold-primary'
-                href="<?php echo $start_offer_button_1['url']?>"><?php echo $start_offer_button_1['title']?></a>
-            <?php endif; ?>
-
-            <?php if ($start_offer_button_2) : ?>
-            <a class='btn-gold-secondary'
-                href="<?php echo $start_offer_button_2['url']?>"><?php echo $start_offer_button_2['title']?></a>
-            <?php endif; ?>
-        </div> -->
     </div>
 </section>
 <?php endif; ?>
