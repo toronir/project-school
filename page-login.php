@@ -13,18 +13,21 @@ get_header();
 <section id="login" class="login login-left">
     <div class="container">
         <div class="row">
-            <div class="col-md-8 login-left-box" style="background-image: url('<?= $login_img; ?>')" ></div>
-            <div class="col-md-4 login-right-box">
+            <div class="col-md-5 login-right-box">
                 <h1 class="login--heading">Zaloguj się</h1>
                 <div class="login-form">
-                    <?php
-                    $args = array(
-                        'redirect' => '/work-on/moje-konto',
-                        'label_username' => __( 'Login' )
-                    ); ?>
-                    <?php wp_login_form( $args ); ?>
+                    <div class="show-login-form">
+                        <?php
+                        $args = array(
+                            'redirect' => '/work-on/moje-konto',
+                            'label_username' => __( 'Login' ),
+                            'remember' => false
+                        ); ?>
+                        <?php wp_login_form( $args ); ?>
+                    </div>
                 </div>
             </div>
+            <div class="col-md-7 login-left-box" style="background-image: url('<?= $login_img; ?>')" ></div>
         </div>
     </div>
 </section>

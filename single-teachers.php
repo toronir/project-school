@@ -52,7 +52,7 @@ get_header(); ?>
                     </div>
                 </div>
             </div>
-            <div class="col-6 lectors-courses">
+            <div class="col-12 col-sm-12 col-md-6 lectors-courses">
 
                 <?php if ($oferta_query->have_posts()) : ?>
                 <?php while ($oferta_query->have_posts()) : ?>
