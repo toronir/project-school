@@ -57,7 +57,7 @@ $teachers_desc = get_field("teachers_desc");
                             <div class="col-6">
                                 <div class="row justify-content-center">
                                     <div class="col-xxl-4 col-xl-6 col-sm-12 mb-4">
-                                        <img src="<?php echo get_field("teacher_img") ?>">
+                                        <div class="lectors-imges"><img src="<?php echo get_field("teacher_img") ?>"></div>
                                     </div>
                                 </div>
                             </div>
@@ -78,6 +78,7 @@ $teachers_desc = get_field("teachers_desc");
             <?php endwhile; ?>
 
             <div class="pagination pagination-lg justify-content-center">
+                
             <?php
                 $big = 9999999;
                 echo paginate_links([
@@ -86,14 +87,12 @@ $teachers_desc = get_field("teachers_desc");
                     'current' => max(1, get_query_var('paged')),
                     'total' => $teachers_query->max_num_pages
                 ]);
-
             ?>
-            </div>
 
+            </div>
             <?php else : ?>
             <div class='text-center'>
-            <p>Niestety w tym momencie nie posiadamy lektorów.</p>
-
+                <p>Niestety w tym momencie nie posiadamy lektorów.</p>
             </div>
             <?php endif;?>
         </div>    

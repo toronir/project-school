@@ -80,8 +80,6 @@ add_action('publish_subscription', function ($post_id, $post) {
 }, 10, 2);
 
 
-
-
 function wpse_cpt_enqueue($hook_suffix)
 {
     $cpt = 'subscription';

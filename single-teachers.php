@@ -32,17 +32,22 @@ get_header(); ?>
 <section class="single-teacher">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-6">
+            <div class="col-6 lectors-desc">
+                <div>
+                    <h1><?php echo get_field('teacher_name'); ?></h1>
+                </div>
+                <div class="single-teacher--contact">
+                    <?php echo get_field("teacher_email") ?>
+                </div>
                 <div class="row justify-content-center">
                     <div class="col-12">
-                        <img src="<?php echo get_field("teacher_img") ?>">
-                    </div>
-                    <div class="col-xxl-8 col-xl-6 col-sm-12 mb-4">
-                        <div>
-                            <h3><?php echo get_field('teacher_name'); ?></h3>
+                        <div class="lectors-imges">
+                            <img src="<?php echo get_field("teacher_img") ?>">
                         </div>
-                        <div>
-                            <p><?php echo get_field("teacher_email") ?></p>
+                    </div>
+                    <div class="col-xxl-8 col-xl-6 col-sm-12 mb-4 mt-4">
+                        <div class="single-teacher--contact">
+                            <?php echo get_field('teacher_desc'); ?>
                         </div>
                     </div>
                 </div>
@@ -54,16 +59,20 @@ get_header(); ?>
                 <?php $oferta_query->the_post(); ?>
                 <?php if ($teacher_name === get_field('lector_name') && (get_field('chose_course_type') === 'Online' || is_user_logged_in())) : ?>
 
+                <div class="courses-box">
                 <div class="row justify-content-center">
                     <div class="col-xxl-4 col-xl-6 col-sm-12 mb-4">
-                        <img src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'medium'); ?>" alt="flag">
+                        <div class="lector-courses-flag">
+                            <img src="<?php echo get_the_post_thumbnail_url(get_the_ID()); ?>" alt="flag">
+                        </div>
                     </div>
                     <div class="col-xxl-8 col-xl-6 col-sm-12 mb-4">
-                        <h3> <?php echo get_the_title(); ?> </h3>
+                        <h3><a class='' href="<?php echo get_the_permalink(); ?>"><?php echo get_the_title(); ?></a> </h3>
                         <p> Poziom: <?php echo get_field("courses_level", get_the_ID()) ?> </p>
-                        <a class='btn-gold-primary d-inline-block' href="<?php echo get_the_permalink()?>">Czytaj więcej
-                            <i class="fas fa-chevron-right"></i></a>
+                        <p> Status: <?php echo get_field('chose_course_type'); ?> </p>
+                        <p> <?php echo wp_trim_words( get_the_content(), 10, '...' ); ?> </p>
                     </div>
+                </div>
                 </div>
                 <?php endif; ?>
                 <?php endwhile; ?>

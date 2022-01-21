@@ -5,7 +5,6 @@ Template name: O nas
 
 $about_us_picture = get_field("about_us_picture");
 $about_us_header = get_field("about_us_header");
-$learn_more_about_us = get_field("learn_more_about_us");
 $about_us_heading = get_field("title_about_us");
 $about_us_desc = get_field("desc_about_us");
 $aboutUs = get_posts([
@@ -38,9 +37,6 @@ $testimonials = get_posts([
                     <div class="about-us-title">
                         <?php if ($about_us_header) : ?>
                             <h1><?= $about_us_header ?></h1>
-                        <?php endif; ?>
-                        <?php if ($learn_more_about_us) : ?>
-                            <a href="<?= $learn_more_about_us["url"] ?>" target="<?= $learn_more_about_us["target"] ?>" class="btn btn-lg  btn-gold-primary d-inline-block"><?= $learn_more_about_us["title"] ?></a>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -95,45 +91,5 @@ $testimonials = get_posts([
     </div>
 </section>
 <!-- End about us  -->
-
-<!-- Start testimonials -->
-<section id="opinie" class="testimonials">
-    <div class="container">
-        <div class="row justify-content-center opinions">
-            <div class="col-lg-8 col-xxl-7">
-                <?php if ($title_clients_opinion) : ?>
-                    <h2 class="functions--heading"><?= $title_clients_opinion ?></h2>
-                <?php endif; ?>
-            </div>
-        </div>
-
-        <div class="row justify-content-center">
-            <div class="col-1">
-                <div class="testimonials--slider-nav"><i class="fas fa-chevron-left fa-2x"></i></div>
-            </div>
-            <div class="col-10 col-xxl-8">
-                <div class="testimonials--slider">
-                    <?php foreach ($testimonials as $testimonial) : ?>
-                        <div class="testimonials--slider-item">
-                            <div class="testimonials--slider-item-person">
-                                <div><img src="<?= get_field("testimonials_avatar", $testimonial->ID) ?>"></div>
-                                <div class="testimonials--user-opinions">
-                                    <span><?= $testimonial->post_title; ?></span>
-                                    Kurs: <?= get_field("language_testimonials", $testimonial->ID) ?>
-                                </div>
-                                <div class="testimonials--slider-item-text justify-content-center"><?= $testimonial->post_content; ?></div>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-
-                </div>
-            </div>
-            <div class="col-1">
-                <div class="testimonials--slider-nav"><i class="fas fa-chevron-right fa-2x"></i></div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- End testimonials -->
 
 <?php get_footer(); ?>

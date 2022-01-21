@@ -1,12 +1,55 @@
 .single-teacher {
     padding: 10rem 0;
 
-    img {
-        width: 100%;
-        margin-bottom: 3rem;
+    &--contact {
+        text-align: center;
     }
-}
 
-.lectors-courses {
-    height: 100%;
+    .lectors-imges {
+        display: flex;
+        justify-content: center;
+
+        img {
+            margin: 3rem 0;
+            height: 200px;
+            width: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            
+            @include media-breakpoint-up(lg) {
+                height: 400px;
+                width: 400px;
+            }
+        }
+    }
+
+    .courses-box {
+        box-shadow: 0 0 1rem rgba($gold-color, 0.25);
+        border-radius: $border-radius;
+        text-align: center;
+        padding: 2rem;
+        margin: 2rem;
+
+        a {
+            text-decoration: none;
+            color: $gold-color ;
+
+            &:hover {
+                font-weight: bold;
+                color: #f1c34e;
+            }
+        }
+
+        .lector-courses-flag {
+            img {
+                width: 60%;
+                margin-bottom: 3rem;
+    
+                @include media-breakpoint-up(xl) {
+                    width: 100%;
+                }
+            }
+        }
+
+    }
 }

@@ -33,7 +33,11 @@ $logo = get_theme_mod('logo');
                 </div>
                 <div class="col-8 col-xl-8 col-xxl-6">
                     <div class="header--menu-toggle-wrapper">
-                        <i class="fas fa-bars" onclick="document.body.classList.toggle('menu-open')"></i>
+                        <div class="hamburger-menu"  onclick="document.body.classList.toggle('menu-open')">
+                            <span class="line1"></span>
+                            <span class="line2"></span>
+                            <span class="line3"></span>
+                        </div>
                     </div>
 
                     <!-- start changing menu for user login and logout -->

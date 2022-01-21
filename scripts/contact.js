@@ -4,7 +4,6 @@ import { Button, Form, Alert, InputGroup } from "react-bootstrap";
 import AlertDismissible from "./alertSuccess.js";
 import AlertDismissibleExample from "./alertError.js";
 
-
 const Contact = () => {
     const inputEmailRef = useRef();
     const inputNameRef = useRef();
