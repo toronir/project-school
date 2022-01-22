@@ -70,7 +70,8 @@ if (in_array($current_post_ID, $array_saved_courses_ID)) {
 
 $teachersArgs = [
     'post_type' => 'teachers',
-    'post_status' => 'publish'
+    'post_status' => 'publish',
+    'posts_per_page' => -1,
 ];
 
 $teachers_query = get_posts($teachersArgs);
@@ -82,9 +83,9 @@ get_header();
 <section class="news-single">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-12 col-lg-10 col-xl-7 px-4">
+            <div class="col-12 col-lg-10 col-xl-7 px-sm-4">
                 <div class="d-flex align-items-center">
-                    <div class="img"
+                    <div class="img d-none d-md-block"
                         style='background-image: url("<?php echo get_the_post_thumbnail_url(get_the_ID(), 'medium'); ?>");'>
                     </div>
                     <h1 class='mx-5 my-0'><?php echo get_the_title(); ?></h1>
@@ -113,7 +114,7 @@ get_header();
                 <div class='text-center'>
                     <span>Poziom:
                         <strong><?php echo get_field('courses_level'); ?></strong></span>
-                    <span class='mx-4'>Tryb: <strong><?php echo get_field('chose_course_type'); ?></strong>
+                    <span class='mx-4'>Nabór: <strong><?php echo get_field('chose_course_type'); ?></strong>
                     </span>
                     <span> Czas trwania kursu:
                         <strong><?php echo get_field("courses_time", get_the_ID()) ?>h</strong></span>

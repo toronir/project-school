@@ -338,7 +338,7 @@ get_header();
                             <h4> <?php echo get_the_title(); ?> </h4>
                             <span>Poziom:
                                 <strong><?php echo get_field('courses_level'); ?></strong></span>
-                            <span class='mx-4'>Tryb: <strong><?php echo get_field('chose_course_type'); ?></strong>
+                            <span class='mx-4'>Nabór: <strong><?php echo get_field('chose_course_type'); ?></strong>
                             </span>
                             <span class='d-block d-md-inline'>Czas trwania kursu:
                                 <strong><?php echo get_field("courses_time", get_the_ID()) ?>h</strong></span>

@@ -9,8 +9,7 @@ $logo = get_theme_mod('logo');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php bloginfo('name');
-            wp_title('|'); ?></title>
+    <title><?php bloginfo('name'); wp_title('|'); ?></title>
 
 
     <?php wp_head(); ?>
@@ -34,7 +33,7 @@ $logo = get_theme_mod('logo');
                 </div>
                 <div class="col-8 col-xl-8 col-xxl-6">
                     <div class="header--menu-toggle-wrapper">
-                        <div class="hamburger-menu"  onclick="document.body.classList.toggle('menu-open')">
+                        <div class="hamburger-menu" onclick="document.body.classList.toggle('menu-open')">
                             <span class="line1"></span>
                             <span class="line2"></span>
                             <span class="line3"></span>

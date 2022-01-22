@@ -106,8 +106,13 @@
     padding-bottom: 1rem;
 
     .card {
-        background-color: $gold-color;
-        color: $btn-dark;
+        box-shadow: 0 0 1rem rgba($gold-color, 0.25);
+        border-radius: $border-radius;
+        text-align: center;
+        padding: 2rem;
+        margin: 2rem;
+        background-color: transparent;
+        // color: $btn-dark;
         transition: 0.2s;
 
         @include media-breakpoint-up(lg) {
