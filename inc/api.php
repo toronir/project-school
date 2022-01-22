@@ -19,10 +19,7 @@ add_action('rest_api_init', function () {
 
             $to = 'toronir5@gmail.com';
             $subject = 'Hey! Masz nowego kandydata';
-            $body = "<html>
-            <head>
-                <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
-            </head>
+            $body = `<html>
             <body>
    <h1 style='color: c29f48; background-color: #212529;margin:0px; text-align: center;'>
      Masz nowego użytkownika
@@ -60,9 +57,8 @@ add_action('rest_api_init', function () {
                     </table>
                 </div>
             </body>
-        </html>";
-            $headers[] = 'Content-type: text/html; charset=utf-8';
-            $headers[] = 'From:' . "testing@gmail.com";
+        </html>`;
+
 
             $userList = get_users('blog_id=0&orderby=nicename');
             foreach ($userList as $user) {
@@ -89,10 +85,10 @@ add_action('rest_api_init', function () {
                 ]);
 
                 $output = 'success';
-                add_filter('wp_mail_content_type', function ($content_type) {
-                    return 'text/html';
-                });
-                wp_mail($to, $subject, $body, $headers);
+                add_filter('wp_mail_content_type', 'set_html_content_type');
+
+                wp_mail($to, $subject, $body);
+                remove_filter('wp_mail_content_type', 'set_html_content_type');
             } else {
 
                 $output = !$output ? "error" : $output;

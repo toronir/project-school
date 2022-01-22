@@ -85,6 +85,10 @@ add_action('publish_subscription', function ($post_id, $post) {
     exit;
 }, 10, 2);
 
+function set_html_content_type()
+{
+    return 'text/html';
+}
 
 function wpse_cpt_enqueue($hook_suffix)
 {
