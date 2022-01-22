@@ -3,11 +3,6 @@ import React, { useRef, useState } from "react";
 import { Button, Form, Alert, InputGroup } from "react-bootstrap";
 import AlertDismissible from "./alertSuccess.js";
 import AlertDismissibleExample from "./alertError.js";
-<<<<<<< Updated upstream
-=======
-
-
->>>>>>> Stashed changes
 
 const Contact = () => {
     const [typeI, setTypeI] = useState("text")
@@ -229,19 +224,6 @@ const Contact = () => {
                                         </Form.Group>
                                         <Form.Group>
                                             <div className=" col-sm-10 col-lg-4 mb-3 ">
-<<<<<<< Updated upstream
-                                                <div className="input-group has-validation">
-                                                    <Form.Control
-
-                                                        accept=".pdf"
-                                                        type="file"
-                                                        name="file"
-                                                        id="file"
-                                                        placeholder="Plik PDF"
-                                                        ref={inputFileRef}
-                                                    />
-                                                    <Form.Control.Feedback>Wygląda dobrze!</Form.Control.Feedback>
-=======
                                                 <div className="input-group has-validation ">
 
 
@@ -255,7 +237,6 @@ const Contact = () => {
                                                         ref={inputFileRef}
                                                     />
                                                    
->>>>>>> Stashed changes
 
                             
                                                 </div>
