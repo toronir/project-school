@@ -16,7 +16,7 @@ function add_cpt()
 
     $subscriptionArgs = [
         'labels' => [
-            'name' => 'Subscription'
+            'name' => 'Kandydaci'
         ],
         'public' => false,
         'show_ui' => true,

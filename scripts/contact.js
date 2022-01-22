@@ -3,23 +3,31 @@ import React, { useRef, useState } from "react";
 import { Button, Form, Alert, InputGroup } from "react-bootstrap";
 import AlertDismissible from "./alertSuccess.js";
 import AlertDismissibleExample from "./alertError.js";
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
 
 const Contact = () => {
+    const [typeI, setTypeI] = useState("text")
     const inputEmailRef = useRef();
-    const inputNameRef = useRef();
+    const inputFirstNameRef = useRef();
+    const inputSecondNameRef = useRef();
     const inputPhoneRef = useRef();
     const inputBirthdayRef = useRef();
     const inputMassageRef = useRef();
-    const inputFileRef = useRef();
+    const inputFileRef = useRef(null);
     const [validated, setValidated] = useState(false);
     const [backEndResp, setBackEndResp] = useState("");
+    const [successEmail, setSuccessEmail] = useState("");
 
     const submitHandler = async (event) => {
         event.preventDefault();
         const form = event.currentTarget;
-
         const email = inputEmailRef.current.value;
-        const name = inputNameRef.current.value;
+        const firstName = inputFirstNameRef.current.value;
+        const secondName = inputSecondNameRef.current.value;
         const phone = inputPhoneRef.current.value;
         const birthday = inputBirthdayRef.current.value;
         const massage = inputMassageRef.current.value;
@@ -32,17 +40,20 @@ const Contact = () => {
             event.stopPropagation();
 
 
+
+
             const response = await fetch(`${page.api_url}work-on/contact`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ email: email, name: name, phone: phone, birthday: birthday, massage: massage, file: file })
+                body: JSON.stringify({ email: email, firstName: firstName, secondName: secondName, phone: phone, birthday: birthday, massage: massage, file: file })
 
             });
 
-            const responseData = await response.json();
 
+            const responseData = await response.json();
+            console.log(responseData);
 
             switch (responseData) {
                 case "success":
@@ -63,9 +74,10 @@ const Contact = () => {
             }
 
 
-
+            setSuccessEmail(inputEmailRef.current.value);
             inputEmailRef.current.value = "";
-            inputNameRef.current.value = "";
+            inputFirstNameRef.current.value = "";
+            inputSecondNameRef.current.value = "";
             inputPhoneRef.current.value = "";
             inputBirthdayRef.current.value = "";
             inputMassageRef.current.value = "";
@@ -82,14 +94,22 @@ const Contact = () => {
     return (
         <>
             {/* Add error or success alerts */}
-            {(backEndResp === "success") ? <AlertDismissible /> : ""}
-            {(backEndResp === "user_exists") ? <AlertDismissibleExample /> : ""}
+
 
             <>
                 {/* Form end  */}
                 <div className="container ">
+
                     <div className="row justify-content-center">
+                        <h2 className="textT">Zgłoś się do Cat Army jednym kliknięciem!</h2>
+                        <h3 className="textT mb-5 text-center">
+                            Wystarczy, że uzupelnisz wymagane pola i prześlesz do nas swoje zgłoszenie, a my rozpatrzymy je w ciągu 48h!
+                            Po pozytywnym rozpatrzeniu Twojego formularza dostaniesz maila z hasłem do swojego konta.
+                            I to wszystko! Od tej pory możesz cieszyć się pełnym dostępem do serwisu.</h3>
+                        <br />
                         <div className="col-md-8">
+                            {(backEndResp === "success") ? <AlertDismissible user_mail={successEmail} /> : ""}
+                            {(backEndResp === "user_exists") ? <AlertDismissibleExample /> : ""}
                             <div className="card">
                                 <h3 className="card-header align-self-center mt-3">Rejestracja</h3>
                                 <div className="card-body">
@@ -101,17 +121,37 @@ const Contact = () => {
                                                         <i className="fa fa-user fa px-3 form-control-icon" aria-hidden="true"></i>
                                                     </span></InputGroup.Text>
                                                     <Form.Control
-                                                        className="custom-form-control"
+                                                        className="custom-form-control "
                                                         required
                                                         type="text"
-                                                        placeholder="Imię i Nazwisko..."
-                                                        ref={inputNameRef}
+                                                        placeholder="Imię..."
+                                                        ref={inputFirstNameRef}
                                                     />
-
                                                     <Form.Control.Feedback>Wygląda dobrze!</Form.Control.Feedback>
                                                 </div>
+
                                             </div>
                                         </Form.Group>
+
+                                        <Form.Group>
+                                            <div className="cols-sm-10 mb-3 ">
+                                                <div className="input-group">
+                                                    <InputGroup.Text id="basic-addon1"><span className="input-group-addon">
+                                                        <i className="fa fa-user fa px-3 form-control-icon" aria-hidden="true"></i>
+                                                    </span></InputGroup.Text>
+                                                    <Form.Control
+                                                        className="custom-form-control "
+                                                        required
+                                                        type="text"
+                                                        placeholder="Nazwisko..."
+                                                        ref={inputSecondNameRef}
+                                                    />
+                                                    <Form.Control.Feedback>Wygląda dobrze!</Form.Control.Feedback>
+                                                </div>
+
+                                            </div>
+                                        </Form.Group>
+
                                         <Form.Group>
                                             <div className="cols-sm-10 mb-3 ">
                                                 <div className="input-group has-validation">
@@ -159,11 +199,13 @@ const Contact = () => {
                                                     <Form.Control
                                                         className="custom-form-control off-style"
                                                         required
-                                                        type="date"
+                                                        type={typeI}
+                                                        onFocus={() => { setTypeI("date") }}
+
                                                         name="birthday"
                                                         id="birthday"
                                                         placeholder="Data urodzenia..."
-                                                        ref={inputMassageRef}
+                                                        ref={inputBirthdayRef}
                                                     />
                                                     <Form.Control.Feedback>Wygląda dobrze!</Form.Control.Feedback>
                                                 </div>
@@ -179,7 +221,7 @@ const Contact = () => {
                                                         id="massage"
                                                         placeholder="Napisz o sobie..."
                                                         rows={5}
-                                                        ref={inputBirthdayRef}
+                                                        ref={inputMassageRef}
                                                     />
                                                     <Form.Control.Feedback>Wygląda dobrze!</Form.Control.Feedback>
                                                 </div>
@@ -187,6 +229,7 @@ const Contact = () => {
                                         </Form.Group>
                                         <Form.Group>
                                             <div className=" col-sm-10 col-lg-4 mb-3 ">
+<<<<<<< Updated upstream
                                                 <div className="input-group has-validation">
                                                     <Form.Control
 
@@ -198,7 +241,23 @@ const Contact = () => {
                                                         ref={inputFileRef}
                                                     />
                                                     <Form.Control.Feedback>Wygląda dobrze!</Form.Control.Feedback>
+=======
+                                                <div className="input-group has-validation ">
 
+
+                                                    <Form.Control
+                                                        className="custom-file-input p-0"
+                                                        accept=".pdf"
+                                                        type="file"
+                                                        name="file"
+                                                        id="fileUpload"
+                                                        placeholder="Plik PDF"
+                                                        ref={inputFileRef}
+                                                    />
+                                                   
+>>>>>>> Stashed changes
+
+                            
                                                 </div>
                                             </div>
                                         </Form.Group>
@@ -207,7 +266,7 @@ const Contact = () => {
                                         <br />
 
                                         <Form.Group >
-                                            <Button type="submit" className="btn-gold-primary">Wysłać</Button>
+                                            <button type="submit" className="btn-gold-primary">Wyślij</button>
                                         </Form.Group>
 
                                     </Form>

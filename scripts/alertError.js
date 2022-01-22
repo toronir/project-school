@@ -10,9 +10,12 @@ const AlertDismissibleExample = () => {
 
     return (
         <Alert variant="danger" onClose={() => setShow(false)} >
-            <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
+            <Alert.Heading>
+                O nie! Masz błąd!
+            </Alert.Heading>
             <p>
-                Ten e-mail jest już zarejestrowany lub oczekuje na zatwierdzenie. Wpisz inny adres e-mail lub sprawdź pocztęс
+
+                Ten e-mail jest już zarejestrowany lub oczekuje na zatwierdzenie. Podaj inny adres e-mail lub sprawdź pocztę
             </p>
         </Alert>
     );

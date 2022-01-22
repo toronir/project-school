@@ -4,27 +4,22 @@ import { Alert, Button } from "react-bootstrap";
 
 //Alert on success submite
 
-const AlertDismissible = () => {
+const AlertDismissible = ({user_mail}) => {
 
     const [show, setShow] = useState(true);
+
     return (
         <>
             <Alert show={show} variant="success">
-                <Alert.Heading>How's it going?!</Alert.Heading>
+                <Alert.Heading>Hurra! Wszystko poszło dobrze!</Alert.Heading>
                 <p>
-                    Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget
-                    lacinia odio sem nec elit. Cras mattis consectetur purus sit amet
-                    fermentum.
+                    E-mail został wysłany na adres {user_mail} . Proszę czekać na akceptację administratora
                 </p>
                 <hr />
-                <div className="d-flex justify-content-end">
-                    <Button onClick={()=>setShow(false)} variant="outline-success">
-                        Close me y'all!
-                    </Button>
-                </div>
+
             </Alert>
 
-            
+
         </>
     );
 }
