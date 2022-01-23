@@ -89,9 +89,10 @@ get_header();
 
                 <img class='position-absolute start--slogan-png d-none d-md-block' src="<?php echo $start_img?>" alt="">
 
-                <h1><?php echo $start_heading?> <span class="logo-name"><?php echo get_bloginfo('name')?>!</span>
+                <h1><?php echo $start_heading?> <span
+                        class="logo-name d-block d-sm-inline"><?php echo get_bloginfo('name')?>!</span>
                 </h1>
-                <div class='d-flex gap-5 align-items-center justify-content-center my-5 mx-lg-5'>
+                <div class='d-flex gap-3 gap-md-5 align-items-center justify-content-center my-5 mx-lg-5'>
                     <img class='start--slogan-logo' src="<?php echo $start_earth ?>" alt="">
                     <div class='catch'>
                         <p>Nie czekaj -</p>

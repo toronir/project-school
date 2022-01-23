@@ -137,21 +137,6 @@ $saved_courses = new WP_Query($savedArgs);
 get_header();
 ?>
 
-<!-- start my account logged in -->
-<section id="logged-in--start" class="logged-in--start" style="background-image: url('<?= $logged_in_start_img ?>')" ;>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="logged-in--start__text">
-                    <?php if ($logged_in_start_title) : ?>
-                    <h1><?= $logged_in_start_title ?></h1>
-                    <?php endif; ?>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- end my account logged -->
 
 <?php if (is_user_logged_in()) : ?>
 
@@ -338,7 +323,8 @@ get_header();
                             <h4> <?php echo get_the_title(); ?> </h4>
                             <span>Poziom:
                                 <strong><?php echo get_field('courses_level'); ?></strong></span>
-                            <span class='mx-4'>Nabór: <strong><?php echo get_field('chose_course_type'); ?></strong>
+                            <span class='mx-sm-4 d-block d-sm-inline'>Nabór:
+                                <strong><?php echo get_field('chose_course_type'); ?></strong>
                             </span>
                             <span class='d-block d-md-inline'>Czas trwania kursu:
                                 <strong><?php echo get_field("courses_time", get_the_ID()) ?>h</strong></span>
@@ -351,7 +337,7 @@ get_header();
                     <div class="buttons d-flex">
 
                         <div style='overflow: hidden'>
-                            <form method="POST" class='form-slider d-flex gap-4'>
+                            <form method="POST" class='form-slider d-flex'>
                                 <input type="hidden" name='delete' value='delete-saved-course'>
                                 <input type="hidden" name='course_ID' value='<?php echo get_the_ID()?>'>
                                 <div class='btn-gold-secondary d-inline'><i class="fas fa-star"></i> Zapisano!</div>

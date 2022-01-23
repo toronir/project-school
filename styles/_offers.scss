@@ -55,6 +55,7 @@
         border: $gold-color solid 2px;
         border-radius: 2rem;
         gap: 3rem;
+        font-size: 1.2rem;
 
         h4 {
             margin-bottom: 1rem;
@@ -62,13 +63,18 @@
 
         @include media-breakpoint-up(sm) {
             padding: 2rem;
+            font-size: var(--bs-body-font-size);
         }
 
         div.img {
-            width: 30%;
+            width: 40%;
             height: 8rem;
             background-position: center center;
             background-size: cover;
+
+            @include media-breakpoint-up(sm) {
+                width: 30%;
+            }
 
             @include media-breakpoint-up(md) {
                 width: 20%;
@@ -85,11 +91,31 @@
 
         div.buttons {
             justify-content: space-between;
-            gap: 3rem;
+
 
             @include media-breakpoint-up(md) {
                 justify-content: flex-end;
+                gap: 3rem;
             }
+
+            .btn-gold-secondary {
+                z-index: 5;
+                padding: 1rem 0.5rem;
+
+                @include media-breakpoint-up(sm) {
+                    padding: 1rem 2rem;
+                }
+            }
+
+            .btn-gold-primary {
+                z-index: 5;
+                padding: 1rem 0.5rem;
+
+                @include media-breakpoint-up(sm) {
+                    padding: 1rem 2rem;
+                }
+            }
+
         }
 
         a {
@@ -102,12 +128,13 @@
 
 
             @include media-breakpoint-up(md) {
-                transform: translateX(29%);
+                transform: translateX(23%);
             }
 
             .btn-gold-secondary {
                 z-index: 5;
             }
+
 
             span {
                 display: inline-block;

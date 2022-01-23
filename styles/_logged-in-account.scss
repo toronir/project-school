@@ -76,12 +76,17 @@
         }
 
         input {
+            width: 15rem;
             padding: 0.5rem 1rem;
             background-color: rgb(29, 29, 29);
             border: none;
             border-radius: 1rem;
             text-align: right;
             color: $text;
+
+            @include media-breakpoint-up(sm) {
+                width: auto;
+            }
 
             &:focus {
                 background-color: black;
@@ -179,17 +184,25 @@
             border: $gold-color solid 2px;
             border-radius: 2rem;
             gap: 3rem;
+            font-size: 1.2rem;
+
 
             @include media-breakpoint-up(sm) {
                 padding: 2rem;
                 margin: 0 2rem 4rem;
+                font-size: var(--bs-body-font-size);
+
             }
 
             &--img {
-                width: 30%;
+                width: 40%;
                 height: 8rem;
                 background-position: center center;
                 background-size: cover;
+
+                @include media-breakpoint-up(sm) {
+                    width: 30%;
+                }
 
                 @include media-breakpoint-up(md) {
                     width: 20%;
@@ -206,10 +219,29 @@
 
             div.buttons {
                 justify-content: space-between;
-                gap: 3rem;
+
 
                 @include media-breakpoint-up(md) {
                     justify-content: flex-end;
+                    gap: 3rem;
+                }
+
+                .btn-gold-secondary {
+                    z-index: 5;
+                    padding: 1rem 0.5rem;
+
+                    @include media-breakpoint-up(sm) {
+                        padding: 1rem 2rem;
+                    }
+                }
+
+                .btn-gold-primary {
+                    z-index: 5;
+                    padding: 1rem 0.5rem;
+
+                    @include media-breakpoint-up(sm) {
+                        padding: 1rem 2rem;
+                    }
                 }
 
                 .form-slider {
@@ -218,7 +250,7 @@
 
 
                     @include media-breakpoint-up(md) {
-                        transform: translateX(29%);
+                        transform: translateX(23%);
                     }
 
                     .btn-gold-secondary {
@@ -268,7 +300,7 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-
+            white-space: nowrap;
         }
 
     }
@@ -291,6 +323,14 @@
             &--img {
                 height: 100%;
                 width: 45%;
+            }
+        }
+
+        .btn-gold-primary {
+            font-size: 1.3rem;
+
+            @include media-breakpoint-up(sm) {
+                font-size: var(--bs-body-font-size);
             }
         }
     }

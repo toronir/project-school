@@ -5,7 +5,7 @@
     &--slogan {
         position: relative;
         margin-top: 8rem;
-        padding: 3rem 3rem;
+        padding: 1.5rem;
         // border: 2px $gold-color solid;
         border-top-left-radius: 2rem;
         border-top-right-radius: 2rem;
@@ -13,6 +13,9 @@
         color: $background-dark;
         box-shadow: 5px -5px 10px black;
 
+        @include media-breakpoint-up(sm) {
+            padding: 3rem;
+        }
 
         .logo-name {
             font-family: 'Cinzel Decorative';
@@ -28,10 +31,18 @@
 
         .catch {
             text-transform: uppercase;
+            font-size: 2.6rem;
+
+            @include media-breakpoint-up(sm) {}
+
             font-size: 4rem;
 
             p {
-                font-size: 2.3rem;
+                font-size: 1.8rem;
+
+                @include media-breakpoint-up(sm) {
+                    font-size: 2.3rem;
+                }
 
                 @include media-breakpoint-up(lg) {
                     font-size: 3rem;

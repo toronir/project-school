@@ -1,5 +1,17 @@
 .news-single {
-    padding: 4rem;
+
+
+    @include media-breakpoint-up(md) {
+        padding: 4rem;
+    }
+
+    .img-changed {
+
+        max-width: 60%;
+        margin: 0 auto 2rem;
+        background-position: center center;
+        background-size: cover;
+    }
 
     div.img {
         width: 30%;

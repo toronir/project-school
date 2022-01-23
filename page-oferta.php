@@ -209,7 +209,8 @@ $register_btn_target = get_field('offer_register_btn')['target'];
                         <h4><?php echo get_the_title(); ?></h4>
                         <span>Poziom:
                             <strong><?php echo get_field('courses_level'); ?></strong></span>
-                        <span class='mx-4'>Tryb: <strong><?php echo get_field('chose_course_type'); ?></strong>
+                        <span class='mx-sm-4 d-block d-sm-inline'>Tryb:
+                            <strong><?php echo get_field('chose_course_type'); ?></strong>
                         </span>
                     </div>
                 </div>
@@ -229,7 +230,7 @@ $register_btn_target = get_field('offer_register_btn')['target'];
                     </form>
                     <?php else : ?>
                     <div style='overflow: hidden'>
-                        <form method="POST" class='form-slider d-flex gap-4'>
+                        <form method="POST" class='form-slider d-flex'>
                             <input type="hidden" name='delete' value='delete-course'>
                             <input type="hidden" name='course_id' value='<?php echo get_the_ID()?>'>
 
