@@ -76,6 +76,7 @@
     input[type="date"]::-webkit-inner-spin-button,
     input[type="date"]::-webkit-calendar-picker-indicator {
         opacity: 0.5;
+<<<<<<< Updated upstream
     }
 
     div.upload {
@@ -93,6 +94,25 @@
         opacity: 0.95;
     }
 
+=======
+    }
+
+    div.upload {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        display: inline-block;
+        height: 30px;
+        padding: 3px 40px 3px 3px;
+        position: relative;
+        width: auto;
+    }
+
+    div.upload:hover {
+        opacity: 0.95;
+    }
+
+>>>>>>> Stashed changes
     div.upload input[type="file"] {
         display: input-block;
         width: 100%;
@@ -169,8 +189,11 @@
   .custom-file-input:active::before {
     background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
   }
+<<<<<<< Updated upstream
 
   .form-check-label{
     color: #fff;
   }
+=======
+>>>>>>> Stashed changes
   

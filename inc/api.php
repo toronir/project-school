@@ -19,9 +19,18 @@ add_action('rest_api_init', function () {
 
             $to = 'toronir5@gmail.com';
             $subject = 'Hey! Masz nowego kandydata';
+<<<<<<< Updated upstream
             $body = `<html>
             <body>
    <h1 style='color: #c29f48; background-color: #212529;margin:0px; text-align: center;'>
+=======
+            $body = "<html>
+            <head>
+                <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+            </head>
+            <body>
+   <h1 style='color: c29f48; background-color: #212529;margin:0px; text-align: center;'>
+>>>>>>> Stashed changes
      Masz nowego użytkownika
    </h1>
                 <div style='background-color: #212529;padding:1rem;padding-left: 10rem;'>
@@ -29,6 +38,7 @@ add_action('rest_api_init', function () {
                         
                     
                        <tr>
+<<<<<<< Updated upstream
                             <td style='color: #c29f48;'>Imię:</td>
                             <td style='color: #c29f48;'>$firstName<br></td>
                         </tr>
@@ -53,12 +63,44 @@ add_action('rest_api_init', function () {
                        <tr>
                             <td style='color: #c29f48;'>Poczta kandydata:</td>
                             <td style='color: #c29f48;'>$email<br></td>
+=======
+                            <td style='color: c29f48;'>Imię:</td>
+                            <td style='color: c29f48;'>$firstName<br></td>
+                        </tr>
+                       <tr>
+                            <td style='color: c29f48;'>Nazwisko:</td>
+                            <td style='color: c29f48;'>$secondName<br></td>
+                        </tr>
+                       
+                        <tr>
+                            <td style='color: c29f48;'>Data urodzenia:</td>
+                            <td style='color: c29f48;'>$birthday</td>
+                        </tr>
+                        <tr>
+                            <td style='color: c29f48;'>Telefon:</td>
+                            <td style='color: c29f48;'>$phone</td>
+                        </tr>
+                        <tr>
+                            <td style='color: c29f48;'>Wiadomość:</td>
+                            <td style='color: c29f48;'>$massage</td>
+                        </tr>
+
+                       <tr>
+                            <td style='color: c29f48;'>Poczta kandydata:</td>
+                            <td style='color: c29f48;'>$email<br></td>
+>>>>>>> Stashed changes
                         </tr>
                     </table>
                 </div>
             </body>
+<<<<<<< Updated upstream
         </html>`;
 
+=======
+        </html>";
+            $headers[] = 'Content-type: text/html; charset=utf-8';
+            $headers[] = 'From:' . "testing@gmail.com";
+>>>>>>> Stashed changes
 
             $userList = get_users('blog_id=0&orderby=nicename');
             foreach ($userList as $user) {
@@ -85,10 +127,17 @@ add_action('rest_api_init', function () {
                 ]);
 
                 $output = 'success';
+<<<<<<< Updated upstream
                 add_filter('wp_mail_content_type', 'set_html_content_type');
 
                 wp_mail($to, $subject, $body);
                 remove_filter('wp_mail_content_type', 'set_html_content_type');
+=======
+                add_filter('wp_mail_content_type', function ($content_type) {
+                    return 'text/html';
+                });
+                wp_mail($to, $subject, $body, $headers);
+>>>>>>> Stashed changes
             } else {
 
                 $output = !$output ? "error" : $output;
