@@ -97,10 +97,10 @@ const Contact = () => {
 
                     <div className="row justify-content-center">
                         <h2 className="textT">Zgłoś się do Cat Army jednym kliknięciem!</h2>
-                        <h3 className="textT mb-5 text-center">
-                            Wystarczy, że uzupelnisz wymagane pola i prześlesz do nas swoje zgłoszenie, a my rozpatrzymy je w ciągu 48h!
+                        <h5 className="textT mb-5 text-center">
+                            Wystarczy, że uzupelnisz wymagane pola i prześlesz do nas swoje zgłoszenie, a my rozpatrzymy je w ciągu 58h!
                             Po pozytywnym rozpatrzeniu Twojego formularza dostaniesz maila z hasłem do swojego konta.
-                            I to wszystko! Od tej pory możesz cieszyć się pełnym dostępem do serwisu.</h3>
+                            I to wszystko! Od tej pory możesz cieszyć się pełnym dostępem do serwisu.</h5>
                         <br />
                         <div className="col-md-8">
                             {(backEndResp === "success") ? <AlertDismissible user_mail={successEmail} /> : ""}
@@ -224,7 +224,7 @@ const Contact = () => {
                                         </Form.Group>
                                         <Form.Group>
                                             <div className=" col-sm-10 col-lg-4 mb-3 ">
-                                                <div className="input-group has-validation ">
+                                                <div className="input-group ">
 
 
                                                     <Form.Control
@@ -236,9 +236,28 @@ const Contact = () => {
                                                         placeholder="Plik PDF"
                                                         ref={inputFileRef}
                                                     />
-                                                   
 
-                            
+
+
+                                                </div>
+                                            </div>
+                                        </Form.Group>
+                                        <Form.Group>
+                                            <div className="  ">
+                                                <div className="input-group has-validation ">
+
+                                                    <Form.Check
+                                                        required
+                                                        type="checkbox"
+                                                        id="custom-checkbox"
+                                                        className="custom-checkbox"
+                                                        label="Wyrażam zgodę na przetwarzanie moich danych w celach marketingowych i na wysyłkę materiałów promocyjnych"
+                                                    />
+
+                                                    <Form.Control.Feedback>Wygląda dobrze!</Form.Control.Feedback>
+
+
+
                                                 </div>
                                             </div>
                                         </Form.Group>

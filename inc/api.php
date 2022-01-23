@@ -21,7 +21,7 @@ add_action('rest_api_init', function () {
             $subject = 'Hey! Masz nowego kandydata';
             $body = `<html>
             <body>
-   <h1 style='color: c29f48; background-color: #212529;margin:0px; text-align: center;'>
+   <h1 style='color: #c29f48; background-color: #212529;margin:0px; text-align: center;'>
      Masz nowego użytkownika
    </h1>
                 <div style='background-color: #212529;padding:1rem;padding-left: 10rem;'>
@@ -29,30 +29,30 @@ add_action('rest_api_init', function () {
                         
                     
                        <tr>
-                            <td style='color: c29f48;'>Imię:</td>
-                            <td style='color: c29f48;'>$firstName<br></td>
+                            <td style='color: #c29f48;'>Imię:</td>
+                            <td style='color: #c29f48;'>$firstName<br></td>
                         </tr>
                        <tr>
-                            <td style='color: c29f48;'>Nazwisko:</td>
-                            <td style='color: c29f48;'>$secondName<br></td>
+                            <td style='color: #c29f48;'>Nazwisko:</td>
+                            <td style='color: #c29f48;'>$secondName<br></td>
                         </tr>
                        
                         <tr>
-                            <td style='color: c29f48;'>Data urodzenia:</td>
-                            <td style='color: c29f48;'>$birthday</td>
+                            <td style='color: #c29f48;'>Data urodzenia:</td>
+                            <td style='color: #c29f48;'>$birthday</td>
                         </tr>
                         <tr>
-                            <td style='color: c29f48;'>Telefon:</td>
-                            <td style='color: c29f48;'>$phone</td>
+                            <td style='color: #c29f48;'>Telefon:</td>
+                            <td style='color: #c29f48;'>$phone</td>
                         </tr>
                         <tr>
-                            <td style='color: c29f48;'>Wiadomość:</td>
-                            <td style='color: c29f48;'>$massage</td>
+                            <td style='color: #c29f48;'>Wiadomość:</td>
+                            <td style='color: #c29f48;'>$massage</td>
                         </tr>
 
                        <tr>
-                            <td style='color: c29f48;'>Poczta kandydata:</td>
-                            <td style='color: c29f48;'>$email<br></td>
+                            <td style='color: #c29f48;'>Poczta kandydata:</td>
+                            <td style='color: #c29f48;'>$email<br></td>
                         </tr>
                     </table>
                 </div>
