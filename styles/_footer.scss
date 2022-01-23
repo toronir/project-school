@@ -32,7 +32,6 @@
     }
 
     &--social {
-        margin-top: 2rem;
         
         @include media-breakpoint-up(md) {
             margin-top: 0;
@@ -68,18 +67,8 @@
     }
 
     &--bottom {
-        color: $text-muted;
         text-align: center;
-
-        @include media-breakpoint-up(sm) {
-            *:first-child {
-                text-align: left;
-            }
-            
-            *:last-child {
-                text-align: right;
-            }
-        }
-
+        color: $text-muted;
+        margin-top: 1.5rem;
     }
 }

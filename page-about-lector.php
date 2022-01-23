@@ -54,19 +54,19 @@ $teachers_desc = get_field("teachers_desc");
     <?php while ($teachers_query->have_posts()) : ?>
     <?php $teachers_query->the_post(); ?>
         <div class="row justify-content-center">
-                <div class="col-6 show-lectors-list">
+                <div class="col-12 col-md-6 show-lectors-list">
                     <div class="row justify-content-center">
-                        <div class="col-xxl-4 col-xl-6 col-sm-12 mb-4">
+                        <div class="col-xxl-8 col-xl-6 col-md-12 col-12">
                             <div class="lectors-imges"><img src="<?php echo get_field("teacher_img") ?>"></div>
                         </div>
                     </div>
                 </div>
-                <div class="col-6 show-lectors-desc">
+                <div class="col-12 col-md-6 show-lectors-desc">
                     <div class="row justify-content-center">
-                        <div class="col-xxl-8 col-xl-6 col-sm-12 mb-4">
+                        <div class="col-xxl-8 col-xl-6 col-md-12 col-12">
                             <div><h3><?php echo get_field('teacher_name'); ?></h3></div>
-                            <div><strong><?php echo get_field("teacher_experience") ?></strong></div>
-                            <div><strong><?php echo get_field("teacher_cert") ?></strong></div>
+                            <div><?php echo get_field("teacher_experience") ?></div>
+                            <div><?php echo get_field("teacher_cert") ?></div>
                             <div><?php echo get_field("teacher_language") ?></div>
                             <div><p><?php echo get_field("teacher_email") ?></p></div>
                             <a href="<?php echo get_the_permalink(); ?>" class="btn-gold-primary d-inline-block"> Poznaj mnie <i class="fas fa-chevron-right"></i></a>

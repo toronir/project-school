@@ -33,7 +33,7 @@ get_header(); ?>
 <section class="single-teacher">
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-6 lectors-desc">
+            <div class="col-12 col-md-6 lectors-desc">
                 <div>
                     <h1><?php echo get_field('teacher_name'); ?></h1>
                 </div>

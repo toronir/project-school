@@ -9,7 +9,6 @@
     &--description {
         color: $text;
         text-align: center;
-        margin-bottom: 3rem;
     }
 
     &-list {
@@ -20,13 +19,28 @@
         }
 
         .show-lectors-desc {
-            padding-top: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid $gold-color;
+
+            a {
+                margin-bottom: 2rem;
+            }
+
+            @include media-breakpoint-up(md) {
+                text-align: justify;
+                margin-top: 4rem;
+            }
+
+            @include media-breakpoint-up(xl) {
+                border-bottom: none;
+            }
         }
         
         img {
             margin-bottom: 3rem;
-            height: 180px;
-            width: 180px;
+            height: 250px;
+            width: 250px;
             border-radius: 50%;
             object-fit: cover;
 
