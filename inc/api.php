@@ -1,5 +1,5 @@
 <?php
-
+$logo = get_theme_mod('logo');
 add_action('rest_api_init', function () {
     register_rest_route('work-on', '/contact', [
         'methods' => 'POST',
@@ -19,88 +19,117 @@ add_action('rest_api_init', function () {
 
             $to = 'toronir5@gmail.com';
             $subject = 'Hey! Masz nowego kandydata';
-<<<<<<< Updated upstream
-            $body = `<html>
-            <body>
-   <h1 style='color: #c29f48; background-color: #212529;margin:0px; text-align: center;'>
-=======
-            $body = "<html>
+            $body = `<html >
             <head>
-                <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+            <title>HTML CSS JS</title>
+              <link href="https://fonts.googleapis.com/css2?family=Saira+Semi+Condensed:wght@200;400;600&display=swap"
+                    rel="stylesheet">
             </head>
-            <body>
-   <h1 style='color: c29f48; background-color: #212529;margin:0px; text-align: center;'>
->>>>>>> Stashed changes
-     Masz nowego użytkownika
-   </h1>
-                <div style='background-color: #212529;padding:1rem;padding-left: 10rem;'>
-                    <table>
+              
+               <style type="text/css">
+               
+                 table{
+                       border-spacing: 0px;
+                 }
+                  
+                  h2 {
+                    font-size: 56px;
+                    font-family: 'Saira Semi Condensed', sans-serif;
+                  }
+                  
+                    h3{
+                    font-size: 28px;
+                    font-weight: 900; 
+                        font-family: 'Saira Semi Condensed', sans-serif;
+                  }
+                  
+                  p {
+                      font-family: 'Saira Semi Condensed', sans-serif;
+                    font-weight: 100;
+                  }
+                  
+                  td {
+                vertical-align: top;
+                  }
+                  
+                  #email {
+                    margin: auto;
+                    width: 600px;
+                    background-color: white;
+                  }
+                  
+                  a{
+                   
+                    text-decoration: none;
+                    font: inherit;
+                    background-color: #c29f48;
+                    border: none;
+                    padding: 10px;
+                    text-transform: uppercase;
+                    letter-spacing: 2px;
+                    font-weight: 900; 
+                    color: white;
+                    border-radius: 5px; 
+                    box-shadow: 3px 3px #808080;
+                  }
+                  
+                  .subtle-link {
+                    font-size: 9px; 
+                    text-transform:uppercase; 
+                    letter-spacing: 1px;
+                    color: #CBD6E2;
+                  }
+                  
+                </style>
+             <body >
+               
+               <div id="email">
+            
+              
+              
+              <! Banner --> 
+                     <table  width="100%" style=" border-bottom: solid #c29f48;  ;
+            
+             
+              ">
+                        <tr>
+                     
+                          <td bgcolor="#212529" align="center" style="color: white;">
                         
-                    
-                       <tr>
-<<<<<<< Updated upstream
-                            <td style='color: #c29f48;'>Imię:</td>
-                            <td style='color: #c29f48;'>$firstName<br></td>
-                        </tr>
-                       <tr>
-                            <td style='color: #c29f48;'>Nazwisko:</td>
-                            <td style='color: #c29f48;'>$secondName<br></td>
-                        </tr>
-                       
-                        <tr>
-                            <td style='color: #c29f48;'>Data urodzenia:</td>
-                            <td style='color: #c29f48;'>$birthday</td>
-                        </tr>
-                        <tr>
-                            <td style='color: #c29f48;'>Telefon:</td>
-                            <td style='color: #c29f48;'>$phone</td>
-                        </tr>
-                        <tr>
-                            <td style='color: #c29f48;'>Wiadomość:</td>
-                            <td style='color: #c29f48;'>$massage</td>
-                        </tr>
-
-                       <tr>
-                            <td style='color: #c29f48;'>Poczta kandydata:</td>
-                            <td style='color: #c29f48;'>$email<br></td>
-=======
-                            <td style='color: c29f48;'>Imię:</td>
-                            <td style='color: c29f48;'>$firstName<br></td>
-                        </tr>
-                       <tr>
-                            <td style='color: c29f48;'>Nazwisko:</td>
-                            <td style='color: c29f48;'>$secondName<br></td>
-                        </tr>
-                       
-                        <tr>
-                            <td style='color: c29f48;'>Data urodzenia:</td>
-                            <td style='color: c29f48;'>$birthday</td>
-                        </tr>
-                        <tr>
-                            <td style='color: c29f48;'>Telefon:</td>
-                            <td style='color: c29f48;'>$phone</td>
-                        </tr>
-                        <tr>
-                            <td style='color: c29f48;'>Wiadomość:</td>
-                            <td style='color: c29f48;'>$massage</td>
-                        </tr>
-
-                       <tr>
-                            <td style='color: c29f48;'>Poczta kandydata:</td>
-                            <td style='color: c29f48;'>$email<br></td>
->>>>>>> Stashed changes
-                        </tr>
+                         <img alt="Flower" src="$logo" width="400px" align="middle">
+                            
+                            <h2 style='color: #c29f48;'>  Nowy użytkownik czeka na akceptację </h2>
+                            
+                          </td>
                     </table>
-                </div>
-            </body>
-<<<<<<< Updated upstream
-        </html>`;
+               
+               
+            <table bgcolor="#212529" role="presentation" border="0" cellpadding="0" cellspacing="10px" style="padding: 30px 30px 30px 60px;color: #c29f48;">
+                 <tr>
+                   <td>
+                    <h3 align="center"> Nowy kandydat $firstName $secondName wysyła swoją prośbę!</h3>
+                        <p align="center" style="margin-bottom: 2rem">
+                          Aby dowiedzieć się więcej o nowym kandydacie przejdź do panelu administracyjnego strony CatArmy lub kliknij w poniższy przycisk  
+                        </p>
+               <div style="display:flex;justify-content:center;">
+                            <a style="font-family: 'Saira Semi Condensed', sans-serif;" href="http://front3.work-on.pl/wp-admin/">Wyświetl nowego użytkownika</a>
+                     </div>
+                           
+                            
+                      </td> 
+                      </tr>
+                             </table>
+                 <table role="presentation" style="background-color: #c29f48" width="100%" >
+                  <tr>
+                      <td align="left" style="padding: 30px 30px;">
+                        <p style="color:#212529"> Z miłością &hearts; od CatTeam </p>
+                          <a  class="subtle-link" style="font-family: 'Saira Semi Condensed', sans-serif; background-color:#212529;" href="http://front3.work-on.pl/"> Do strony </a>      
+                      </td>
+                      </tr>
+                  </table> 
+                        </body>
+            </html>`;
 
-=======
-        </html>";
-            $headers[] = 'Content-type: text/html; charset=utf-8';
-            $headers[] = 'From:' . "testing@gmail.com";
->>>>>>> Stashed changes
 
             $userList = get_users('blog_id=0&orderby=nicename');
             foreach ($userList as $user) {
@@ -127,17 +156,10 @@ add_action('rest_api_init', function () {
                 ]);
 
                 $output = 'success';
-<<<<<<< Updated upstream
                 add_filter('wp_mail_content_type', 'set_html_content_type');
 
                 wp_mail($to, $subject, $body);
                 remove_filter('wp_mail_content_type', 'set_html_content_type');
-=======
-                add_filter('wp_mail_content_type', function ($content_type) {
-                    return 'text/html';
-                });
-                wp_mail($to, $subject, $body, $headers);
->>>>>>> Stashed changes
             } else {
 
                 $output = !$output ? "error" : $output;

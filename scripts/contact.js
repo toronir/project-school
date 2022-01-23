@@ -3,11 +3,6 @@ import React, { useRef, useState } from "react";
 import { Button, Form, Alert, InputGroup } from "react-bootstrap";
 import AlertDismissible from "./alertSuccess.js";
 import AlertDismissibleExample from "./alertError.js";
-<<<<<<< Updated upstream
-=======
-
-
->>>>>>> Stashed changes
 
 const Contact = () => {
     const [typeI, setTypeI] = useState("text")
@@ -102,17 +97,10 @@ const Contact = () => {
 
                     <div className="row justify-content-center">
                         <h2 className="textT">Zgłoś się do Cat Army jednym kliknięciem!</h2>
-<<<<<<< Updated upstream
                         <h5 className="textT mb-5 text-center">
                             Wystarczy, że uzupelnisz wymagane pola i prześlesz do nas swoje zgłoszenie, a my rozpatrzymy je w ciągu 58h!
                             Po pozytywnym rozpatrzeniu Twojego formularza dostaniesz maila z hasłem do swojego konta.
                             I to wszystko! Od tej pory możesz cieszyć się pełnym dostępem do serwisu.</h5>
-=======
-                        <h3 className="textT mb-5 text-center">
-                            Wystarczy, że uzupelnisz wymagane pola i prześlesz do nas swoje zgłoszenie, a my rozpatrzymy je w ciągu 48h!
-                            Po pozytywnym rozpatrzeniu Twojego formularza dostaniesz maila z hasłem do swojego konta.
-                            I to wszystko! Od tej pory możesz cieszyć się pełnym dostępem do serwisu.</h3>
->>>>>>> Stashed changes
                         <br />
                         <div className="col-md-8">
                             {(backEndResp === "success") ? <AlertDismissible user_mail={successEmail} /> : ""}
@@ -136,17 +124,10 @@ const Contact = () => {
                                                     />
                                                     <Form.Control.Feedback>Wygląda dobrze!</Form.Control.Feedback>
                                                 </div>
-<<<<<<< Updated upstream
 
                                             </div>
                                         </Form.Group>
 
-=======
-
-                                            </div>
-                                        </Form.Group>
-
->>>>>>> Stashed changes
                                         <Form.Group>
                                             <div className="cols-sm-10 mb-3 ">
                                                 <div className="input-group">
@@ -243,7 +224,6 @@ const Contact = () => {
                                         </Form.Group>
                                         <Form.Group>
                                             <div className=" col-sm-10 col-lg-4 mb-3 ">
-<<<<<<< Updated upstream
                                                 <div className="input-group ">
 
 
@@ -277,21 +257,6 @@ const Contact = () => {
                                                     <Form.Control.Feedback>Wygląda dobrze!</Form.Control.Feedback>
 
 
-=======
-                                                <div className="input-group has-validation ">
-
-
-                                                    <Form.Control
-                                                        className="custom-file-input p-0"
-                                                        accept=".pdf"
-                                                        type="file"
-                                                        name="file"
-                                                        id="fileUpload"
-                                                        placeholder="Plik PDF"
-                                                        ref={inputFileRef}
-                                                    />
-                                                   
->>>>>>> Stashed changes
 
                             
                                                 </div>
