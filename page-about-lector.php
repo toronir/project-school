@@ -66,8 +66,8 @@ $teachers_desc = get_field("teachers_desc");
                         <div class="col-xxl-8 col-xl-6 col-md-12 col-12">
                             <div><h3><?php echo get_field('teacher_name'); ?></h3></div>
                             <div><?php echo get_field("teacher_experience") ?></div>
-                            <div><?php echo get_field("teacher_cert") ?></div>
-                            <div><?php echo get_field("teacher_language") ?></div>
+                            <div>certyfikaty: <?php echo get_field("teacher_cert") ?></div>
+                            <div>język: <?php echo get_field("teacher_language") ?></div>
                             <div><p><?php echo get_field("teacher_email") ?></p></div>
                             <a href="<?php echo get_the_permalink(); ?>" class="btn-gold-primary d-inline-block"> Poznaj mnie <i class="fas fa-chevron-right"></i></a>
                         </div>
