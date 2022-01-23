@@ -5,29 +5,35 @@
     }
 
     .login-form {
-        padding: 4rem 2rem 0 2rem;
+        padding: 3rem 2rem 0 2rem;
         text-align: center;
     }
 
     &-left-box {
         position: relative;
-        height: 60vh;
+        height: 33vh;
         display: flex;
         align-items: center;
         background: center center/cover no-repeat;
         text-align: center;
         background-size: contain;
 
-        @include media-breakpoint-up(lg) {
+        @include media-breakpoint-up(md) {
             height: 70vh;
         }
     }
 
     &-right-box {
-        height: 70vh;
+        height: 39vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        margin-top: 3rem;
+
+        @include media-breakpoint-up(md) {
+            height: 70vh;
+            margin-top: 0;
+        }
 
         input {
             border-radius: 0.25rem;

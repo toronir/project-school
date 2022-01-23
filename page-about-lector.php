@@ -18,6 +18,7 @@ $args = [
     'post_type' => 'teachers',
     'meta_query' => $meta_q,
     'paged' => get_query_var('paged'),
+    'post_per_page' => 5
 ];
 
 $teachers_query = new WP_Query($args);
