@@ -102,54 +102,11 @@
             @include media-breakpoint-up(lg) {
                 flex-direction: row;
                 margin: 0;
-
-                li:hover i{
-                    transition: 0.5s;
-                    transform: rotateX(180deg);
-                }
-
-                i {
-                    display: inline-block;
-                }
             }
 
             li {
                 position: relative;
-                padding: 1rem;
-
-                ul {
-                    background-color: #212529;
-                    margin-top: 0.5rem;  
-
-                    @include media-breakpoint-up(lg) {
-                        position: absolute;
-                        transform: translateX(-50%);
-                        top: 100%;
-                        left: 50%;
-                        margin: 0;
-                        padding: 0 4rem;
-                        border-bottom: 1px solid $gold-color;
-                        display: none;
-                    }
-
-                    li {
-                        padding: 1rem 0;
-                    }
-                }
-
-                &:hover ul {
-                    @include media-breakpoint-up(lg) {
-                        display: block;
-                        flex-direction: column;
-                        justify-content: flex-end;
-                    }
-                }
-            }
-
-            li {
-                @include media-breakpoint-up(lg) {
-                    margin-bottom: 0;
-                }
+                padding: 0.8rem;
             }
 
             a {
