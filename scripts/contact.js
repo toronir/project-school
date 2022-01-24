@@ -98,7 +98,7 @@ const Contact = () => {
                     <div className="row justify-content-center">
                         <h2 className="textT">Zgłoś się do Cat Army jednym kliknięciem!</h2>
                         <h5 className="textT mb-5 text-center">
-                            Wystarczy, że uzupelnisz wymagane pola i prześlesz do nas swoje zgłoszenie, a my rozpatrzymy je w ciągu 58h!
+                            Wystarczy, że uzupelnisz wymagane pola i prześlesz do nas swoje zgłoszenie, a my rozpatrzymy je w ciągu 48h!
                             Po pozytywnym rozpatrzeniu Twojego formularza dostaniesz maila z hasłem do swojego konta.
                             I to wszystko! Od tej pory możesz cieszyć się pełnym dostępem do serwisu.</h5>
                         <br />
@@ -258,7 +258,7 @@ const Contact = () => {
 
 
 
-                            
+
                                                 </div>
                                             </div>
                                         </Form.Group>

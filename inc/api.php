@@ -20,7 +20,7 @@ add_action('rest_api_init', function () {
             $to = 'toronir5@gmail.com';
             $subject1 = 'Hey! Masz nowego kandydata';
             $subject2 = 'Zostało bardzo niewiele!';
-            $body = `<body >
+            $body = '<body>
 
             <div style="  margin: auto;
                  width: 600px;
@@ -31,19 +31,18 @@ add_action('rest_api_init', function () {
                   
                        <td bgcolor="#212529" align="center" style="color: white;">
                      
-                      <img alt="Flower" src="$logo" width="400px" align="middle">
-                         
-                         <h2 style='color: #c29f48;font-size: 56px;'>  Nowy użytkownik czeka na akceptację </h2>
+                       
+                         <h2 style="color: #c29f48;font-size: 56px;">  Nowy użytkownik ' . $firstName . ' ' . $secondName . ' czeka na akceptację</h2>
                          
                        </td>
                  </table>
             
-            
-         <table bgcolor="#212529" role="presentation" border="0" cellpadding="0" cellspacing="10px" style="border-spacing: 0px; padding: 30px 30px 30px 60px;color: #c29f48;">
+                 
+         <table bgcolor="#212529" role="presentation" border="0" cellpadding="0" cellspacing="10px" style="border-spacing: 0px; padding: 30px auto; color: #c29f48;">
               <tr>
                 <td>
-                 <h3 align="center" style="  font-size: 28px;
-                 font-weight: 900;"> Nowy kandydat $firstName $secondName wysyła swoją prośbę!</h3>
+                 <h4 align="center" style="  font-size: 28px;
+                 font-weight: 900;"> Nowy kandydat wysyła swoją prośbę o założenie konta!</h4>
                      <p align="center" style="margin-bottom: 2rem">
                        Aby dowiedzieć się więcej o nowym kandydacie przejdź do panelu administracyjnego strony CatArmy lub kliknij w poniższy przycisk  
                      </p>
@@ -53,12 +52,13 @@ add_action('rest_api_init', function () {
                  background-color: #c29f48;
                  border: none;
                  padding: 10px;
+                 text-align: center;
                  text-transform: uppercase;
                  letter-spacing: 2px;
                  font-weight: 900; 
                  color: white;
                  border-radius: 5px; 
-                 box-shadow: 3px 3px #808080;" href="http://front3.work-on.pl/wp-admin/">Wyświetl nowego użytkownika</a>
+                 box-shadow: 3px 3px #808080;" href="http://front3.work-on.pl/wp-admin/edit.php?post_type=subscription">Wyświetl nowego użytkownika</a>
                   </div>
                         
                          
@@ -83,7 +83,7 @@ add_action('rest_api_init', function () {
                    </td>
                    </tr>
                </table> 
-                </body>`;
+                </body>';
 
 
             $userList = get_users('blog_id=0&orderby=nicename');
@@ -147,4 +147,9 @@ add_action('rest_api_init', function () {
 //     $res->set_status(200);
 
 //     return ['req' => $res];
+
 // }
+
+// $path = "./file.txt";
+
+//$data = file_get_contents // zwraca trsc pliku ($path);
