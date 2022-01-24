@@ -84,19 +84,18 @@ get_header();
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-lg-10 col-xl-7 px-sm-4">
-                <!-- <div class="img-changed d-block d-md-none"
-                    style='margin: 0 auto 2rem; background-image: url("<?php echo get_the_post_thumbnail_url(get_the_ID(), 'medium'); ?>");'>
-                </div> -->
                 <img class="img-changed d-block d-md-none"
                     src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'medium'); ?>" alt="">
-                <div class="d-flex align-items-center">
+                <div
+                    class="d-flex align-items-center <?php if (!is_user_logged_in()) : ?>justify-content-center justify-content-md-start <?php endif;?>">
                     <div class="img d-none d-md-block"
                         style='background-image: url("<?php echo get_the_post_thumbnail_url(get_the_ID(), 'medium'); ?>");'>
                     </div>
-                    <h1 class='mx-sm-5 my-0'><?php echo get_the_title(); ?></h1>
+                    <h1 class='mx-md-5 my-0'><?php echo get_the_title(); ?></h1>
 
-                    <div class='flex-grow-1'></div>
+
                     <?php if (is_user_logged_in()) : ?>
+                    <div class='flex-grow-1'></div>
                     <?php if (!$added_course) :?>
                     <form method="POST">
                         <input type="hidden" name='save' value='save_course'>
@@ -117,11 +116,11 @@ get_header();
                 </div>
                 <hr>
                 <div class='text-center'>
-                    <span>Poziom:
+                    <span class='mx-4'>Poziom:
                         <strong><?php echo get_field('courses_level'); ?></strong></span>
                     <span class='mx-4'>Nabór: <strong><?php echo get_field('chose_course_type'); ?></strong>
                     </span>
-                    <span class='d-block d-sm-inline'> Czas trwania kursu:
+                    <span class='d-block d-sm-inline mx-4'> Czas trwania kursu:
                         <strong><?php echo get_field("courses_time", get_the_ID()) ?>h</strong></span>
                 </div>
                 <hr>

@@ -15,6 +15,7 @@ $first_form = get_field('first_form');
 $form_desc_1 = get_field('form_desc_1');
 $second_form = get_field('second_form');
 $form_desc_2 = get_field('form_desc_2');
+$start_levels_link = get_field('start_levels_link');
 
 $languages_title = get_field('languages_title');
 $languagesArgs = [
@@ -163,12 +164,13 @@ get_header();
             <?php while ($languages_query->have_posts()) : ?>
             <?php $languages_query->the_post(); ?>
 
-            <div class="card col-5 col-md-5 col-lg m-2 d-flex flex-column justify-content-between">
+            <a href='<?php echo $start_levels_link ?>?languages_select=<?php echo get_the_title(); ?>'
+                class="card col-5 col-md-5 col-lg m-2 d-flex flex-column justify-content-between">
                 <img class="card-img-top my-2"
                     src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'post-thumbnail'); ?>"
                     alt="Card image cap">
                 <h5 class="card-title text-center my-5"><?php echo get_the_title(); ?></h5>
-            </div>
+            </a>
 
             <?php endwhile; ?>
             <?php endif; ?>
@@ -190,10 +192,11 @@ get_header();
             <?php while ($levels_query->have_posts()) : ?>
             <?php $levels_query->the_post(); ?>
 
-            <div class="col-12 col-md-6 col-lg-4 levels--item">
+            <a href='<?php echo $start_levels_link ?>?levels_select=<?php echo get_field('levels_in_courses')?>'
+                class="col-12 col-md-6 col-lg-4 levels--item">
                 <h3><?php echo get_the_title(); ?></h3>
                 <?php the_content(); ?>
-            </div>
+            </a>
 
             <?php endwhile; ?>
             <?php endif; ?>

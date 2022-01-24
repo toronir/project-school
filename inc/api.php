@@ -46,7 +46,9 @@ add_action('rest_api_init', function () {
                        >
                      
                        
-                       <h2 style="color: #c29f48;font-size: 56px;">  Nowy użytkownik ' . $firstName . ' ' . $secondName . ' czeka na akceptację</h2>
+                         <h2 style="color: #c29f48;font-size: 56px;"> Nowy użytkownik  czeka na akceptację</h2>
+                         <h2 style="color: #c29f48;font-size: 56px;">'. $firstName . ' ' . $secondName .'</h2>
+                         <h2 style="color: #c29f48;font-size: 56px;">czeka na akceptację</h2>
                          
                        </td>
                  </table>
@@ -123,8 +125,8 @@ add_action('rest_api_init', function () {
                            
                            width="400px" align="middle" style="margin-top:1rem
                            >
-                           <h2 style="color: #c29f48;font-size: 56px;">  
-                           Hej ' . $firstName . ' ' . $secondName . ' !</h2>
+                           <h2 style="color: #c29f48;font-size: 56px;">Witaj,</h2>
+                           <h2 style="color: #c29f48;font-size: 56px;">' . $firstName . ' ' . $secondName . '!</h2>
                                                     
                                                   </td>
                                             </table>

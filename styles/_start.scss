@@ -123,13 +123,16 @@
         padding: 2rem;
         margin: 2rem;
         background-color: transparent;
-        // color: $btn-dark;
         transition: 0.2s;
 
         @include media-breakpoint-up(lg) {
             &:hover {
                 transform: scale(1.04);
             }
+        }
+
+        & h5 {
+            color: $gold-color;
         }
 
     }
