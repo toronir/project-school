@@ -1,9 +1,9 @@
 <?php
 
 add_action('wp_enqueue_scripts', function () {
-    wp_enqueue_style('main', get_template_directory_uri() . '/dist/main.css', [], '2.5');
+    wp_enqueue_style('main', get_template_directory_uri() . '/dist/main.css', [], '3.21');
 
-    wp_enqueue_script('main', get_template_directory_uri() . '/dist/main.js', ['jquery'], '2.5', true);
+    wp_enqueue_script('main', get_template_directory_uri() . '/dist/main.js', ['jquery'], '3.22', true);
 
     wp_localize_script('main', 'page', [
         'url' => get_home_url(),
